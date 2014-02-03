@@ -1,0 +1,12 @@
+<div class="page-level-progress-inner">
+    {{#each components}}
+    <div class="page-level-progress-item">
+        <a class="page-level-progress-item-title" href="#" data-page-level-progress-id="{{_id}}">
+        	<h5 class="page-level-progress-item-title-inner">
+            {{{title}}}
+            </h5>
+        </a>
+        <div class="page-level-progress-{{#if _isComplete}}complete{{else}}incomplete{{/if}}"><span class="icon icon-dot"></span></div>
+    </div>
+    {{/each}}
+</div>
