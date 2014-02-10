@@ -1,12 +1,23 @@
 <div class="page-level-progress-inner">
     {{#each components}}
-    <div class="page-level-progress-item">
-        <a class="page-level-progress-item-title" href="#" data-page-level-progress-id="{{_id}}">
+    <div class="page-level-progress-item drawer-item">
+        {{#if _isVisible}}
+        <a class="page-level-progress-item-title clearfix drawer-item-open" href="#" data-page-level-progress-id="{{_id}}">
+        {{else}}
+        <div class="page-level-progress-item-title drawer-item-open disabled clearfix">
+        {{/if}}
         	<h5 class="page-level-progress-item-title-inner">
             {{{title}}}
             </h5>
+            <div class="page-level-progress-indicator page-level-progress-indicator-{{#if _isComplete}}complete{{else}}incomplete{{/if}}">
+                <div class="page-level-progress-indicator-bar">
+                </div>
+            </div>
+        {{#if _isVisible}}
         </a>
-        <div class="page-level-progress-{{#if _isComplete}}complete{{else}}incomplete{{/if}}"><span class="icon icon-dot"></span></div>
+        {{else}}
+        </div>
+        {{/if}}
     </div>
     {{/each}}
 </div>
