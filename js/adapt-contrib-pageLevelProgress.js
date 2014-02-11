@@ -89,16 +89,6 @@ define(function(require) {
 	
 	}
 
-	/*Adapt.on('app:dataReady', function() {
-		var drawerObject = {
-			title: Adapt.config.get('_pageLevelProgress').title,
-			description: Adapt.config.get('_pageLevelProgress').description,
-			className: 'drawer-page-level-progress'
-		};
-
-		Adapt.drawer.addItem(drawerObject, 'pageLevelProgress:show');
-	});*/
-
 	Adapt.on('router:page', function(pageModel) {
 		var currentPageComponents = pageModel.findDescendants('components').where({'_isAvailable': true});
 
@@ -106,7 +96,9 @@ define(function(require) {
 			return component.attributes._pageLevelProgress._isEnabled;
 		});
 
-		setupPageLevelProgress(enabledProgressComponents);
+		if (enabledProgressComponents.length > 0) {
+			setupPageLevelProgress(enabledProgressComponents);
+		}
 
 	});
 
