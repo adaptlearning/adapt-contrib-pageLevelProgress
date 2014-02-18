@@ -1,6 +1,6 @@
 .page-level-progress-item-title {
-	background-color:@item-color;
-	color:@item-text-color;
+	background-color:@drawer-item-color;
+	color:@drawer-item-text-color;
 	text-decoration: none;
 	padding:@item-padding;
 	display:block;
@@ -12,9 +12,13 @@
             color:@item-text-disabled-color!important;
         }
 	}
+    .drawer-item-open {
+        padding:@drawer-item-padding;
+        display:block;
+    }
     &:hover {
-        background-color:@item-hover-color;
-        color:@item-text-hover-color;
+        background-color:@drawer-item-hover-color;
+        color:@drawer-item-text-hover-color;
         .page-level-progress-indicator-complete {
             .page-level-progress-indicator-bar {
                 background-color:@item-color;
