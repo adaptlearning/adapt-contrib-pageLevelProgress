@@ -93,7 +93,9 @@ define(function(require) {
 		var currentPageComponents = pageModel.findDescendants('components').where({'_isAvailable': true});
 
 		var enabledProgressComponents = _.filter(currentPageComponents, function(component) {
-			return component.attributes._pageLevelProgress._isEnabled;
+			if (component.attributes._pageLevelProgress) {
+				return component.attributes._pageLevelProgress._isEnabled;
+			}
 		});
 
 		if (enabledProgressComponents.length > 0) {
