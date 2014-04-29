@@ -1,0 +1,14 @@
+{
+  "name": "adapt-contrib-pageLevelProgress",
+  "homepage": "https://github.com/adaptlearning/adapt-contrib-pageLevelProgress",
+  "authors": [
+    "Daryl Hedley <darylhedley@hotmail.com>"
+  ],
+  "description": "An extension to show a users progress through a page",
+  "main": "/js/adapt-contrib-pageLevelProgress.js",
+  "keywords": [
+    "adapt-plugin",
+    "adapt-extension"
+  ],
+  "license": "GPLv3"
+}
