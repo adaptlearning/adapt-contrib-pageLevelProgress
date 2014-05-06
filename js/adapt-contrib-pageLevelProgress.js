@@ -76,7 +76,7 @@ define(function(require) {
 
 		onProgressClicked: function(event) {
 			event.preventDefault();
-			Adapt.drawer.triggerCustomView(new PageLevelProgressView({collection:this.collection}).$el);
+			Adapt.drawer.triggerCustomView(new PageLevelProgressView({collection:this.collection}).$el, false);
 		}
 
 	});
