@@ -8,7 +8,6 @@ define(function(require) {
 
 	var Adapt = require('coreJS/adapt');
 	var Backbone = require('backbone');
-	var Drawer = require('coreJS/drawer');
 
 	var PageLevelProgressView = Backbone.View.extend({
 
