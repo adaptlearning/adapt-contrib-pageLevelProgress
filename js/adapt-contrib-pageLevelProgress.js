@@ -1,9 +1,8 @@
 /*
-* Page Level Progress
-* License - http://github.com/adaptlearning/adapt_framework/LICENSE
-* Maintainers - Daryl Hedley <darylhedley@hotmail.com>
-*/
-
+ * adapt-contrib-pageLevelProgress
+ * License - https://github.com/adaptlearning/adapt_framework/blob/master/LICENSE
+ * Maintainers - Daryl Hedley <darylhedley@hotmail.com>, Himanshu Rajotia <himanshu.rajotia@credipoint.com>
+ */
 define(function(require) {
 
 	var Adapt = require('coreJS/adapt');
@@ -50,6 +49,10 @@ define(function(require) {
 			this.listenTo(Adapt, 'remove', this.remove);
 			this.listenTo(this.collection, 'change:_isComplete', this.updateProgressBar);
 			this.$el.attr('href', '#');
+            this.altText = '';
+            if(Adapt.course.get('_pageLevelProgress') && Adapt.course.get('_pageLevelProgress')._altText) {
+                this.altText += ' ' + Adapt.course.get('_pageLevelProgress')._altText;
+            }
 			this.render();
 			this.updateProgressBar();
 		},
@@ -70,7 +73,7 @@ define(function(require) {
 			var percentageOfCompleteComponents = componentCompletionRatio*100;
 
 			this.$('.page-level-progress-navigation-bar').css('width', percentageOfCompleteComponents+'%');
-
+            this.$el.attr('alt', Math.floor(percentageOfCompleteComponents) +'%' + this.altText);
 		},
 
 		onProgressClicked: function(event) {

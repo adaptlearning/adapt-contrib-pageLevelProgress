@@ -1,3 +1,21 @@
+// To go on a course
+{
+    "_id": "course",
+    "_type": "course",
+    "title": "",
+    "displayTitle": "",
+    "body": "",
+    "_buttons": {
+        "submit": "Submit",
+        "reset": "Reset",
+        "showCorrectAnswer": "Model Answer",
+        "hideCorrectAnswer": "My Answer"
+    },
+    "_pageLevelProgress": {
+        "_altText": "completed on this page"
+    }
+}
+
 // To go on a component
 {
     "_id":"c-05",
