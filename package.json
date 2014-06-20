@@ -1,6 +1,6 @@
 {
   "name": "adapt-contrib-pageLevelProgress",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "An extension to show a users progress through a page",
   "main": "",
   "scripts": {

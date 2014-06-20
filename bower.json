@@ -1,10 +1,13 @@
 {
   "name": "adapt-contrib-pageLevelProgress",
+  "version": "0.0.2",
   "homepage": "https://github.com/adaptlearning/adapt-contrib-pageLevelProgress",
   "authors": [
     "Daryl Hedley <darylhedley@hotmail.com>",
     "Himanshu Rajotia <himanshu.rajotia@credipoint.com>"
   ],
+  "displayName" : "Page Level Progress",
+  "extension" : "pageLevelProgress",
   "description": "An extension to show a users progress through a page",
   "main": "/js/adapt-contrib-pageLevelProgress.js",
   "keywords": [
