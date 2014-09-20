@@ -29,6 +29,9 @@
 
 .page-level-progress-item-title-inner {
 	float:left;
+    .dir-rtl & {
+        float:right;
+    }
 	width:80%;
 }
 
@@ -36,6 +39,10 @@
 	width: 16%;
 	height: 10px;
     margin-left:4%;
+    .dir-rtl & {
+        margin-left:inherit;
+        margin-right:4%;
+    }
     display: inline-block;
 	border-radius:5px;
 	overflow:hidden;
@@ -65,6 +72,9 @@
         padding:(@navigation-padding-mobile+6px);
     }
 	float:right;
+    .dir-rtl & {
+        float:left;
+    }
 	display:inline-block;
     .no-touch &:hover {
 		.page-level-progress-navigation-completion {
