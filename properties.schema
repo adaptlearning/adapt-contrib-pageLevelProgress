@@ -20,11 +20,13 @@
               "properties":{
                 "_isEnabled": {
                   "type":"boolean",
-                  "required":false
+                  "required":false,
+                  "title": "Enabled"
                 },
                 "_altText": {
                   "type":"string",
-                  "required":false
+                  "required":false,
+                  "title": "Alternative text"
                 }
               }
             }
@@ -48,7 +50,8 @@
               "properties":{
                 "_isEnabled": {
                   "type":"boolean",
-                  "required":false
+                  "required":false,
+                  "title": "Enabled"
                 }
               }
             }
