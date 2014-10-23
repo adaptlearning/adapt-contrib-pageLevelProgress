@@ -2,7 +2,7 @@
     {{#each components}}
     <div class="page-level-progress-item drawer-item">
         {{#if _isVisible}}
-        <a class="page-level-progress-item-title clearfix drawer-item-open" href="#" data-page-level-progress-id="{{_id}}">
+        <a class="page-level-progress-item-title clearfix drawer-item-open" role="heading" aria-label="{{{title}}}" href="#" data-page-level-progress-id="{{_id}}">
         {{else}}
         <div class="page-level-progress-item-title drawer-item-open disabled clearfix">
         {{/if}}
