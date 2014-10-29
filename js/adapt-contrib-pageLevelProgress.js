@@ -73,7 +73,8 @@ define(function(require) {
 			var percentageOfCompleteComponents = componentCompletionRatio*100;
 
 			this.$('.page-level-progress-navigation-bar').css('width', percentageOfCompleteComponents+'%');
-            this.$el.attr('alt', Math.floor(percentageOfCompleteComponents) +'%' + this.altText);
+			// Add percentage of completed components as an alt text attribute
+			this.$el.attr('alt', Math.floor(percentageOfCompleteComponents) +'%' + this.altText);
 		},
 
 		onProgressClicked: function(event) {
