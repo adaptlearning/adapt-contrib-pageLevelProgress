@@ -27,13 +27,18 @@
           "type":"object",
           "properties":{
             "_pageLevelProgress": {
-              "type":"object",
-              "required":false,
-              "properties":{
+              "type": "object",
+              "required": false,
+              "legend": "Page Level Progress",
+              "properties": {
                 "_isEnabled": {
-                  "type":"boolean",
-                  "required":false,
-                  "title": "Enabled"
+                  "type": "boolean",
+                  "required":true,
+                  "default": true,
+                  "title": "Is enabled",
+                  "inputType": {"type": "Boolean", "options": [true, false]},
+                  "validators": [],
+                  "help": "If set to 'true', this component will be tracked by PageLevelProgress"
                 }
               }
             }
