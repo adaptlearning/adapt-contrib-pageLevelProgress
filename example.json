@@ -12,7 +12,28 @@
         "hideCorrectAnswer": "My Answer"
     },
     "_pageLevelProgress": {
+        "_isEnabled": true,
         "_altText": "completed on this page"
+    }
+}
+
+// To go on a contentObject
+{
+    "_id": "co-05",
+    "_parentId": "course",
+    "_type": "page",
+    "_classes": "",
+    "title": "Welcome to Adapt Learning",
+    "displayTitle": "Welcome to Adapt Learning",
+    "body": "This page contains a working Adapt page with all core bundled components and plugins working.",
+    "_graphic": {
+        "alt": "This is a picture of Adapt's origami birds.",
+        "src": "course/en/images/origami-menu-one.jpg"
+    },
+    "linkText": "View",
+    "duration": "2 mins",
+    "_pageLevelProgress": {
+        "_isEnabled": true
     }
 }
 
