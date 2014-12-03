@@ -33,7 +33,20 @@
           }
         },
         "contentobject": {
-          "type":"object"
+          "type":"object",
+          "properties":{
+            "_pageLevelProgress": {
+              "type":"object",
+              "required":false,
+              "properties":{
+                "_isEnabled": {
+                  "type":"boolean",
+                  "required":false,
+                  "title": "Enabled"
+                }
+              }
+            }
+          }
         },
         "article": {
           "type":"object"
