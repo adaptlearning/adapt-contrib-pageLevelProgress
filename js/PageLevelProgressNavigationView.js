@@ -15,9 +15,9 @@ define(function(require) {
             this.listenTo(Adapt, 'remove', this.remove);
             this.listenTo(this.collection, 'change:_isComplete', this.updateProgressBar);
             this.$el.attr('href', '#');
-            this.altText = '';
-            if (Adapt.course.get('_pageLevelProgress') && Adapt.course.get('_pageLevelProgress')._altText) {
-                this.altText += ' ' + Adapt.course.get('_pageLevelProgress')._altText;
+            this.ariaText = '';
+            if (Adapt.course.get('_globals')._accessibility && Adapt.course.get('_globals')._accessibility._ariaLabels.pageLevelProgressIndicatorBar) {
+                this.ariaText =Adapt.course.get('_globals')._accessibility._ariaLabels.pageLevelProgressIndicatorBar +  ' ';
             }
             this.render();
             _.defer(_.bind(function() {
@@ -42,8 +42,8 @@ define(function(require) {
 
             this.$('.page-level-progress-navigation-bar').css('width', percentageOfCompleteComponents + '%');
 
-            // Add percentage of completed components as an alt text attribute
-            this.$el.attr('alt', Math.floor(percentageOfCompleteComponents) + '%' + this.altText);
+            // Add percentage of completed components as an aria label attribute
+            this.$el.attr('aria-label', this.ariaText +  Math.floor(percentageOfCompleteComponents) + '%');
 
             // Set percentage of completed components to model attribute to update progress on MenuView
             this.model.set('completedChildrenAsPercentage', percentageOfCompleteComponents);
