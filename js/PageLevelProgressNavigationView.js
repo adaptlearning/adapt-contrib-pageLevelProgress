@@ -30,9 +30,13 @@ define(function(require) {
         },
 
         render: function() {
-            var data = this.collection.toJSON();
+            var components = this.collection.toJSON();
+            var data = {
+                components: components,
+                _globals: Adapt.course.get('_globals')
+            };
             var template = Handlebars.templates['pageLevelProgressNavigation'];
-            $('.navigation-drawer-toggle-button').after(this.$el.html(template({components: data})));
+            $('.navigation-drawer-toggle-button').after(this.$el.html(template(data)));
             return this;
         },
 

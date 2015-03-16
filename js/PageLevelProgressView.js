@@ -21,14 +21,20 @@ define(function(require) {
             var currentComponentSelector = '.' + $(event.currentTarget).attr('data-page-level-progress-id');
             var $currentComponent = $(currentComponentSelector);
             $(window).scrollTo($currentComponent, {offset: {top: -$('.navigation').height()}});
+            $currentComponent.a11y_focus();
             Adapt.trigger('page:scrollTo', currentComponentSelector);
             Adapt.trigger('drawer:closeDrawer');
         },
 
         render: function() {
-            var data = this.collection.toJSON();
+            var components = this.collection.toJSON();
+            var data = {
+                components: components,
+                _globals: Adapt.course.get('_globals')
+            };
             var template = Handlebars.templates['pageLevelProgress'];
-            this.$el.html(template({components: data}));
+            this.$el.html(template(data));
+            this.$el.a11y_aria_label(true);
             return this;
         }
 

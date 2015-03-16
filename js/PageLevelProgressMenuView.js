@@ -27,6 +27,9 @@ define(function(require) {
 
         render: function() {
             var data = this.model.toJSON();
+            _.extend(data, {
+                _globals: Adapt.course.get('_globals')
+            });
             var template = Handlebars.templates['pageLevelProgressMenu'];
             this.$el.html(template(data));
             return this;
