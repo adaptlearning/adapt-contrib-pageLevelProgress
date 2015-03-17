@@ -20,10 +20,10 @@ define(function(require) {
             if(event && event.preventDefault) event.preventDefault();
             var currentComponentSelector = '.' + $(event.currentTarget).attr('data-page-level-progress-id');
             var $currentComponent = $(currentComponentSelector);
-            $(window).scrollTo($currentComponent, {offset: {top: -$('.navigation').height()}});
-            $currentComponent.a11y_focus();
-            Adapt.trigger('page:scrollTo', currentComponentSelector);
             Adapt.trigger('drawer:closeDrawer');
+            $(window).scrollTo($currentComponent, {offset: {top: -$('.navigation').height()}});
+            Adapt.trigger('page:scrollTo', currentComponentSelector);
+            $currentComponent.a11y_focus();
         },
 
         render: function() {
