@@ -20,15 +20,21 @@ define(function(require) {
             if(event && event.preventDefault) event.preventDefault();
             var currentComponentSelector = '.' + $(event.currentTarget).attr('data-page-level-progress-id');
             var $currentComponent = $(currentComponentSelector);
+            Adapt.trigger('drawer:closeDrawer');
             $(window).scrollTo($currentComponent, {offset: {top: -$('.navigation').height()}});
             Adapt.trigger('page:scrollTo', currentComponentSelector);
-            Adapt.trigger('drawer:closeDrawer');
+            $currentComponent.a11y_focus();
         },
 
         render: function() {
-            var data = this.collection.toJSON();
+            var components = this.collection.toJSON();
+            var data = {
+                components: components,
+                _globals: Adapt.course.get('_globals')
+            };
             var template = Handlebars.templates['pageLevelProgress'];
-            this.$el.html(template({components: data}));
+            this.$el.html(template(data));
+            this.$el.a11y_aria_label(true);
             return this;
         }
 
