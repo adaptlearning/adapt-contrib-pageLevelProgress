@@ -1,52 +1,54 @@
-.page-level-progress-item-title {
-	background-color:@drawer-item-color;
-	color:@drawer-item-text-color;
-	text-decoration: none;
-	padding:@item-padding;
-	display:block;
-	&.disabled {
-		background-color:@item-disabled-color;
-		color:@item-text-disabled-color;
-        .no-touch &:hover {
-            background-color:@item-disabled-color!important;
-            color:@item-text-disabled-color!important;
-        }
-	}
-    .drawer-item-open {
-        padding:@drawer-item-padding;
+.drawer {
+    .page-level-progress-item-title {
+        background-color:@drawer-item-color;
+        color:@drawer-item-text-color;
+        text-decoration: none;
+        padding:@item-padding;
         display:block;
-    }
-    .no-touch &:hover {
-        background-color:@drawer-item-hover-color;
-        color:@drawer-item-text-hover-color;
-        .page-level-progress-indicator-complete {
-            .page-level-progress-indicator-bar {
-                background-color:@inverted-foreground-color;
+        &.drawer-item-open.disabled {
+            background-color:@item-disabled-color;
+            color:@item-text-disabled-color;
+            .no-touch &:hover {
+                background-color:@item-disabled-color;
+                color:@item-text-disabled-color;
+            }
+        }
+        .drawer-item-open {
+            padding:@drawer-item-padding;
+            display:block;
+        }
+        .no-touch &:hover {
+            background-color:@drawer-item-hover-color;
+            color:@drawer-item-text-hover-color;
+            .page-level-progress-indicator-complete {
+                .page-level-progress-indicator-bar {
+                    background-color:@inverted-foreground-color;
+                }
             }
         }
     }
 }
 
 .page-level-progress-item-title-inner {
-	float:left;
+    float:left;
     .dir-rtl & {
         float:right;
     }
-	width:80%;
+    width:80%;
 }
 
 .page-level-progress-indicator {
-	width: 16%;
-	height: 10px;
+    width: 16%;
+    height: 10px;
     margin-left:4%;
     .dir-rtl & {
         margin-left:inherit;
         margin-right:4%;
     }
     display: inline-block;
-	border-radius:5px;
-	overflow:hidden;
-	background-color:@item-hover-color;
+    border-radius:5px;
+    overflow:hidden;
+    background-color:@item-hover-color;
 }
 
 .page-level-progress-indicator-complete {
@@ -63,27 +65,27 @@
 
 
 .page-level-progress-indicator-bar {
-	width:0%;
+    width:0%;
 }
 
 .page-level-progress-navigation {
-	padding:(@navigation-padding+6px);
-	@media all and (max-width:(@device-width-medium - 1px)) {
+    padding:(@navigation-padding+6px);
+    @media all and (max-width:(@device-width-medium - 1px)) {
         padding:(@navigation-padding-mobile+6px);
     }
-	float:right;
+    float:right;
     .dir-rtl & {
         float:left;
     }
-	display:inline-block;
+    display:inline-block;
     .no-touch &:hover {
-		.page-level-progress-navigation-completion {
-			background-color: darken(@background-color, 20%);
-		}
-		.page-level-progress-navigation-bar {
-		    background-color: darken(@primary-color, 10%);
-		}
-	}
+        .page-level-progress-navigation-completion {
+            background-color: darken(@background-color, 20%);
+        }
+        .page-level-progress-navigation-bar {
+            background-color: darken(@primary-color, 10%);
+        }
+    }
 }
 
 .page-level-progress-navigation-completion {
