@@ -47,9 +47,21 @@ define(function(require) {
             // This should manage progress of those menuItem which have article as their children.
             if (viewType == 'page') {
 
-                if (!view.model.get('completedChildrenAsPercentage')) {
-                    view.model.set('completedChildrenAsPercentage', 0);
-                }
+                // Get the components
+                var components = view.model.findDescendants('components');
+                var totalComponentsEnabled = 0;
+
+                // Iterate though and find those which have PLP enabled
+                _.each(components.models, function (component) {
+                    if (component.get('_pageLevelProgress')._isEnabled) {
+                        totalComponentsEnabled++;
+                    }
+                });
+                // Get which ones are complete
+                var totalComponentsCompleted = components.where({ '_isComplete': true });
+                
+                // Set as a percentage for this model
+                view.model.set('completedChildrenAsPercentage', (totalComponentsCompleted.length/totalComponentsEnabled)*100);
 
                 view.$el.find('.menu-item-inner').append(new PageLevelProgressMenuView({model: view.model}).$el);
 
