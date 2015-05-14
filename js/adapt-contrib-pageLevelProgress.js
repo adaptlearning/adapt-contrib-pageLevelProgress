@@ -46,16 +46,15 @@ define(function(require) {
 
             // This should manage progress of those menuItem which have article as their children.
             if (viewType == 'page') {
-
-                 // Get the components
-                var components = view.model.findDescendants('components');
+ 
+                var children = view.model.findDescendants('components').where({'_isAvailable': true});
+                var components = getPageLevelProgressEnabledModels(children);
+                var totalComponentsEnabled = components.length | 0,
+                    totalComponentsCompleted = _.filter(components, function(item) {
+                        return item.get('_isComplete');
+                    }).length;
                 
-                // Get enabled and completed
-                var totalComponentsEnabled = getPageLevelProgressEnabledModels(components.models).length | 0;
-                var totalComponentsCompleted = components.where({ '_isComplete': true });
-                
-                // Set as a percentage for this model
-                view.model.set('completedChildrenAsPercentage', (totalComponentsCompleted.length/totalComponentsEnabled)*100);
+                view.model.set('completedChildrenAsPercentage', (totalComponentsCompleted/totalComponentsEnabled)*100);
 
                 view.$el.find('.menu-item-inner').append(new PageLevelProgressMenuView({model: view.model}).$el);
 
