@@ -28,6 +28,42 @@ define(function(require) {
         });
     }
 
+    // Calculate completion of a contentObject
+    function calculateCompletion(contentObjectModel) {
+
+        var viewType = contentObjectModel.get('_type'),
+            totalComponentsEnabled = 0,
+            totalComponentsCompleted = 0;
+
+        // If it's a page
+        if (viewType == 'page') {
+            var children = contentObjectModel.findDescendants('components').where({'_isAvailable': true});
+            var components = getPageLevelProgressEnabledModels(children);
+
+            totalComponentsEnabled = components.length | 0,
+            totalComponentsCompleted = _.filter(components, function(item) {
+                return item.get('_isComplete');
+            }).length;
+
+            return {
+                "completed": totalComponentsCompleted,
+                "total": totalComponentsEnabled
+            };
+        }
+        // If it's a sub-menu
+        else if (viewType == 'menu' && contentObjectModel.get('_id') != Adapt.location._currentId) {
+            _.each(contentObjectModel.get('_children').models, function(contentObject) {
+                var completionObject = calculateCompletion(contentObject);
+                totalComponentsEnabled += completionObject.total;
+                totalComponentsCompleted += completionObject.completed;
+            });
+            return {
+                "completed": totalComponentsCompleted,
+                "total": totalComponentsEnabled
+            };
+        }
+    }
+
     // This should add/update progress on menuView
     Adapt.on('menuView:postRender', function(view) {
 
@@ -44,39 +80,10 @@ define(function(require) {
 
         if (pageLevelProgress && pageLevelProgress._isEnabled) {
 
-            // This should manage progress of those menuItem which have article as their children.
-            if (viewType == 'page') {
- 
-                var children = view.model.findDescendants('components').where({'_isAvailable': true});
-                var components = getPageLevelProgressEnabledModels(children);
-                var totalComponentsEnabled = components.length | 0,
-                    totalComponentsCompleted = _.filter(components, function(item) {
-                        return item.get('_isComplete');
-                    }).length;
-                
-                view.model.set('completedChildrenAsPercentage', (totalComponentsCompleted/totalComponentsEnabled)*100);
-
-                view.$el.find('.menu-item-inner').append(new PageLevelProgressMenuView({model: view.model}).$el);
-
-            }
-
-            // This should manage progress of those menuItem which have sub-menu as their children.
-            else if (viewType == 'menu' && view.model.get('_id') != Adapt.location._currentId) {
-
-                var availableContentObjects = view.model.findDescendants('contentObjects').where({'_isAvailable': true});
-                var childrenWithProgressEnabled = getPageLevelProgressEnabledModels(availableContentObjects);
-
-                var totalCompletedChildrenAsPercentage = 0;
-                _.each(childrenWithProgressEnabled, function(contentObjects, index) {
-                    totalCompletedChildrenAsPercentage += contentObjects.get('completedChildrenAsPercentage') | 0;
-                });
-
-                var completedChildrenAsPercentage = (totalCompletedChildrenAsPercentage / childrenWithProgressEnabled.length) | 0;
-                view.model.set('completedChildrenAsPercentage', completedChildrenAsPercentage);
-
-                view.$el.find('.menu-item-inner').append(new PageLevelProgressMenuView({model: view.model}).$el);
-
-            }
+            var completionObject = calculateCompletion(view.model);
+            var percentageComplete = (completionObject.completed / completionObject.total)*100;
+            view.model.set('completedChildrenAsPercentage', percentageComplete);
+            view.$el.find('.menu-item-inner').append(new PageLevelProgressMenuView({model: view.model}).$el);
 
         }
 
