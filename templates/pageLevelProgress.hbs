@@ -10,10 +10,23 @@
             <div class="page-level-progress-item-title-inner accessible-text-block h5">
             {{{title}}}
             </div>
-            <div class="page-level-progress-indicator page-level-progress-indicator-{{#if _isComplete}}complete{{else}}incomplete{{/if}}">
-                <div class="page-level-progress-indicator-bar">
+            {{#if _isComplete}}
+                <div class="page-level-progress-indicator page-level-progress-indicator-{{#if _isComplete}}complete{{else}}incomplete{{/if}}">
+                    <div class="page-level-progress-indicator-bar">
+                    </div>
                 </div>
-            </div>
+            {{else}}
+                {{#if _isOptional}}
+                    <div class="page-level-progress-item-optional-text">
+                    {{_globals._extensions._pageLevelProgress.optionalContent}}
+                    </div>
+                {{else}}
+                    <div class="page-level-progress-indicator page-level-progress-indicator-{{#if _isComplete}}complete{{else}}incomplete{{/if}}">
+                        <div class="page-level-progress-indicator-bar">
+                        </div>
+                    </div>
+                {{/if}}
+            {{/if}}
         {{#if _isVisible}}
         </a>
         {{else}}

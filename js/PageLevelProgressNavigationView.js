@@ -2,6 +2,7 @@ define(function(require) {
 
     var Adapt = require('coreJS/adapt');
     var Backbone = require('backbone');
+    var util = require('./util');
 
     var PageLevelProgressView = require('extensions/adapt-contrib-pageLevelProgress/js/PageLevelProgressView');
 
@@ -41,16 +42,16 @@ define(function(require) {
         },
 
         updateProgressBar: function() {
-            var componentCompletionRatio = this.collection.where({_isComplete: true}).length / this.collection.length;
-            var percentageOfCompleteComponents = componentCompletionRatio * 100;
+            var completionObject = util.calculateCompletion(this.model);
+            var percentageComplete = Math.floor((completionObject.completed / completionObject.total)*100);
 
-            this.$('.page-level-progress-navigation-bar').css('width', percentageOfCompleteComponents + '%');
+            this.$('.page-level-progress-navigation-bar').css('width', percentageComplete + '%');
 
             // Add percentage of completed components as an aria label attribute
-            this.$el.attr('aria-label', this.ariaText +  Math.floor(percentageOfCompleteComponents) + '%');
+            this.$el.attr('aria-label', this.ariaText +  percentageComplete + '%');
 
             // Set percentage of completed components to model attribute to update progress on MenuView
-            this.model.set('completedChildrenAsPercentage', percentageOfCompleteComponents);
+            this.model.set('completedChildrenAsPercentage', percentageComplete);
         },
 
         onProgressClicked: function(event) {
