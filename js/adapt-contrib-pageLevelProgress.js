@@ -37,7 +37,7 @@ define(function(require) {
         if (pageLevelProgress && pageLevelProgress._isEnabled) {
 
             var completionObject = util.calculateCompletion(view.model);
-            var percentageComplete = (completionObject.completed / completionObject.total)*100;
+            var percentageComplete = Math.floor((completionObject.completed / completionObject.total)*100);
             view.model.set('completedChildrenAsPercentage', percentageComplete);
             view.$el.find('.menu-item-inner').append(new PageLevelProgressMenuView({model: view.model}).$el);
 
