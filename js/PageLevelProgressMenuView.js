@@ -45,7 +45,7 @@ define(function(require) {
             //this.$('.page-level-progress-menu-item-indicator-bar').css('width', percentageOfCompleteComponents + '%');
 
             // Add percentage of completed components as an aria label attribute
-            this.$('.page-level-progress-menu-item-indicator-bar').attr('aria-label', this.ariaText + Math.floor(percentageOfCompleteComponents) + '%');
+            this.$('.aria-label').html(this.ariaText + Math.floor(percentageOfCompleteComponents) + '%');
         },
 
     });

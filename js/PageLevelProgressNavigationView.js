@@ -15,6 +15,7 @@ define(function(require) {
             this.listenTo(Adapt, 'remove', this.remove);
             this.listenTo(this.collection, 'change:_isComplete', this.updateProgressBar);
             this.$el.attr('href', '#');
+            this.$el.attr('role', 'button');
             this.ariaText = '';
             if (Adapt.course.get('_globals')._accessibility && Adapt.course.get('_globals')._accessibility._ariaLabels.pageLevelProgressIndicatorBar) {
                 this.ariaText =Adapt.course.get('_globals')._accessibility._ariaLabels.pageLevelProgressIndicatorBar +  ' ';
