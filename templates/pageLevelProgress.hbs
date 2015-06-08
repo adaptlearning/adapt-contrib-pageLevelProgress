@@ -6,6 +6,7 @@
         <a class="page-level-progress-item-title clearfix drawer-item-open" tabindex="0" role="button" href="#" data-page-level-progress-id="{{_id}}" aria-label="{{title}} {{#if _isComplete}}{{_globals._accessibility._ariaLabels.complete}}{{else}}{{_globals._accessibility._ariaLabels.incomplete}}{{/if}}">
         {{else}}
         <div class="page-level-progress-item-title drawer-item-open disabled clearfix">
+            <a class="aria-label prevent-default" tabindex="0" role="button">{{_globals._accessibility._ariaLabels.locked}}. {{title}} {{#if _isComplete}}{{_globals._accessibility._ariaLabels.complete}}{{else}}{{_globals._accessibility._ariaLabels.incomplete}}{{/if}}</a>
         {{/if}}
             <div class="page-level-progress-item-title-inner accessible-text-block h5">
             {{{title}}}
