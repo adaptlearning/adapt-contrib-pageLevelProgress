@@ -21,9 +21,9 @@ define(function(require) {
             var currentComponentSelector = '.' + $(event.currentTarget).attr('data-page-level-progress-id');
             var $currentComponent = $(currentComponentSelector);
             Adapt.trigger('drawer:closeDrawer');
-            $(window).scrollTo($currentComponent, {offset: {top: -$('.navigation').height()}});
-            Adapt.trigger('page:scrollTo', currentComponentSelector);
-            $currentComponent.a11y_focus();
+            Adapt.once('drawer:closed', function() {
+                Adapt.scrollTo($currentComponent, { duration:400 });
+            });
         },
 
         render: function() {
