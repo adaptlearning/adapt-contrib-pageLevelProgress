@@ -2,6 +2,13 @@
 
 An extension to show a users progress through a page.
 
+##Installation
+
+First, be sure to install the [Adapt Command Line Interface](https://github.com/adaptlearning/adapt-cli), then from the command line run:-
+
+        adapt install adapt-contrib-pageLevelProgress
+
+####Example
 A [sample JSON](https://github.com/adaptlearning/adapt-contrib-pageLevelProgress/blob/master/example.json) is given below which can be added to the course, content object and component:
 
 ####course.json
@@ -28,13 +35,8 @@ A [sample JSON](https://github.com/adaptlearning/adapt-contrib-pageLevelProgress
 }
 ```
 
-##Installation
-
-First, be sure to install the [Adapt Command Line Interface](https://github.com/adaptlearning/adapt-cli), then from the command line run:-
-
-        adapt install adapt-contrib-pageLevelProgress
-
-A description of the attributes is as follows:
+####Attributes
+A description of the attributes are as follows:
 
 | Attribute                 | Type         | Description|
 | :-------------------------|:-------------|:-----------|
