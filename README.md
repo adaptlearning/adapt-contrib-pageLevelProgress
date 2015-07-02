@@ -9,7 +9,7 @@ First, be sure to install the [Adapt Command Line Interface](https://github.com/
         adapt install adapt-contrib-pageLevelProgress
 
 ####Example
-A [sample JSON](https://github.com/adaptlearning/adapt-contrib-pageLevelProgress/blob/master/example.json) is given below which can be added to the course, content object and component:
+A [sample JSON](example.json) is given below which can be added to the course, content object and component:
 
 ####course.json
 
