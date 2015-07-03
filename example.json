@@ -12,8 +12,7 @@
         "hideCorrectAnswer": "My Answer"
     },
     "_pageLevelProgress": {
-        "_isEnabled": true,
-        "_altText": "completed on this page"
+        "_isEnabled": true
     }
 }
 
