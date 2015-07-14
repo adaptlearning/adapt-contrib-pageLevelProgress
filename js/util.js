@@ -10,7 +10,8 @@ define(function() {
 
         var viewType = contentObjectModel.get('_type'),
             totalComponentsEnabled = 0,
-            totalComponentsCompleted = 0;
+            totalComponentsCompleted = 0,
+            isComplete = contentObjectModel.get("_isComplete") ? 1 : 0;
 
         // If it's a page
         if (viewType == 'page') {
@@ -20,11 +21,11 @@ define(function() {
             totalComponentsEnabled = components.length | 0,
             totalComponentsCompleted = _.filter(components, function(item) {
                 return item.get('_isComplete');
-            }).length;
+            }).length;           
 
             return {
-                "completed": totalComponentsCompleted,
-                "total": totalComponentsEnabled
+                "completed": totalComponentsCompleted + isComplete,
+                "total": totalComponentsEnabled + 1
             };
         }
         // If it's a sub-menu
@@ -34,9 +35,10 @@ define(function() {
                 totalComponentsEnabled += completionObject.total;
                 totalComponentsCompleted += completionObject.completed;
             });
+
             return {
-                "completed": totalComponentsCompleted,
-                "total": totalComponentsEnabled
+                "completed": totalComponentsCompleted + isComplete,
+                "total": totalComponentsEnabled + 1
             };
         }
     }
