@@ -15,8 +15,7 @@ A [sample JSON](example.json) is given below which can be added to the course, c
 
 ```json
 "_pageLevelProgress": {
-        "_isEnabled": true,
-        "_altText": "completed on this page"
+        "_isEnabled": true
 }
 ```
 ####contentObjects.json
@@ -41,7 +40,6 @@ A description of the attributes are as follows:
 | Attribute                 | Type         | Description|
 | :-------------------------|:-------------|:-----------|
 | _isEnabled                | bool         | Turns page level progress on or off for this element. |
-| _altText               | string         | Accessibility label (Note: this is set on the course level only).|
 
   
 ##Browser spec
