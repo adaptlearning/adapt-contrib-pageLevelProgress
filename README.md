@@ -1,10 +1,12 @@
 # adapt-contrib-pageLevelProgress  
 
-<img src="https://github.com/adaptlearning/documentation/blob/master/04_wiki_assets/plug-ins/images/plp01.gif" alt="page level progress bar clicked and drawer opening, showing completion status of components"> **Page Level Progress** is an *extension* bundled with the [Adapt framework](https://github.com/adaptlearning/adapt_framework).  
+**Page Level Progress** is an *extension* bundled with the [Adapt framework](https://github.com/adaptlearning/adapt_framework).  
+
+<img src="https://github.com/adaptlearning/documentation/blob/master/04_wiki_assets/plug-ins/images/plp01.gif" alt="page level progress bar clicked and drawer opening, showing completion status of components">    
 
 This extension displays the learner's progress through a page via a progress bar displayed in the top navigation bar. Progress is calculated as the percentage of child components that have been completed. Clicking on the progress bar opens the drawer to reveal completion status of individual components. Page progress may also be displayed on menu items representing the page.
 
-[Visit the **Page Level Progress** wiki](pageLevelProgress-wiki) for more information about its functionality and for explanations of key properties.  
+[Visit the **Page Level Progress** wiki](wiki) for more information about its functionality and for explanations of key properties.  
 
 ##Installation
 
@@ -33,7 +35,7 @@ The same **_pageLevelProgress** object may be added to contentObjects (*contentO
 The same **_pageLevelProgress** object may be added to the course (*course.json*). At this level, `"_isEnabled"` can be used to disable **Page Level Progress** on components and contentObjects that have `"_isEnabled": true`.  
 >**Note:** Setting the **_pageLevelProgress** object in *course.json* does not provide defaults for components or contentObjects. It cannot be used to enable **Page Level Progress** on components or contentObjects that have `"_isEnabled": false` or that do not have the **_pageLevelProgress** object in their model json.
 
-Visit the [**Page Level Progress** wiki](pageLevelProgress/wiki) for more information about how they appear in the [authoring tool](https://github.com/adaptlearning/adapt_authoring/wiki). 
+Visit the [**Page Level Progress** wiki](wiki) for more information about how they appear in the [authoring tool](https://github.com/adaptlearning/adapt_authoring/wiki). 
 
 ### Attributes
 
