@@ -31,6 +31,7 @@ define(function(require) {
                 _globals: Adapt.course.get('_globals')
             });
             var template = Handlebars.templates['pageLevelProgressMenu'];
+
             this.$el.html(template(data));
             return this;
         },
@@ -42,10 +43,9 @@ define(function(require) {
                 var percentageOfCompleteComponents = 0;
             }
 
-            //this.$('.page-level-progress-menu-item-indicator-bar').css('width', percentageOfCompleteComponents + '%');
-
             // Add percentage of completed components as an aria label attribute
-            this.$('.aria-label').html(this.ariaText + Math.floor(percentageOfCompleteComponents) + '%');
+            this.$('.page-level-progress-menu-item-indicator-bar .aria-label').html(this.ariaText + Math.floor(percentageOfCompleteComponents) + '%');
+
         },
 
     });

@@ -2,7 +2,7 @@ define(function(require) {
 
     var Adapt = require('coreJS/adapt');
     var Backbone = require('backbone');
-    var util = require('./util');
+    var completionCalculations = require('./completionCalculations');
 
     var PageLevelProgressView = require('extensions/adapt-contrib-pageLevelProgress/js/PageLevelProgressView');
 
@@ -14,7 +14,8 @@ define(function(require) {
 
         initialize: function() {
             this.listenTo(Adapt, 'remove', this.remove);
-            this.listenTo(this.collection, 'change:_isComplete', this.updateProgressBar);
+            this.listenTo(Adapt, 'router:location', this.updateProgressBar);
+            this.listenTo(this.collection, 'change:_isInteractionComplete', this.updateProgressBar);
             this.$el.attr('href', '#');
             this.$el.attr('role', 'button');
             this.ariaText = '';
@@ -36,15 +37,24 @@ define(function(require) {
             var data = {
                 components: components,
                 _globals: Adapt.course.get('_globals')
-            };
+            };            
+
             var template = Handlebars.templates['pageLevelProgressNavigation'];
             $('.navigation-drawer-toggle-button').after(this.$el.html(template(data)));
             return this;
         },
 
         updateProgressBar: function() {
-            var completionObject = util.calculateCompletion(this.model);
-            var percentageComplete = Math.floor((completionObject.completed / completionObject.total)*100);
+            var completionObject = completionCalculations.calculateCompletion(this.model);
+            
+            //take all assessment, nonassessment and subprogress into percentage
+            //this allows the user to see if assessments have been passed, if assessment components can be retaken, and all other component's completion
+            
+            var completed = completionObject.nonAssessmentCompleted + completionObject.assessmentCompleted + completionObject.subProgressCompleted;
+            var total  = completionObject.nonAssessmentTotal + completionObject.assessmentTotal + completionObject.subProgressTotal;
+
+            var percentageComplete = Math.floor((completed / total)*100);
+
 
             this.$('.page-level-progress-navigation-bar').css('width', percentageComplete + '%');
 
