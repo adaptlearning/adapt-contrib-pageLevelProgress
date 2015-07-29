@@ -3,6 +3,29 @@
   "$schema": "http://json-schema.org/draft-04/schema",
   "id": "http://jsonschema.net",
   "required":false,
+  "globals": {
+    "pageLevelProgress": {
+      "type": "string",
+      "required": true,
+      "default": "Page sections",
+      "inputType": "Text",
+      "validators": []
+    },
+    "pageLevelProgressIndicatorBar": {
+      "type": "string",
+      "required": true,
+      "default": "You have completed ",
+      "inputType": "Text",
+      "validators": []
+    },
+    "pageLevelProgressEnd": {
+      "type": "string",
+      "required": true,
+      "default": "You have reached the end of the list of page sections.",
+      "inputType": "Text",
+      "validators": []
+    }
+  },
   "properties":{
     "pluginLocations": {
       "type":"object",
