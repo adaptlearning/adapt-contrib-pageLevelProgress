@@ -1,8 +1,3 @@
-/*
- * adapt-contrib-pageLevelProgress
- * License - http://github.com/adaptlearning/adapt_framework/blob/master/LICENSE
- * Maintainers - Daryl Hedley <darylhedley@hotmail.com>, Himanshu Rajotia <himanshu.rajotia@exultcorp.com>, "Oliver Foster" <oliver.foser@kineo.com>
- */
 define(function() {
     
     // Calculate completion of a contentObject
