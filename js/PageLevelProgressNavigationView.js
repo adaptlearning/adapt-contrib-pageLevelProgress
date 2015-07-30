@@ -19,7 +19,7 @@ define(function(require) {
             this.$el.attr('href', '#');
             this.$el.attr('role', 'button');
             this.ariaText = '';
-            if (Adapt.course.get('_globals')._accessibility && Adapt.course.get('_globals')._extensions._pageLevelProgress.pageLevelProgressIndicatorBar) {
+            if (Adapt.course.get('_globals')._extensions && Adapt.course.get('_globals')._extensions._pageLevelProgress.pageLevelProgressIndicatorBar) {
                 this.ariaText =Adapt.course.get('_globals')._extensions._pageLevelProgress.pageLevelProgressIndicatorBar +  ' ';
             }
             this.render();
