@@ -1,4 +1,4 @@
-<div class="page-level-progress-inner" role="region" aria-label="{{_globals._accessibility._ariaLabels.pageLevelProgress}}" {{#if _globals._accessibility._ariaLabels.pageLevelProgress}}tabindex="0"{{/if}}>
+<div class="page-level-progress-inner" role="region" aria-label="{{_globals._extensions._pageLevelProgress.pageLevelProgress}}" {{#if _globals._extensions._pageLevelProgress.pageLevelProgress}}tabindex="0"{{/if}}>
     <div role="list">
     {{#each components}}
         {{#if _isPartOfAssessment}}
@@ -72,5 +72,5 @@
         {{/if}}
     {{/each}}
     </div>
-    <div aria-label="{{_globals._accessibility._ariaLabels.pageLevelProgressEnd}}"/>
+    <div class="aria-label a11y-ignore-focus prevent-default" tabindex="0" aria-label="{{_globals._extensions._pageLevelProgress.pageLevelProgressEnd}}"/>
 </div>
