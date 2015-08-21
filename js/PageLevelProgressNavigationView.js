@@ -16,6 +16,7 @@ define(function(require) {
             this.listenTo(Adapt, 'remove', this.remove);
             this.listenTo(Adapt, 'router:location', this.updateProgressBar);
             this.listenTo(this.collection, 'change:_isInteractionComplete', this.updateProgressBar);
+            this.listenTo(this.model, 'change:_isInteractionComplete', this.updateProgressBar);
             this.$el.attr('href', '#');
             this.$el.attr('role', 'button');
             this.ariaText = '';
