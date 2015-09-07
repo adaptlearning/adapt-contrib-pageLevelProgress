@@ -24,6 +24,13 @@
       "default": "You have reached the end of the list of page sections.",
       "inputType": "Text",
       "validators": []
+    },
+    "optionalContent": {
+      "type": "string",
+      "required": true,
+      "default": "Optional Content",
+      "inputType": "Text",
+      "validators": []
     }
   },
   "properties":{
