@@ -13,7 +13,7 @@ define(function(require) {
         },
 
         events: {
-            'click .page-level-progress-item a': 'scrollToPageElement'
+            'click .page-level-progress-item button': 'scrollToPageElement'
         },
 
         scrollToPageElement: function(event) {
