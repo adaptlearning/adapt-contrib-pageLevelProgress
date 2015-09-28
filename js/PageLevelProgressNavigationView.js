@@ -8,16 +8,15 @@ define(function(require) {
 
     var PageLevelProgressNavigationView = Backbone.View.extend({
 
-        tagName: 'a',
+        tagName: 'button',
 
-        className: 'page-level-progress-navigation',
+        className: 'base page-level-progress-navigation',
 
         initialize: function() {
             this.listenTo(Adapt, 'remove', this.remove);
             this.listenTo(Adapt, 'router:location', this.updateProgressBar);
             this.listenTo(this.collection, 'change:_isInteractionComplete', this.updateProgressBar);
             this.listenTo(this.model, 'change:_isInteractionComplete', this.updateProgressBar);
-            this.$el.attr('href', '#');
             this.$el.attr('role', 'button');
             this.ariaText = '';
             if (Adapt.course.get('_globals')._extensions && Adapt.course.get('_globals')._extensions._pageLevelProgress && Adapt.course.get('_globals')._extensions._pageLevelProgress.pageLevelProgressIndicatorBar) {
