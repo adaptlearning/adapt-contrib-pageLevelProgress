@@ -20,10 +20,10 @@ define(function(require) {
             if(event && event.preventDefault) event.preventDefault();
             var currentComponentSelector = '.' + $(event.currentTarget).attr('data-page-level-progress-id');
             var $currentComponent = $(currentComponentSelector);
-            Adapt.trigger('drawer:closeDrawer');
             Adapt.once('drawer:closed', function() {
                 Adapt.scrollTo($currentComponent, { duration:400 });
             });
+            Adapt.trigger('drawer:closeDrawer');
         },
 
         render: function() {
