@@ -8,16 +8,16 @@ define(function(require) {
 
     var PageLevelProgressNavigationView = Backbone.View.extend({
 
-        tagName: 'a',
+        tagName: 'button',
 
-        className: 'page-level-progress-navigation',
+        className: 'base page-level-progress-navigation',
 
         initialize: function() {
             this.listenTo(Adapt, 'remove', this.remove);
             this.listenTo(Adapt, 'router:location', this.updateProgressBar);
+            this.listenTo(Adapt, 'pageLevelProgress:update', this.refreshProgressBar);
             this.listenTo(this.collection, 'change:_isInteractionComplete', this.updateProgressBar);
             this.listenTo(this.model, 'change:_isInteractionComplete', this.updateProgressBar);
-            this.$el.attr('href', '#');
             this.$el.attr('role', 'button');
             this.ariaText = '';
             
@@ -46,6 +46,14 @@ define(function(require) {
             var template = Handlebars.templates['pageLevelProgressNavigation'];
             $('.navigation-drawer-toggle-button').after(this.$el.html(template(data)));
             return this;
+        },
+        
+        refreshProgressBar: function() {
+            var currentPageComponents = this.model.findDescendants('components').where({'_isAvailable': true});
+            var enabledProgressComponents = completionCalculations.getPageLevelProgressEnabledModels(currentPageComponents);
+            
+            this.collection = new Backbone.Collection(enabledProgressComponents);
+            this.updateProgressBar();
         },
 
         updateProgressBar: function() {
