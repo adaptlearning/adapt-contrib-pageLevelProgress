@@ -20,10 +20,13 @@ define(function(require) {
             this.listenTo(this.model, 'change:_isInteractionComplete', this.updateProgressBar);
             this.$el.attr('role', 'button');
             this.ariaText = '';
-            if (Adapt.course.get('_globals')._extensions && Adapt.course.get('_globals')._extensions._pageLevelProgress && Adapt.course.get('_globals')._extensions._pageLevelProgress.pageLevelProgressIndicatorBar) {
-                this.ariaText =Adapt.course.get('_globals')._extensions._pageLevelProgress.pageLevelProgressIndicatorBar +  ' ';
+            
+            if (Adapt.course.has('_globals') && Adapt.course.get('_globals')._extensions && Adapt.course.get('_globals')._extensions._pageLevelProgress && Adapt.course.get('_globals')._extensions._pageLevelProgress.pageLevelProgressIndicatorBar) {
+                this.ariaText = Adapt.course.get('_globals')._extensions._pageLevelProgress.pageLevelProgressIndicatorBar +  ' ';
             }
+            
             this.render();
+            
             _.defer(_.bind(function() {
                 this.updateProgressBar();
             }, this));
