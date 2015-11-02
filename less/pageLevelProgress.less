@@ -6,11 +6,11 @@
         padding:@item-padding;
         display:block;
         &.drawer-item-open.disabled {
-            background-color:@item-disabled-color;
-            color:@item-text-disabled-color;
+            background-color:@item-color-disabled;
+            color:@item-text-color-disabled;
             .no-touch &:hover {
-                background-color:@item-disabled-color;
-                color:@item-text-disabled-color;
+                background-color:@item-color-disabled;
+                color:@item-text-color-disabled;
             }
         }
         .drawer-item-open {
@@ -53,7 +53,7 @@
     display: inline-block;
     border-radius:5px;
     overflow:hidden;
-    background-color:@item-hover-color;
+    background-color:@item-color-hover;
 }
 
 .page-level-progress-indicator-complete {
@@ -111,7 +111,7 @@
 
 .menu {
     .page-level-progress-menu-item {
-      padding:@menu-body-padding;
+        padding:@menu-body-padding;
     }
 
     .page-level-progress-menu-item-indicator {
