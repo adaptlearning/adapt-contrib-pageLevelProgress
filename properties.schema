@@ -64,6 +64,15 @@
                   "inputType": {"type": "Boolean", "options": [true, false]},
                   "validators": [],
                   "help": "If set to 'false', Page Level Progress will be disabled on all components, pages, and menus"
+                },
+                "_showPageCompletion": {
+                  "type": "boolean",
+                  "required":true,
+                  "default": true,
+                  "title": "Show page completion",
+                  "inputType": {"type": "Boolean", "options": [true, false]},
+                  "validators": [],
+                  "help": "If set to 'false', Page Level Progress will not represent page completion in progress bar"
                 }
               }
             }
@@ -85,6 +94,15 @@
                   "inputType": {"type": "Boolean", "options": [true, false]},
                   "validators": [],
                   "help": "If set to 'true', a progress bar will be displayed"
+                },
+                "_showPageCompletion": {
+                  "type": "boolean",
+                  "required":true,
+                  "default": true,
+                  "title": "Show page completion",
+                  "inputType": {"type": "Boolean", "options": [true, false]},
+                  "validators": [],
+                  "help": "If set to 'false', Page Level Progress will not represent page completion in progress bar"
                 }
               }
             }

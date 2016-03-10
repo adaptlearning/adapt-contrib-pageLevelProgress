@@ -1,4 +1,6 @@
-define(function() {
+define([
+    'coreJS/adapt'
+], function(Adapt) {
     
     // Calculate completion of a contentObject
     function calculateCompletion(contentObjectModel) {
@@ -30,15 +32,25 @@ define(function() {
             subProgressCompleted = contentObjectModel.get("_subProgressComplete") || 0;
             subProgressTotal = contentObjectModel.get("_subProgressTotal") || 0;
 
-            //add one point extra for page completion to eliminate incomplete pages and full progress bars
-            return {
+            var pageCompletion = {
                 "subProgressCompleted": subProgressCompleted,
                 "subProgressTotal": subProgressTotal,
-                "nonAssessmentCompleted": nonAssessmentComponentsCompleted + isComplete,
-                "nonAssessmentTotal": nonAssessmentComponentsTotal + 1,
-                "assessmentCompleted": assessmentComponentsCompleted + isComplete,
-                "assessmentTotal": assessmentComponentsTotal + 1
+                "nonAssessmentCompleted": nonAssessmentComponentsCompleted,
+                "nonAssessmentTotal": nonAssessmentComponentsTotal,
+                "assessmentCompleted": assessmentComponentsCompleted,
+                "assessmentTotal": assessmentComponentsTotal
             };
+
+            if (contentObjectModel.get("_pageLevelProgress") && contentObjectModel.get("_pageLevelProgress")._showPageCompletion !== false 
+                && Adapt.course.get("_pageLevelProgress") && Adapt.course.get("_pageLevelProgress")._showPageCompletion !== false) {
+                //optioanlly add one point extra for page completion to eliminate incomplete pages and full progress bars
+                pageCompletion.nonAssessmentCompleted += isComplete;
+                pageCompletion.nonAssessmentTotal += 1;
+                pageCompletion.assessmentCompleted += isComplete;
+                pageCompletion.assessmentTotal += 1;
+            }
+
+            return pageCompletion;
         }
         // If it's a sub-menu
         else if (viewType == 'menu') {
