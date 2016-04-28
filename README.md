@@ -28,7 +28,11 @@ With the [Adapt CLI](https://github.com/adaptlearning/adapt-cli) installed, run 
 
 ## Settings Overview
 
-The attributes listed below are used in *components.json* to configure **Page Level Progress**, and are properly formatted as JSON in [*example.json*](https://github.com/adaptlearning/adapt-contrib-pageLevelProgress/blob/master/example.json). The absence of the **_pageLevelProgress** object in a component model is interpreted as having **Page Level Progress** disabled (`"_isEnabled": false`).  Calculation of the percentage of child components that have been completed includes all components, even those that have pageLevelProgress disabled and those with no **_pageLevelProgress** object in the component model. In order to have a component ignored in this calculation, you must set `_isOptional` to `true` in the component model (*components.json*).
+The attributes listed below are used in *components.json* to configure **Page Level Progress**, and are properly formatted as JSON in [*example.json*](https://github.com/adaptlearning/adapt-contrib-pageLevelProgress/blob/master/example.json). 
+
+The absence of the **_pageLevelProgress** object in a component model is interpreted as that component having **Page Level Progress** disabled (`"_isEnabled": false`). 
+
+By default, calculation of the percentage of child components that have been completed includes all components, even those that have pageLevelProgress disabled and those with no **_pageLevelProgress** object in the component model. In order to have a component ignored in this calculation, you must set either `_isOptional` to `true` in the component model (*components.json*) or set the `_showPageCompletion` property (see [Attributes](#attributes)) to `false` in either *course.json* or *contentObjects.json*
 
 The same **_pageLevelProgress** object may be added to contentObjects (*contentObjects.json*). At this level `"_isEnabled"` governs whether a progress bar will be displayed on the menu item. It does not act to provide defaults for its child components. It does not override their settings.
 
@@ -42,6 +46,8 @@ Visit the [**Page Level Progress** wiki](https://github.com/adaptlearning/adapt-
 **_pageLevelProgress** (object):  The Page Level Progress object that contains a value for **_isEnabled**.  
 
 >**_isEnabled** (boolean): Turns **Page Level Progress** on and off. Acceptable values are `true` and `false`. 
+
+>**_showPageCompletion** (boolean): Set to `false` to have the overall progress calculated only from components that have been set to display in **Page Level Progress** (ignoring the completion of those that haven't). This property should be applied only to *course.json* and *contentObjects.json*; adding it to *components.json* will have no effect. 
 
 ### Accessibility
 Several elements of **Page Level Progress** have been assigned a label using the [aria-label](https://github.com/adaptlearning/adapt_framework/wiki/Aria-Labels) attribute: **pageLevelProgress**, **pageLevelProgressIndicatorBar**, and **pageLevelProgressEnd**. These labels are not visible elements. They are utilized by assistive technology such as screen readers. Should the label texts need to be customised, they can be found within the **globals** object in [*properties.schema*](https://github.com/adaptlearning/adapt-contrib-pageLevelProgress/blob/master/properties.schema).   
