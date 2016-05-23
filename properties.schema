@@ -9,7 +9,8 @@
       "required": true,
       "default": "Page sections",
       "inputType": "Text",
-      "validators": []
+      "validators": [],
+      "translatable": true
     },
     "pageLevelProgressIndicatorBar": {
       "type": "string",
