@@ -17,7 +17,8 @@ define([
         // If it's a page
         if (viewType == 'page') {
             var children = contentObjectModel.findDescendants('components').where({'_isAvailable': true, '_isOptional': false});
-            var availableChildren = contentObjectModel.filterAvailableChildren(children);
+
+            var availableChildren = filterAvailableChildren(children);
             var components = getPageLevelProgressEnabledModels(availableChildren);
 
             var nonAssessmentComponents = getNonAssessmentComponents(components);
@@ -110,9 +111,32 @@ define([
         });
     }
 
+    function unavailableInHierarchy(parents) {
+        if (parents.length > 0) {
+            var parentsAvailable = _.map(parents, function(parent) {
+                return parent.get('_isAvailable');
+            });
+            return parentsAvailable.indexOf(false) > -1;
+        }
+    }
+
+    function filterAvailableChildren(children) {
+        var availableChildren = [];
+
+        for(var child=0; child < children.length; child++) {
+            var parents = children[child].getParents().models;
+            if (!unavailableInHierarchy(parents)) {
+                availableChildren.push(children[child]);
+            }
+        }
+
+        return availableChildren;
+    }
+
     return {
     	calculateCompletion: calculateCompletion,
-    	getPageLevelProgressEnabledModels: getPageLevelProgressEnabledModels
+    	getPageLevelProgressEnabledModels: getPageLevelProgressEnabledModels,
+        filterAvailableChildren: filterAvailableChildren
     };
 
 })
