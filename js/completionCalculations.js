@@ -17,7 +17,8 @@ define([
         // If it's a page
         if (viewType == 'page') {
             var children = contentObjectModel.findDescendants('components').where({'_isAvailable': true, '_isOptional': false});
-            var components = getPageLevelProgressEnabledModels(children);
+            var availableChildren = contentObjectModel.filterAvailableChildren(children);
+            var components = getPageLevelProgressEnabledModels(availableChildren);
 
             var nonAssessmentComponents = getNonAssessmentComponents(components);
 
