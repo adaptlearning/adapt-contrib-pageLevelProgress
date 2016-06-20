@@ -117,6 +117,8 @@ define([
                 return parent.get('_isAvailable');
             });
             return parentsAvailable.indexOf(false) > -1;
+        } else {
+            return;
         }
     }
 
