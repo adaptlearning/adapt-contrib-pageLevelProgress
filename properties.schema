@@ -9,35 +9,40 @@
       "required": true,
       "default": "Page sections",
       "inputType": "Text",
-      "validators": []
+      "validators": [],
+      "translatable": true
     },
     "pageLevelProgressIndicatorBar": {
       "type": "string",
       "required": true,
       "default": "Progress bar. Select here to view your current progress, and select an item to navigate to it. You have completed ",
       "inputType": "Text",
-      "validators": []
+      "validators": [],
+      "translatable": true
     },
     "pageLevelProgressMenuBar": {
       "type": "string",
       "required": true,
       "default": "You have completed ",
       "inputType": "Text",
-      "validators": []
+      "validators": [],
+      "translatable": true
     },
     "pageLevelProgressEnd": {
       "type": "string",
       "required": true,
       "default": "You have reached the end of the list of page sections.",
       "inputType": "Text",
-      "validators": []
+      "validators": [],
+      "translatable": true
     },
     "optionalContent": {
       "type": "string",
       "required": true,
       "default": "Optional Content",
       "inputType": "Text",
-      "validators": []
+      "validators": [],
+      "translatable": true
     }
   },
   "properties":{
