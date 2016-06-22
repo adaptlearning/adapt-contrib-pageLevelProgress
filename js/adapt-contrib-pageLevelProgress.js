@@ -57,7 +57,8 @@ define(function(require) {
         }
 
         var currentPageComponents = pageModel.findDescendants('components').where({'_isAvailable': true});
-        var enabledProgressComponents = completionCalculations.getPageLevelProgressEnabledModels(currentPageComponents);
+        var availableComponents = completionCalculations.filterAvailableChildren(currentPageComponents);
+        var enabledProgressComponents = completionCalculations.getPageLevelProgressEnabledModels(availableComponents);
 
         if (enabledProgressComponents.length > 0) {
             setupPageLevelProgress(pageModel, enabledProgressComponents);
