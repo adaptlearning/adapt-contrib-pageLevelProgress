@@ -45,11 +45,10 @@ define([
 
             if (contentObjectModel.get("_pageLevelProgress") && contentObjectModel.get("_pageLevelProgress")._showPageCompletion !== false 
                 && Adapt.course.get("_pageLevelProgress") && Adapt.course.get("_pageLevelProgress")._showPageCompletion !== false) {
-                //optioanlly add one point extra for page completion to eliminate incomplete pages and full progress bars
+                //optionally add one point extra for page completion to eliminate incomplete pages and full progress bars
+                // if _showPageCompletion is true then the progress bar should also consider it so add 1 to nonAssessmentTotal
                 pageCompletion.nonAssessmentCompleted += isComplete;
                 pageCompletion.nonAssessmentTotal += 1;
-                pageCompletion.assessmentCompleted += isComplete;
-                pageCompletion.assessmentTotal += 1;
             }
 
             return pageCompletion;
