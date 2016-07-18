@@ -115,7 +115,7 @@ define([
             var parentsAvailable = _.map(parents, function(parent) {
                 return parent.get('_isAvailable');
             });
-            return parentsAvailable.indexOf(false) > -1;
+            return _.indexOf(parentsAvailable, false) > -1;
         } else {
             return;
         }
