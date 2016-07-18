@@ -50,7 +50,7 @@ define(function(require) {
         
         refreshProgressBar: function() {
             var currentPageComponents = this.model.findDescendants('components').where({'_isAvailable': true});
-            var availableChildren = completionCalculations.filterAvailableChildren(children);
+            var availableChildren = completionCalculations.filterAvailableChildren(currentPageComponents);
             var enabledProgressComponents = completionCalculations.getPageLevelProgressEnabledModels(availableChildren);
             
             this.collection = new Backbone.Collection(enabledProgressComponents);
