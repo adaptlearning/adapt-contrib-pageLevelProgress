@@ -97,7 +97,7 @@ define([
 
     function getComponentsInteractionCompleted(models) {
         return _.filter(models, function(item) {
-            return item.get('_isInteractionComplete');
+            return item.get('_isComplete');
         });
     }
 
