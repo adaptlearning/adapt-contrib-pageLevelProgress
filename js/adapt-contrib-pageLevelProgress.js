@@ -8,18 +8,17 @@ define(function(require) {
     var PageLevelProgressNavigationView = require('extensions/adapt-contrib-pageLevelProgress/js/PageLevelProgressNavigationView');
 
     function setupPageLevelProgress(pageModel, enabledProgressComponents) {
-
-        new PageLevelProgressNavigationView({model: pageModel, collection:  new Backbone.Collection(enabledProgressComponents) });
-
+        new PageLevelProgressNavigationView({model: pageModel, collection: new Backbone.Collection(enabledProgressComponents)});
     }
 
     // This should add/update progress on menuView
     Adapt.on('menuView:postRender', function(view) {
-
         if (view.model.get('_id') == Adapt.location._currentId) return;
 
-        // do not proceed until pageLevelProgress enabled on course.json
-        if (!Adapt.course.get('_pageLevelProgress') || !Adapt.course.get('_pageLevelProgress')._isEnabled) {
+        var coursePLPConfig = Adapt.course.get('_pageLevelProgress');
+
+        // do not proceed if pageLevelProgress is not enabled in course.json
+        if (!coursePLPConfig || !coursePLPConfig._isEnabled) {
             return;
         }
 
@@ -30,7 +29,6 @@ define(function(require) {
         if (viewType == 'course') return;
 
         if (pageLevelProgress && pageLevelProgress._isEnabled) {
-
             var completionObject = completionCalculations.calculateCompletion(view.model);
 
             //take all non-assessment components and subprogress info into the percentage
@@ -39,20 +37,20 @@ define(function(require) {
             var completed = completionObject.nonAssessmentCompleted + completionObject.subProgressCompleted;
             var total = completionObject.nonAssessmentTotal + completionObject.subProgressTotal;
 
-            var percentageComplete = Math.floor((completed / total)*100);
+            var percentageComplete = Math.floor((completed / total) * 100);
             
             view.model.set('completedChildrenAsPercentage', percentageComplete);
-            view.$el.find('.menu-item-progress-inner').append(new PageLevelProgressMenuView({model: view.model}).$el);
-
+            view.$el.find('.menu-item-inner').append(new PageLevelProgressMenuView({model: view.model}).$el);
         }
-
     });
 
     // This should add/update progress on page navigation bar
     Adapt.on('router:page', function(pageModel) {
+        var coursePLPConfig = Adapt.course.get('_pageLevelProgress');
+        var pagePLPConfig = pageModel.get('_pageLevelProgress');
 
-        // do not proceed until pageLevelProgress enabled on course.json
-        if (!Adapt.course.get('_pageLevelProgress') || !Adapt.course.get('_pageLevelProgress')._isEnabled) {
+        // do not proceed if pageLevelProgress is not enabled in course.json or for the content object
+        if (!coursePLPConfig || !coursePLPConfig._isEnabled || !pagePLPConfig || !pagePLPConfig._isEnabled) {
             return;
         }
 
@@ -63,7 +61,6 @@ define(function(require) {
         if (enabledProgressComponents.length > 0) {
             setupPageLevelProgress(pageModel, enabledProgressComponents);
         }
-
     });
 
 });
