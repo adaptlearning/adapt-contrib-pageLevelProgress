@@ -66,18 +66,18 @@
                   "required":true,
                   "default": true,
                   "title": "Is enabled",
-                  "inputType": {"type": "Boolean", "options": [true, false]},
+                  "inputType": "Checkbox",
                   "validators": [],
-                  "help": "If set to 'false', Page Level Progress will be disabled on all components, pages, and menus"
+                  "help": "Controls whether the Page Level Progress extension is enabled or disabled."
                 },
                 "_showPageCompletion": {
                   "type": "boolean",
                   "required":true,
                   "default": true,
                   "title": "Show page completion",
-                  "inputType": {"type": "Boolean", "options": [true, false]},
+                  "inputType": "Checkbox",
                   "validators": [],
-                  "help": "If set to 'false', Page Level Progress will not represent page completion in progress bar"
+                  "help": "Controls whether the progress calculations are based on all components - or only those that are set to be displayed in PLP."
                 }
               }
             }
@@ -96,18 +96,18 @@
                   "required":true,
                   "default": true,
                   "title": "Is enabled",
-                  "inputType": {"type": "Boolean", "options": [true, false]},
+                  "inputType": "Checkbox",
                   "validators": [],
-                  "help": "If set to 'true', a progress bar will be displayed"
+                  "help": "Controls whether the Page Level Progress extension is enabled or disabled for this page."
                 },
                 "_showPageCompletion": {
                   "type": "boolean",
                   "required":true,
                   "default": true,
                   "title": "Show page completion",
-                  "inputType": {"type": "Boolean", "options": [true, false]},
+                  "inputType": "Checkbox",
                   "validators": [],
-                  "help": "If set to 'false', Page Level Progress will not represent page completion in progress bar"
+                  "help": "Controls whether the progress calculations for this page are based on all components - or only those that are set to be displayed in PLP."
                 }
               }
             }
@@ -132,9 +132,9 @@
                   "required":true,
                   "default": true,
                   "title": "Is enabled",
-                  "inputType": {"type": "Boolean", "options": [true, false]},
+                  "inputType": "Checkbox",
                   "validators": [],
-                  "help": "If set to 'true', this component will be tracked by PageLevelProgress"
+                  "help": "Controls whether this component should be displayed in the page level progress extension or not."
                 }
               }
             }
