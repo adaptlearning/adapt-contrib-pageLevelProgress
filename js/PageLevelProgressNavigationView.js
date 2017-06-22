@@ -49,11 +49,13 @@ define(function(require) {
         },
         
         refreshProgressBar: function() {
-            var currentPageComponents = this.model.findDescendants('components').where({'_isAvailable': true});
+            var currentPageComponents = _.filter(this.model.findDescendants('components'), function(comp) {
+                return comp.get('_isAvailable') === true;
+            });
             var availableChildren = completionCalculations.filterAvailableChildren(currentPageComponents);
             var enabledProgressComponents = completionCalculations.getPageLevelProgressEnabledModels(availableChildren);
             
-            this.collection = new Backbone.Collection(enabledProgressComponents);
+            this.collection.reset(enabledProgressComponents);
             this.updateProgressBar();
         },
 
