@@ -16,7 +16,7 @@ define([
 
         // If it's a page
         if (viewType == 'page') {
-            var children = _.filter(contentObjectModel.findDescendants('components'), function(comp) {
+            var children = _.filter(contentObjectModel.findDescendantModels('components'), function(comp) {
                 return comp.get('_isAvailable') === true && comp.get('_isOptional') === false;
             });
 
@@ -127,7 +127,7 @@ define([
         var availableChildren = [];
 
         for(var child = 0; child < children.length; child++) {
-            var parents = children[child].getParents();
+            var parents = children[child].getAncestorModels();
             if (!unavailableInHierarchy(parents)) {
                 availableChildren.push(children[child]);
             }

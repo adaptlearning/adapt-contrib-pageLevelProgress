@@ -54,7 +54,7 @@ define(function(require) {
             return;
         }
 
-        var currentPageComponents = _.filter(pageModel.findDescendants('components'), function(comp) {
+        var currentPageComponents = _.filter(pageModel.findDescendantModels('components'), function(comp) {
             return comp.get('_isAvailable') === true;
         });
         var availableComponents = completionCalculations.filterAvailableChildren(currentPageComponents);
