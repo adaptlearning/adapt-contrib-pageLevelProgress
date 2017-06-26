@@ -77,7 +77,7 @@
                   "title": "Show page completion",
                   "inputType": "Checkbox",
                   "validators": [],
-                  "help": "Controls whether the progress calculations are based on all components - or only those that are set to be displayed in PLP."
+                  "help": "Controls whether the progress calculations are based on all components - or only those that are set to be displayed in Page Level Progress."
                 }
               }
             }
@@ -107,7 +107,7 @@
                   "title": "Show page completion",
                   "inputType": "Checkbox",
                   "validators": [],
-                  "help": "Controls whether the progress calculations for this page are based on all components - or only those that are set to be displayed in PLP."
+                  "help": "Controls whether the progress calculations for this page are based on all components - or only those that are set to be displayed in Page Level Progress."
                 }
               }
             }
@@ -134,7 +134,7 @@
                   "title": "Is enabled",
                   "inputType": "Checkbox",
                   "validators": [],
-                  "help": "Controls whether this component should be displayed in the page level progress extension or not."
+                  "help": "Controls whether this component should be displayed in the Page Level Progress extension or not."
                 }
               }
             }
