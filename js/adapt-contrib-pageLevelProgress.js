@@ -54,7 +54,9 @@ define(function(require) {
             return;
         }
 
-        var currentPageComponents = pageModel.findDescendants('components').where({'_isAvailable': true});
+        var currentPageComponents = _.filter(pageModel.findDescendantModels('components'), function(comp) {
+            return comp.get('_isAvailable') === true;
+        });
         var availableComponents = completionCalculations.filterAvailableChildren(currentPageComponents);
         var enabledProgressComponents = completionCalculations.getPageLevelProgressEnabledModels(availableComponents);
 
