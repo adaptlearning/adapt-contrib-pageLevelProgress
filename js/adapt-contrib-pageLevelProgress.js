@@ -7,7 +7,7 @@ define(function(require) {
     var PageLevelProgressMenuView = require('extensions/adapt-contrib-pageLevelProgress/js/PageLevelProgressMenuView');
     var PageLevelProgressNavigationView = require('extensions/adapt-contrib-pageLevelProgress/js/PageLevelProgressNavigationView');
 
-    function setupPageLevelProgress(pageModel, enabledProgressComponents) {
+    function setupPageLevelProgress(pageModel, plpList) {
         new PageLevelProgressNavigationView({model: pageModel, collection: new Backbone.Collection(enabledProgressComponents)});
     }
 
@@ -33,12 +33,12 @@ define(function(require) {
 
             //take all non-assessment components and subprogress info into the percentage
             //this allows the user to see if the assessments are passed (subprogress) and all other components are complete
-            
+
             var completed = completionObject.nonAssessmentCompleted + completionObject.subProgressCompleted;
             var total = completionObject.nonAssessmentTotal + completionObject.subProgressTotal;
 
             var percentageComplete = Math.floor((completed / total) * 100);
-            
+
             view.model.set('completedChildrenAsPercentage', percentageComplete);
             view.$el.find('.menu-item-inner').append(new PageLevelProgressMenuView({model: view.model}).$el);
         }
@@ -58,10 +58,13 @@ define(function(require) {
             return comp.get('_isAvailable') === true;
         });
         var availableComponents = completionCalculations.filterAvailableChildren(currentPageComponents);
-        var enabledProgressComponents = completionCalculations.getPageLevelProgressEnabledModels(availableComponents);
+        var plpList = completionCalculations.getPageLevelProgressEnabledModels(availableComponents);
+        if (Adapt.course.get('_pageLevelProgress')._showArticleTitles) {
+        plpList = completionCalculations.generateListWithTitles(pageModel.findDescendants('articles').models, plpList);
+        }
 
-        if (enabledProgressComponents.length > 0) {
-            setupPageLevelProgress(pageModel, enabledProgressComponents);
+        if (plpList.length > 0) {
+            setupPageLevelProgress(pageModel, plpList);
         }
     });
 
