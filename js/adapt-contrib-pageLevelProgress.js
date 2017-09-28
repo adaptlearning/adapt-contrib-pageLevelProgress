@@ -8,7 +8,7 @@ define(function(require) {
     var PageLevelProgressNavigationView = require('extensions/adapt-contrib-pageLevelProgress/js/PageLevelProgressNavigationView');
 
     function setupPageLevelProgress(pageModel, plpList) {
-        new PageLevelProgressNavigationView({model: pageModel, collection: new Backbone.Collection(enabledProgressComponents)});
+        new PageLevelProgressNavigationView({model: pageModel, collection: new Backbone.Collection(plpList)});
     }
 
     // This should add/update progress on menuView

@@ -27,9 +27,8 @@ define(function(require) {
         },
 
         render: function() {
-            var components = this.collection.toJSON();
             var data = {
-                components: components,
+                items: this.collection.toJSON(),
                 _globals: Adapt.course.get('_globals')
             };
             var template = Handlebars.templates['pageLevelProgress'];
