@@ -16,8 +16,8 @@ define(function(require) {
             this.listenTo(Adapt, 'remove', this.remove);
             this.listenTo(Adapt, 'router:location', this.updateProgressBar);
             this.listenTo(Adapt, 'pageLevelProgress:update', this.refreshProgressBar);
-            this.listenTo(this.collection, 'change:_isInteractionComplete', this.updateProgressBar);
-            this.listenTo(this.model, 'change:_isInteractionComplete', this.updateProgressBar);
+            this.listenTo(this.collection, 'change:_isComplete', this.updateProgressBar);
+            this.listenTo(this.model, 'change:_isComplete', this.updateProgressBar);
             this.$el.attr('role', 'button');
             this.ariaText = '';
             
@@ -49,11 +49,13 @@ define(function(require) {
         },
         
         refreshProgressBar: function() {
-            var currentPageComponents = this.model.findDescendants('components').where({'_isAvailable': true});
-            var availableChildren = completionCalculations.filterAvailableChildren(children);
+            var currentPageComponents = _.filter(this.model.findDescendantModels('components'), function(comp) {
+                return comp.get('_isAvailable') === true;
+            });
+            var availableChildren = completionCalculations.filterAvailableChildren(currentPageComponents);
             var enabledProgressComponents = completionCalculations.getPageLevelProgressEnabledModels(availableChildren);
             
-            this.collection = new Backbone.Collection(enabledProgressComponents);
+            this.collection.reset(enabledProgressComponents);
             this.updateProgressBar();
         },
 

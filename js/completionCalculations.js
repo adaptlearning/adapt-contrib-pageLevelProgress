@@ -16,7 +16,9 @@ define([
 
         // If it's a page
         if (viewType == 'page') {
-            var children = contentObjectModel.findDescendants('components').where({'_isAvailable': true, '_isOptional': false});
+            var children = _.filter(contentObjectModel.findDescendantModels('components'), function(comp) {
+                return comp.get('_isAvailable') === true && comp.get('_isOptional') === false;
+            });
 
             var availableChildren = filterAvailableChildren(children);
             var components = getPageLevelProgressEnabledModels(availableChildren);
@@ -45,11 +47,10 @@ define([
 
             if (contentObjectModel.get("_pageLevelProgress") && contentObjectModel.get("_pageLevelProgress")._showPageCompletion !== false 
                 && Adapt.course.get("_pageLevelProgress") && Adapt.course.get("_pageLevelProgress")._showPageCompletion !== false) {
-                //optioanlly add one point extra for page completion to eliminate incomplete pages and full progress bars
+                //optionally add one point extra for page completion to eliminate incomplete pages and full progress bars
+                // if _showPageCompletion is true then the progress bar should also consider it so add 1 to nonAssessmentTotal
                 pageCompletion.nonAssessmentCompleted += isComplete;
                 pageCompletion.nonAssessmentTotal += 1;
-                pageCompletion.assessmentCompleted += isComplete;
-                pageCompletion.assessmentTotal += 1;
             }
 
             return pageCompletion;
@@ -98,7 +99,7 @@ define([
 
     function getComponentsInteractionCompleted(models) {
         return _.filter(models, function(item) {
-            return item.get('_isInteractionComplete');
+            return item.get('_isComplete');
         });
     }
 
@@ -116,7 +117,7 @@ define([
             var parentsAvailable = _.map(parents, function(parent) {
                 return parent.get('_isAvailable');
             });
-            return parentsAvailable.indexOf(false) > -1;
+            return _.indexOf(parentsAvailable, false) > -1;
         } else {
             return;
         }
@@ -125,8 +126,8 @@ define([
     function filterAvailableChildren(children) {
         var availableChildren = [];
 
-        for(var child=0; child < children.length; child++) {
-            var parents = children[child].getParents().models;
+        for(var child = 0; child < children.length; child++) {
+            var parents = children[child].getAncestorModels();
             if (!unavailableInHierarchy(parents)) {
                 availableChildren.push(children[child]);
             }
