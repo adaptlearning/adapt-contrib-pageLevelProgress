@@ -1,19 +1,18 @@
-define(function(require) {
-
-    var Adapt = require('coreJS/adapt');
-    var Backbone = require('backbone');
+define([
+   'core/js/adapt'
+], function(Adapt) {
 
     var PageLevelProgressView = Backbone.View.extend({
 
         className: 'page-level-progress',
 
+        events: {
+            'click .page-level-progress-item button': 'scrollToPageElement'
+        },
+
         initialize: function() {
             this.listenTo(Adapt, 'remove', this.remove);
             this.render();
-        },
-
-        events: {
-            'click .page-level-progress-item button': 'scrollToPageElement'
         },
 
         scrollToPageElement: function(event) {
@@ -27,9 +26,8 @@ define(function(require) {
         },
 
         render: function() {
-            var components = this.collection.toJSON();
             var data = {
-                components: components,
+                components: this.collection.toJSON(),
                 _globals: Adapt.course.get('_globals')
             };
             var template = Handlebars.templates['pageLevelProgress'];

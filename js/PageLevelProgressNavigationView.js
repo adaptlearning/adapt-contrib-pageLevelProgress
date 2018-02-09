@@ -1,28 +1,36 @@
-define(function(require) {
-
-    var Adapt = require('coreJS/adapt');
-    var Backbone = require('backbone');
-    var completionCalculations = require('./completionCalculations');
-
-    var PageLevelProgressView = require('extensions/adapt-contrib-pageLevelProgress/js/PageLevelProgressView');
+define([
+    'core/js/adapt',
+    './completionCalculations',
+    './PageLevelProgressView'
+], function(Adapt, completionCalculations, PageLevelProgressView) {
 
     var PageLevelProgressNavigationView = Backbone.View.extend({
 
         tagName: 'button',
 
         className: 'base page-level-progress-navigation',
+        
+        events: {
+            'click': 'onProgressClicked'
+        },
 
         initialize: function() {
-            this.listenTo(Adapt, 'remove', this.remove);
-            this.listenTo(Adapt, 'router:location', this.updateProgressBar);
-            this.listenTo(Adapt, 'pageLevelProgress:update', this.refreshProgressBar);
+            this.listenTo(Adapt, {
+                'remove': this.remove,
+                'router:location': this.updateProgressBar,
+                'pageLevelProgress:update': this.refreshProgressBar
+            });
+
             this.listenTo(this.collection, 'change:_isComplete', this.updateProgressBar);
             this.listenTo(this.model, 'change:_isComplete', this.updateProgressBar);
+
             this.$el.attr('role', 'button');
             this.ariaText = '';
+
+            var globals = Adapt.course.get('_globals');
             
-            if (Adapt.course.has('_globals') && Adapt.course.get('_globals')._extensions && Adapt.course.get('_globals')._extensions._pageLevelProgress && Adapt.course.get('_globals')._extensions._pageLevelProgress.pageLevelProgressIndicatorBar) {
-                this.ariaText = Adapt.course.get('_globals')._extensions._pageLevelProgress.pageLevelProgressIndicatorBar +  ' ';
+            if (globals && globals._extensions && globals._extensions._pageLevelProgress && globals._extensions._pageLevelProgress.pageLevelProgressIndicatorBar) {
+                this.ariaText = globals._extensions._pageLevelProgress.pageLevelProgressIndicatorBar +  ' ';
             }
             
             this.render();
@@ -31,17 +39,13 @@ define(function(require) {
                 this.updateProgressBar();
             }, this));
         },
-
-        events: {
-            'click': 'onProgressClicked'
-        },
-
+        
         render: function() {
             var components = this.collection.toJSON();
             var data = {
                 components: components,
                 _globals: Adapt.course.get('_globals')
-            };            
+            };
 
             var template = Handlebars.templates['pageLevelProgressNavigation'];
             $('.navigation-drawer-toggle-button').after(this.$el.html(template(data)));

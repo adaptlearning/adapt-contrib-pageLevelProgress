@@ -1,11 +1,9 @@
-define(function(require) {
-
-    var Adapt = require('coreJS/adapt');
-    var Backbone = require('backbone');
-    var completionCalculations = require('./completionCalculations');
-
-    var PageLevelProgressMenuView = require('extensions/adapt-contrib-pageLevelProgress/js/PageLevelProgressMenuView');
-    var PageLevelProgressNavigationView = require('extensions/adapt-contrib-pageLevelProgress/js/PageLevelProgressNavigationView');
+define([
+    'core/js/adapt',
+    './completionCalculations',
+    './PageLevelProgressMenuView',
+    './PageLevelProgressNavigationView'
+], function(Adapt, completionCalculations, PageLevelProgressMenuView, PageLevelProgressNavigationView) {
 
     function setupPageLevelProgress(pageModel, enabledProgressComponents) {
         new PageLevelProgressNavigationView({model: pageModel, collection: new Backbone.Collection(enabledProgressComponents)});

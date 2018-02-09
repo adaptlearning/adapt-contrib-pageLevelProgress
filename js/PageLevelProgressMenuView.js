@@ -1,7 +1,6 @@
-define(function(require) {
-
-    var Adapt = require('coreJS/adapt');
-    var Backbone = require('backbone');
+define([
+    'core/js/adapt'
+], function(Adapt) {
 
     var PageLevelProgressMenuView = Backbone.View.extend({
 
@@ -10,9 +9,12 @@ define(function(require) {
         initialize: function() {
             this.listenTo(Adapt, 'remove', this.remove);
 
+            var globals = Adapt.course.get('_globals');
+
             this.ariaText = '';
-            if (Adapt.course.get('_globals')._extensions && Adapt.course.get('_globals')._extensions._pageLevelProgress && Adapt.course.get('_globals')._extensions._pageLevelProgress.pageLevelProgressMenuBar) {
-                this.ariaText = Adapt.course.get('_globals')._extensions._pageLevelProgress.pageLevelProgressMenuBar + ' ';
+            
+            if (globals._extensions && globals._extensions._pageLevelProgress && globals._extensions._pageLevelProgress.pageLevelProgressMenuBar) {
+                this.ariaText = globals._extensions._pageLevelProgress.pageLevelProgressMenuBar + ' ';
             }
 
             this.render();
@@ -20,9 +22,6 @@ define(function(require) {
             _.defer(_.bind(function() {
                 this.updateProgressBar();
             }, this));
-        },
-
-        events: {
         },
 
         render: function() {
@@ -37,16 +36,16 @@ define(function(require) {
         },
 
         updateProgressBar: function() {
+            var percentageOfCompleteComponents;
             if (this.model.get('completedChildrenAsPercentage')) {
-                var percentageOfCompleteComponents = this.model.get('completedChildrenAsPercentage');
+                percentageOfCompleteComponents = this.model.get('completedChildrenAsPercentage');
             } else {
-                var percentageOfCompleteComponents = 0;
+                percentageOfCompleteComponents = 0;
             }
 
             // Add percentage of completed components as an aria label attribute
             this.$('.page-level-progress-menu-item-indicator-bar .aria-label').html(this.ariaText + Math.floor(percentageOfCompleteComponents) + '%');
-
-        },
+        }
 
     });
 
