@@ -19,9 +19,8 @@ define(function(require) {
         scrollToPageElement: function(event) {
             if(event && event.preventDefault) event.preventDefault();
             var currentComponentSelector = '.' + $(event.currentTarget).attr('data-page-level-progress-id');
-            var $currentComponent = $(currentComponentSelector);
             Adapt.once('drawer:closed', function() {
-                Adapt.scrollTo($currentComponent, { duration:400 });
+                Adapt.scrollTo(currentComponentSelector, { duration:400 });
             });
             Adapt.trigger('drawer:closeDrawer');
         },
