@@ -22,8 +22,7 @@ define([
 
             Adapt.once('drawer:closed', function() {
                 Adapt.scrollTo(currentComponentSelector, { duration: 400 });
-            });
-            Adapt.trigger('drawer:closeDrawer');
+            }).trigger('drawer:closeDrawer');
         },
 
         render: function() {
