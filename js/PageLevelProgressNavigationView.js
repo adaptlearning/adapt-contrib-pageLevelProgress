@@ -25,19 +25,14 @@ define([
             this.listenTo(this.model, 'change:_isComplete', this.updateProgressBar);
 
             this.$el.attr('role', 'button');
-            this.ariaText = '';
 
-            var globals = Adapt.course.get('_globals');
-            
-            if (globals && globals._extensions && globals._extensions._pageLevelProgress && globals._extensions._pageLevelProgress.pageLevelProgressIndicatorBar) {
-                this.ariaText = globals._extensions._pageLevelProgress.pageLevelProgressIndicatorBar +  ' ';
-            }
+            this.ariaText = Adapt.course.get('_globals')._extensions._pageLevelProgress.pageLevelProgressIndicatorBar +  ' ';
             
             this.render();
             
-            _.defer(_.bind(function() {
+            _.defer(function() {
                 this.updateProgressBar();
-            }, this));
+            }.bind(this));
         },
         
         render: function() {

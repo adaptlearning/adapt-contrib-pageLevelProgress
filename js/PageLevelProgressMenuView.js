@@ -9,19 +9,13 @@ define([
         initialize: function() {
             this.listenTo(Adapt, 'remove', this.remove);
 
-            var globals = Adapt.course.get('_globals');
-
-            this.ariaText = '';
-            
-            if (globals._extensions && globals._extensions._pageLevelProgress && globals._extensions._pageLevelProgress.pageLevelProgressMenuBar) {
-                this.ariaText = globals._extensions._pageLevelProgress.pageLevelProgressMenuBar + ' ';
-            }
+            this.ariaText = Adapt.course.get('_globals')._extensions._pageLevelProgress.pageLevelProgressMenuBar + ' ';
 
             this.render();
 
-            _.defer(_.bind(function() {
+            _.defer(function() {
                 this.updateProgressBar();
-            }, this));
+            }.bind(this));
         },
 
         render: function() {
