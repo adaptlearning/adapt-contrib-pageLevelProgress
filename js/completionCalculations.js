@@ -128,10 +128,10 @@ define([
     function filterAvailableChildren(children) {
         var availableChildren = [];
 
-        for(var child = 0; child < children.length; child++) {
-            var parents = children[child].getAncestorModels();
+        for(var i = 0, count = children.length; i < count; i++) {
+            var parents = children[i].getAncestorModels();
             if (!unavailableInHierarchy(parents)) {
-                availableChildren.push(children[child]);
+                availableChildren.push(children[i]);
             }
         }
 
