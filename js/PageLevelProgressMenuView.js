@@ -28,12 +28,7 @@ define([
         },
 
         updateProgressBar: function() {
-            var percentageOfCompleteComponents;
-            if (this.model.get('completedChildrenAsPercentage')) {
-                percentageOfCompleteComponents = this.model.get('completedChildrenAsPercentage');
-            } else {
-                percentageOfCompleteComponents = 0;
-            }
+            var percentageComplete = this.model.get('completedChildrenAsPercentage') || 0;
 
             // Add percentage of completed components as an aria label attribute
             this.$('.page-level-progress-menu-item-indicator-bar .aria-label').html(this.ariaText + Math.floor(percentageOfCompleteComponents) + '%');
