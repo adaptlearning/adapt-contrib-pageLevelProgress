@@ -31,12 +31,12 @@ define([
 
             //take all non-assessment components and subprogress info into the percentage
             //this allows the user to see if the assessments are passed (subprogress) and all other components are complete
-            
+
             var completed = completionObject.nonAssessmentCompleted + completionObject.subProgressCompleted;
             var total = completionObject.nonAssessmentTotal + completionObject.subProgressTotal;
 
             var percentageComplete = Math.floor((completed / total) * 100);
-            
+
             view.model.set('completedChildrenAsPercentage', percentageComplete);
             view.$el.find('.menu-item-inner').append(new PageLevelProgressMenuView({model: view.model}).$el);
         }

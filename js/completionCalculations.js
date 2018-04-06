@@ -1,7 +1,7 @@
 define([
     'core/js/adapt'
 ], function(Adapt) {
-    
+
     // Calculate completion of a contentObject
     function calculateCompletion(contentObjectModel) {
 

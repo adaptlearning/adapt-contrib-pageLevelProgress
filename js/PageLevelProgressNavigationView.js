@@ -9,7 +9,7 @@ define([
         tagName: 'button',
 
         className: 'base page-level-progress-navigation',
-        
+
         events: {
             'click': 'onProgressClicked'
         },
@@ -27,12 +27,12 @@ define([
             this.$el.attr('role', 'button');
 
             this.ariaText = Adapt.course.get('_globals')._extensions._pageLevelProgress.pageLevelProgressIndicatorBar +  ' ';
-            
+
             this.render();
-            
+
             _.defer(this.updateProgressBar.bind(this));
         },
-        
+
         render: function() {
             var components = this.collection.toJSON();
             var data = {
@@ -44,24 +44,24 @@ define([
             $('.navigation-drawer-toggle-button').after(this.$el.html(template(data)));
             return this;
         },
-        
+
         refreshProgressBar: function() {
             var currentPageComponents = _.filter(this.model.findDescendantModels('components'), function(comp) {
                 return comp.get('_isAvailable') === true;
             });
             var availableChildren = completionCalculations.filterAvailableChildren(currentPageComponents);
             var enabledProgressComponents = completionCalculations.getPageLevelProgressEnabledModels(availableChildren);
-            
+
             this.collection.reset(enabledProgressComponents);
             this.updateProgressBar();
         },
 
         updateProgressBar: function() {
             var completionObject = completionCalculations.calculateCompletion(this.model);
-            
+
             //take all assessment, nonassessment and subprogress into percentage
             //this allows the user to see if assessments have been passed, if assessment components can be retaken, and all other component's completion
-            
+
             var completed = completionObject.nonAssessmentCompleted + completionObject.assessmentCompleted + completionObject.subProgressCompleted;
             var total  = completionObject.nonAssessmentTotal + completionObject.assessmentTotal + completionObject.subProgressTotal;
 
