@@ -30,9 +30,7 @@ define([
             
             this.render();
             
-            _.defer(function() {
-                this.updateProgressBar();
-            }.bind(this));
+            _.defer(this.updateProgressBar.bind(this));
         },
         
         render: function() {
