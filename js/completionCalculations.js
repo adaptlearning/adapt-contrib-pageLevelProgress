@@ -25,12 +25,12 @@ define([
 
             var nonAssessmentComponents = getNonAssessmentComponents(components);
 
-            nonAssessmentComponentsTotal = nonAssessmentComponents.length | 0,
+            nonAssessmentComponentsTotal = nonAssessmentComponents.length || 0;
             nonAssessmentComponentsCompleted = getComponentsCompleted(nonAssessmentComponents).length;
 
             var assessmentComponents = getAssessmentComponents(components);
 
-            assessmentComponentsTotal = assessmentComponents.length | 0,
+            assessmentComponentsTotal = assessmentComponents.length || 0;
             assessmentComponentsCompleted = getComponentsInteractionCompleted(assessmentComponents).length;
 
             subProgressCompleted = contentObjectModel.get("_subProgressComplete") || 0;
