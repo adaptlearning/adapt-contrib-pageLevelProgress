@@ -1,11 +1,9 @@
-define(function(require) {
-
-    var Adapt = require('coreJS/adapt');
-    var Backbone = require('backbone');
-    var completionCalculations = require('./completionCalculations');
-
-    var PageLevelProgressMenuView = require('extensions/adapt-contrib-pageLevelProgress/js/PageLevelProgressMenuView');
-    var PageLevelProgressNavigationView = require('extensions/adapt-contrib-pageLevelProgress/js/PageLevelProgressNavigationView');
+define([
+    'core/js/adapt',
+    './completionCalculations',
+    './PageLevelProgressMenuView',
+    './PageLevelProgressNavigationView'
+], function(Adapt, completionCalculations, PageLevelProgressMenuView, PageLevelProgressNavigationView) {
 
     function setupPageLevelProgress(pageModel, enabledProgressComponents) {
         new PageLevelProgressNavigationView({model: pageModel, collection: new Backbone.Collection(enabledProgressComponents)});
@@ -33,12 +31,12 @@ define(function(require) {
 
             //take all non-assessment components and subprogress info into the percentage
             //this allows the user to see if the assessments are passed (subprogress) and all other components are complete
-            
+
             var completed = completionObject.nonAssessmentCompleted + completionObject.subProgressCompleted;
             var total = completionObject.nonAssessmentTotal + completionObject.subProgressTotal;
 
             var percentageComplete = Math.floor((completed / total) * 100);
-            
+
             view.model.set('completedChildrenAsPercentage', percentageComplete);
             view.$el.find('.menu-item-inner').append(new PageLevelProgressMenuView({model: view.model}).$el);
         }

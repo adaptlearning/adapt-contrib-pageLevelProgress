@@ -1,7 +1,7 @@
 define([
-    'coreJS/adapt'
+    'core/js/adapt'
 ], function(Adapt) {
-    
+
     // Calculate completion of a contentObject
     function calculateCompletion(contentObjectModel) {
 
@@ -25,12 +25,12 @@ define([
 
             var nonAssessmentComponents = getNonAssessmentComponents(components);
 
-            nonAssessmentComponentsTotal = nonAssessmentComponents.length | 0,
+            nonAssessmentComponentsTotal = nonAssessmentComponents.length;
             nonAssessmentComponentsCompleted = getComponentsCompleted(nonAssessmentComponents).length;
 
             var assessmentComponents = getAssessmentComponents(components);
 
-            assessmentComponentsTotal = assessmentComponents.length | 0,
+            assessmentComponentsTotal = assessmentComponents.length;
             assessmentComponentsCompleted = getComponentsInteractionCompleted(assessmentComponents).length;
 
             subProgressCompleted = contentObjectModel.get("_subProgressComplete") || 0;
@@ -45,8 +45,10 @@ define([
                 "assessmentTotal": assessmentComponentsTotal
             };
 
-            if (contentObjectModel.get("_pageLevelProgress") && contentObjectModel.get("_pageLevelProgress")._showPageCompletion !== false 
-                && Adapt.course.get("_pageLevelProgress") && Adapt.course.get("_pageLevelProgress")._showPageCompletion !== false) {
+            var showPageCompletionCourse = Adapt.course.get("_pageLevelProgress") && Adapt.course.get("_pageLevelProgress")._showPageCompletion !== false;
+            var showPageCompletionPage = contentObjectModel.get("_pageLevelProgress") && contentObjectModel.get("_pageLevelProgress")._showPageCompletion !== false;
+
+            if (showPageCompletionCourse && showPageCompletionPage) {
                 //optionally add one point extra for page completion to eliminate incomplete pages and full progress bars
                 // if _showPageCompletion is true then the progress bar should also consider it so add 1 to nonAssessmentTotal
                 pageCompletion.nonAssessmentCompleted += isComplete;
@@ -126,10 +128,10 @@ define([
     function filterAvailableChildren(children) {
         var availableChildren = [];
 
-        for(var child = 0; child < children.length; child++) {
-            var parents = children[child].getAncestorModels();
+        for(var i = 0, count = children.length; i < count; i++) {
+            var parents = children[i].getAncestorModels();
             if (!unavailableInHierarchy(parents)) {
-                availableChildren.push(children[child]);
+                availableChildren.push(children[i]);
             }
         }
 
@@ -142,4 +144,4 @@ define([
         filterAvailableChildren: filterAvailableChildren
     };
 
-})
+});
