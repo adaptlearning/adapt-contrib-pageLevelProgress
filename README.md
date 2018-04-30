@@ -4,7 +4,9 @@
 
 <img src="https://github.com/adaptlearning/documentation/blob/master/04_wiki_assets/plug-ins/images/plp01.gif" alt="page level progress bar clicked and drawer opening, showing completion status of components">    
 
-This extension displays the learner's progress through a page via a progress bar displayed in the top navigation bar. Progress is calculated as the percentage of child components that have been completed. Clicking on the progress bar opens the drawer to reveal completion status of individual components. Page progress may also be displayed on menu items representing the page.
+This extension displays the learner's progress through a page via a progress bar displayed in the top navigation area. Progress is calculated as the percentage of child components that have been completed. Clicking on the progress bar opens the drawer to reveal buttons showing the title and completion status of individual components in the page; these buttons can be clicked to scroll directly to the component in the page (if it is available and not hidden by trickle/similar). 
+
+Page progress may also be displayed on menu items representing the page. 
 
 [Visit the **Page Level Progress** wiki](https://github.com/adaptlearning/adapt-contrib-pageLevelProgress/wiki) for more information about its functionality and for explanations of key properties.  
 
@@ -58,9 +60,9 @@ Several elements of **Page Level Progress** have been assigned a label using the
 No known limitations.  
 
 ----------------------------
-**Version number:**  2.0.10   <a href="https://community.adaptlearning.org/" target="_blank"><img src="https://github.com/adaptlearning/documentation/blob/master/04_wiki_assets/plug-ins/images/adapt-logo-mrgn-lft.jpg" alt="adapt learning logo" align="right"></a> 
+**Version number:**  3.0.0   <a href="https://community.adaptlearning.org/" target="_blank"><img src="https://github.com/adaptlearning/documentation/blob/master/04_wiki_assets/plug-ins/images/adapt-logo-mrgn-lft.jpg" alt="adapt learning logo" align="right"></a> 
 **Framework versions:**  2.2+     
 **Author / maintainer:** Adapt Core Team with [contributors](https://github.com/adaptlearning/adapt-contrib-pageLevelProgress/graphs/contributors)    
 **Accessibility support:** WAI AA   
 **RTL support:** yes  
-**Cross-platform coverage:** Chrome, Chrome for Android, Firefox (ESR + latest version), Edge 12, IE 11, IE10, IE9, IE8, IE Mobile 11, Safari iOS 9+10, Safari OS X 9+10, Opera    
+**Cross-platform coverage:** Chrome, Chrome for Android, Firefox (ESR + latest version), Edge, IE11, IE Mobile 11, Safari 10+11 for macOS+iOS, Opera     
