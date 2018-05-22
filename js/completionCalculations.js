@@ -33,8 +33,10 @@ define([
             assessmentComponentsTotal = assessmentComponents.length;
             assessmentComponentsCompleted = getComponentsInteractionCompleted(assessmentComponents).length;
 
-            subProgressCompleted = contentObjectModel.get("_subProgressComplete") || 0;
-            subProgressTotal = contentObjectModel.get("_subProgressTotal") || 0;
+            if (contentObjectModel.get('_pageLevelProgress')._includeAssessments) {
+                subProgressCompleted = contentObjectModel.get("_subProgressComplete") || 0;
+                subProgressTotal = contentObjectModel.get("_subProgressTotal") || 0;
+            }
 
             var pageCompletion = {
                 "subProgressCompleted": subProgressCompleted,
