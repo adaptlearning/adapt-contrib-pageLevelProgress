@@ -108,6 +108,15 @@
                   "inputType": "Checkbox",
                   "validators": [],
                   "help": "Controls whether the progress calculations for this page are based on all components - or only those that are set to be displayed in Page Level Progress."
+                },
+                "_excludeAssessments": {
+                  "type": "boolean",
+                  "required": false,
+                  "default": false,
+                  "title": "Exclude assessments.",
+                  "inputType": "Checkbox",
+                  "validators": [],
+                  "help": "Controls whether the progress calculations will include assessments."
                 }
               }
             }

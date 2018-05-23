@@ -32,7 +32,8 @@
     "linkText": "View",
     "duration": "2 mins",
     "_pageLevelProgress": {
-        "_isEnabled": true
+        "_isEnabled": true,
+        "_excludeAssessments": true
     }
 }
 
