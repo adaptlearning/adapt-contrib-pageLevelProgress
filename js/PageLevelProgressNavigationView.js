@@ -24,8 +24,6 @@ define([
             this.listenTo(this.collection, 'change:_isComplete', this.updateProgressBar);
             this.listenTo(this.model, 'change:_isComplete', this.updateProgressBar);
 
-            this.$el.attr('role', 'button');
-
             this.ariaText = Adapt.course.get('_globals')._extensions._pageLevelProgress.pageLevelProgressIndicatorBar +  ' ';
 
             this.render();
