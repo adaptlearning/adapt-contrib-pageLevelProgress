@@ -2,12 +2,28 @@ define([
     'core/js/adapt',
     './completionCalculations',
     './PageLevelProgressMenuView',
-    './PageLevelProgressNavigationView'
-], function(Adapt, completionCalculations, PageLevelProgressMenuView, PageLevelProgressNavigationView) {
+    './PageLevelProgressNavigationView',
+    './PageLevelProgressIndicatorView'
+], function(Adapt, completionCalculations, PageLevelProgressMenuView, PageLevelProgressNavigationView, PageLevelProgressIndicatorView) {
 
     function setupPageLevelProgress(pageModel, enabledProgressComponents) {
         new PageLevelProgressNavigationView({model: pageModel, collection: new Backbone.Collection(enabledProgressComponents)});
     }
+
+    var types = [ 'page', 'article', 'block', 'component' ];
+    var eventNames = types.concat(['']).join('View:postRender ');
+    Adapt.on(eventNames, function(view) {
+        var model = view.model;
+        if (!model.get('_isCompletionIndicatorEnabled')) return;
+        var $headings = view.$('.js-heading');
+        $headings.each(function(index, el) {
+            new PageLevelProgressIndicatorView({
+                el: el,
+                model: model
+            });
+        });
+    });
+
 
     // This should add/update progress on menuView
     Adapt.on('menuView:postRender', function(view) {
