@@ -28,14 +28,6 @@
       "validators": [],
       "translatable": true
     },
-    "pageLevelProgressEnd": {
-      "type": "string",
-      "required": true,
-      "default": "You have reached the end of the list of page sections.",
-      "inputType": "Text",
-      "validators": [],
-      "translatable": true
-    },
     "optionalContent": {
       "type": "string",
       "required": true,
