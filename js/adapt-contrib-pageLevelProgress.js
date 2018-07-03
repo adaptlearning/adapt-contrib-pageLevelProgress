@@ -38,7 +38,7 @@ define([
             var percentageComplete = Math.floor((completed / total) * 100);
 
             view.model.set('completedChildrenAsPercentage', percentageComplete);
-            view.$el.find('.js-progress').append(new PageLevelProgressMenuView({model: view.model}).$el);
+            view.$el.find('.js-menu-item-progress').append(new PageLevelProgressMenuView({model: view.model}).$el);
         }
     });
 
