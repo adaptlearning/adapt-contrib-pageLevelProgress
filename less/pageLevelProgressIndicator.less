@@ -1,0 +1,30 @@
+.page-title-inner,
+.component-title-inner {
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.js-heading {
+    display: inline-block;
+    height: 8px;
+    width: 25px;
+    background-color: #ffffff;
+    border: 2px solid #4b4e4f;
+    border-radius: 50px;
+    vertical-align: middle;
+
+    .js-heading-inner {
+        width: 0%;
+        height: 100%;
+        min-width: 4px;
+        background-color: #4b4e4f;
+        transition: width 0.25s ease-in;
+    }
+
+    &.complete {
+        .js-heading-inner {
+            width: 100%;
+        }
+    }
+
+}
