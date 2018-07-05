@@ -6,7 +6,7 @@ define([
 
         className: function () {
             return [
-                'page-level-progress-competion-indicator',
+                'page-level-progress-completion-indicator',
                 this.model.get('_type') + '-completion-indicator'
             ].join(' ');
         },
