@@ -1,15 +1,16 @@
 {{! make the _globals object in course.json available to this template}}
 {{import_globals}}
-<div class="page-level-progress-inner" role="region" aria-label="{{_globals._extensions._pageLevelProgress.pageLevelProgress}}" {{#if _globals._extensions._pageLevelProgress.pageLevelProgress}}tabindex="0"{{/if}}>
+<div class="page-level-progress-inner">
+    {{a11y_aria_label _globals._extensions._pageLevelProgress.pageLevelProgress}}
     <div role="list">
     {{#each components}}
         {{#if _isPartOfAssessment}}
             <div role="listitem" class="page-level-progress-item drawer-item">
                 {{#if _isVisible}}
-                <button class="base page-level-progress-item-title clearfix drawer-item-open" tabindex="0" role="button" data-page-level-progress-id="{{_id}}" aria-label="{{compile title}} {{#if _isComplete}}{{_globals._accessibility._ariaLabels.complete}}{{else}}{{_globals._accessibility._ariaLabels.incomplete}}{{/if}}">
+                <button class="base page-level-progress-item-title clearfix drawer-item-open" data-page-level-progress-id="{{_id}}" aria-label="{{#if _isOptional}}{{_globals._extensions._pageLevelProgress.optionalContent}}{{else}}{{#if _isComplete}}{{_globals._accessibility._ariaLabels.complete}}{{else}}{{_globals._accessibility._ariaLabels.incomplete}}{{/if}}{{/if}} {{compile title}}">
                 {{else}}
                 <div class="page-level-progress-item-title drawer-item-open disabled clearfix">
-                    <span class="aria-label prevent-default" tabindex="0" role="button">{{_globals._accessibility._ariaLabels.locked}}. {{compile title}} {{#if _isComplete}}{{_globals._accessibility._ariaLabels.complete}}{{else}}{{_globals._accessibility._ariaLabels.incomplete}}{{/if}}</span>
+                    <span class="aria-label prevent-default" tabindex="0" role="button">{{#if _isOptional}}{{_globals._extensions._pageLevelProgress.optionalContent}}{{else}}{{#if _isComplete}}{{_globals._accessibility._ariaLabels.complete}}{{else}}{{_globals._accessibility._ariaLabels.incomplete}}{{/if}}{{/if}} {{_globals._accessibility._ariaLabels.locked}}. {{compile title}} </span>
                 {{/if}}
                     <div class="page-level-progress-item-title-inner accessible-text-block h5">
                     {{{compile title}}}
@@ -21,7 +22,7 @@
                         </div>
                     {{else}}
                         {{#if _isOptional}}
-                            <div class="page-level-progress-item-optional-text">
+                            <div class="page-level-progress-item-optional-text" aria-hidden="true">
                             {{_globals._extensions._pageLevelProgress.optionalContent}}
                             </div>
                         {{else}}
@@ -40,10 +41,10 @@
         {{else}}
             <div role="listitem" class="page-level-progress-item drawer-item">
                 {{#if _isVisible}}
-                <button class="base page-level-progress-item-title clearfix drawer-item-open" tabindex="0" role="button" data-page-level-progress-id="{{_id}}" aria-label="{{compile title}} {{#if _isComplete}}{{_globals._accessibility._ariaLabels.complete}}{{else}}{{_globals._accessibility._ariaLabels.incomplete}}{{/if}}">
+                <button class="base page-level-progress-item-title clearfix drawer-item-open" data-page-level-progress-id="{{_id}}" aria-label="{{#if _isOptional}}{{_globals._extensions._pageLevelProgress.optionalContent}}{{else}}{{#if _isComplete}}{{_globals._accessibility._ariaLabels.complete}}{{else}}{{_globals._accessibility._ariaLabels.incomplete}}{{/if}}{{/if}} {{compile title}} ">
                 {{else}}
                 <div class="page-level-progress-item-title drawer-item-open disabled clearfix">
-                    <span class="aria-label prevent-default" tabindex="0" role="button">{{_globals._accessibility._ariaLabels.locked}}. {{compile title}} {{#if _isComplete}}{{_globals._accessibility._ariaLabels.complete}}{{else}}{{_globals._accessibility._ariaLabels.incomplete}}{{/if}}</span>
+                    <span class="aria-label prevent-default" tabindex="0" role="button"> {{#if _isOptional}}{{_globals._extensions._pageLevelProgress.optionalContent}}{{else}}{{#if _isComplete}}{{_globals._accessibility._ariaLabels.complete}}{{else}}{{_globals._accessibility._ariaLabels.incomplete}}{{/if}}{{/if}} {{_globals._accessibility._ariaLabels.locked}}. {{compile title}}</span>
                 {{/if}}
                     <div class="page-level-progress-item-title-inner accessible-text-block h5">
                     {{{compile title}}}
@@ -55,7 +56,7 @@
                         </div>
                     {{else}}
                         {{#if _isOptional}}
-                            <div class="page-level-progress-item-optional-text">
+                            <div class="page-level-progress-item-optional-text" aria-hidden="true">
                             {{_globals._extensions._pageLevelProgress.optionalContent}}
                             </div>
                         {{else}}
@@ -74,5 +75,4 @@
         {{/if}}
     {{/each}}
     </div>
-    <div class="aria-label a11y-ignore-focus prevent-default" tabindex="0" aria-label="{{_globals._extensions._pageLevelProgress.pageLevelProgressEnd}}"/>
 </div>
