@@ -32,7 +32,6 @@ define([
             };
             var template = Handlebars.templates['pageLevelProgress'];
             this.$el.html(template(data));
-            this.$el.a11y_aria_label(true);
             return this;
         }
 
