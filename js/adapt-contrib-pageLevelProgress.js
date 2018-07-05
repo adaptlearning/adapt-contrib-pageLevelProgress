@@ -10,17 +10,19 @@ define([
         new PageLevelProgressNavigationView({model: pageModel, collection: new Backbone.Collection(enabledProgressComponents)});
     }
 
-    var types = [ 'page', 'article', 'block', 'component' ];
-    var eventNames = types.concat(['']).join('View:postRender ');
+    var types = [ 'menu', 'page', 'article', 'block', 'component' ];
+    var eventNames = types.concat(['']).join('View:render ');
     Adapt.on(eventNames, function(view) {
         var model = view.model;
-        if (!model.get('_isCompletionIndicatorEnabled')) return;
+        var config = model.get('_pageLevelProgress');
+        if (!config || !config._isEnabled || !config._isCompletionIndicatorEnabled) return;
         var $headings = view.$('.js-heading');
         $headings.each(function(index, el) {
-            new PageLevelProgressIndicatorView({
-                el: el,
+            var $el = $(el);
+            var indicatorView = new PageLevelProgressIndicatorView({
                 model: model
             });
+            indicatorView.$el.insertAfter($el);
         });
     });
 

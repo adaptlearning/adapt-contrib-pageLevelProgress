@@ -1,30 +1,29 @@
-.page-title-inner,
 .menu-title-inner,
 .menu-item-title-inner,
+.page-title-inner,
+.article-title-inner,
+.block-title-inner,
 .component-title-inner {
     display: inline-block;
-    vertical-align: middle;
 }
 
-.js-heading {
+.page-level-progress-competion-indicator {
     display: inline-block;
     height: 8px;
-    width: 25px;
-    background-color: #ffffff;
-    border: 2px solid #4b4e4f;
+    width: 24px;
+    background-color: @foreground-color-inverted;
+    border: 2px solid @item-color-hover;
     border-radius: 50px;
     vertical-align: middle;
 
-    .js-heading-inner {
-        width: 0%;
-        height: 100%;
-        min-width: 4px;
-        background-color: #4b4e4f;
-        transition: width 0.25s ease-in;
-    }
-
-    &.complete .js-heading-inner {
+    &.complete .page-level-progress-competion-inner-indicator {
         width: 100%;
     }
+}
 
+.page-level-progress-competion-inner-indicator {
+    width: 0%;
+    height: 100%;
+    background-color: @item-color-hover;
+    transition: width 0.25s ease-in;
 }

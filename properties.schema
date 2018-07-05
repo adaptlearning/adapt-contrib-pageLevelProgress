@@ -78,6 +78,15 @@
                   "inputType": "Checkbox",
                   "validators": [],
                   "help": "Controls whether the progress calculations are based on all components - or only those that are set to be displayed in Page Level Progress."
+                },
+                "_isCompletionIndicatorEnabled": {
+                  "type": "boolean",
+                  "required": true,
+                  "default": true,
+                  "title": "Show course completion indicator",
+                  "inputType": "Checkbox",
+                  "validators": [],
+                  "help": "Controls whether the completion indicator shows next to the course title."
                 }
               }
             }
@@ -108,16 +117,80 @@
                   "inputType": "Checkbox",
                   "validators": [],
                   "help": "Controls whether the progress calculations for this page are based on all components - or only those that are set to be displayed in Page Level Progress."
+                },
+                "_isCompletionIndicatorEnabled": {
+                  "type": "boolean",
+                  "required": true,
+                  "default": true,
+                  "title": "Show page completion indicator",
+                  "inputType": "Checkbox",
+                  "validators": [],
+                  "help": "Controls whether the completion indicator shows next to the page title."
                 }
               }
             }
           }
         },
         "article": {
-          "type": "object"
+          "type": "object",
+          "properties": {
+            "_pageLevelProgress": {
+              "type": "object",
+              "required": false,
+              "legend": "Page Level Progress",
+              "properties": {
+                "_isEnabled": {
+                  "type": "boolean",
+                  "required": true,
+                  "default": true,
+                  "title": "Is enabled",
+                  "inputType": "Checkbox",
+                  "validators": [],
+                  "help": "Controls whether the Page Level Progress extension is used on this article."
+                },
+                "_isCompletionIndicatorEnabled": {
+                  "type": "boolean",
+                  "required": true,
+                  "default": true,
+                  "title": "Show article completion indicator",
+                  "inputType": "Checkbox",
+                  "validators": [],
+                  "help": "Controls whether the completion indicator shows next to the article title."
+                }
+              }
+            }
+          }
         },
         "block": {
-          "type": "object"
+          "type": "object",
+          "type": "object",
+          "properties": {
+            "_pageLevelProgress": {
+              "type": "object",
+              "required": false,
+              "legend": "Page Level Progress",
+              "properties": {
+                "_isEnabled": {
+                  "type": "boolean",
+                  "required": true,
+                  "default": true,
+                  "title": "Is enabled",
+                  "inputType": "Checkbox",
+                  "validators": [],
+                  "help": "Controls whether the Page Level Progress extension is used on this block."
+                },
+                "_isCompletionIndicatorEnabled": {
+                  "type": "boolean",
+                  "required": true,
+                  "default": true,
+                  "title": "Show block completion indicator",
+                  "inputType": "Checkbox",
+                  "validators": [],
+                  "help": "Controls whether the completion indicator shows next to the block title."
+                }
+              }
+            }
+          }
         },
         "component": {
           "type": "object",
@@ -135,6 +208,15 @@
                   "inputType": "Checkbox",
                   "validators": [],
                   "help": "Controls whether this component should be displayed in the Page Level Progress extension or not."
+                },
+                "_isCompletionIndicatorEnabled": {
+                  "type": "boolean",
+                  "required": true,
+                  "default": true,
+                  "title": "Show component completion indicator",
+                  "inputType": "Checkbox",
+                  "validators": [],
+                  "help": "Controls whether the completion indicator shows next to the component title."
                 }
               }
             }
