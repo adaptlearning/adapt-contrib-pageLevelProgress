@@ -7,7 +7,7 @@
     "pageLevelProgress": {
       "type": "string",
       "required": true,
-      "default": "Page sections",
+      "default": "Page regions",
       "inputType": "Text",
       "validators": [],
       "translatable": true
@@ -15,7 +15,7 @@
     "pageLevelProgressIndicatorBar": {
       "type": "string",
       "required": true,
-      "default": "Progress bar. Select here to view your current progress, and select an item to navigate to it. You have completed ",
+      "default": "Page progress. Use this to listen to the list of regions in this topic and whether they're completed. You can jump directly to any that are incomplete or which sound particularly interesting.",
       "inputType": "Text",
       "validators": [],
       "translatable": true
@@ -23,7 +23,7 @@
     "pageLevelProgressMenuBar": {
       "type": "string",
       "required": true,
-      "default": "You have completed ",
+      "default": "Page completed ",
       "inputType": "Text",
       "validators": [],
       "translatable": true
@@ -31,7 +31,7 @@
     "optionalContent": {
       "type": "string",
       "required": true,
-      "default": "Optional Content",
+      "default": "Optional content",
       "inputType": "Text",
       "validators": [],
       "translatable": true
