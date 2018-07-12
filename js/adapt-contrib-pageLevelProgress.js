@@ -68,7 +68,7 @@ define([
             return;
         }
 
-        var currentPageComponents = _.filter(pageModel.findDescendantModels('components'), function(comp) {
+        var currentPageComponents = _.filter(pageModel.getAllDescendantModels(true), function(comp) {
             return comp.get('_isAvailable') === true;
         });
         var availableComponents = completionCalculations.filterAvailableChildren(currentPageComponents);
