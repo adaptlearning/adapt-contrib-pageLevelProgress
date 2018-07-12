@@ -138,8 +138,19 @@ define([
         return availableChildren;
     }
 
+    function calculatePercentageComplete(model) {
+        var completionObject = calculateCompletion(model);
+        // take all assessment, nonassessment and subprogress into percentage
+        // this allows the user to see if assessments have been passed, if assessment components can be retaken, and all other component's completion
+        var completed = completionObject.nonAssessmentCompleted + completionObject.assessmentCompleted + completionObject.subProgressCompleted;
+        var total  = completionObject.nonAssessmentTotal + completionObject.assessmentTotal + completionObject.subProgressTotal;
+        var percentageComplete = Math.floor((completed / total)*100);
+        return percentageComplete;
+    }
+
     return {
     	calculateCompletion: calculateCompletion,
+        calculatePercentageComplete: calculatePercentageComplete,
     	getPageLevelProgressEnabledModels: getPageLevelProgressEnabledModels,
         filterAvailableChildren: filterAvailableChildren
     };

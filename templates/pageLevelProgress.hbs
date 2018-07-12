@@ -1,6 +1,6 @@
 {{! make the _globals object in course.json available to this template}}
 {{import_globals}}
-<div class="page-level-progress-inner" role="region" aria-label="{{_globals._extensions._pageLevelProgress.pageLevelProgress}}" {{#if _globals._extensions._pageLevelProgress.pageLevelProgress}}tabindex="0"{{/if}}>
+<div class="pagelevelprogress-inner" role="region" aria-label="{{_globals._extensions._pageLevelProgress.pageLevelProgress}}" {{#if _globals._extensions._pageLevelProgress.pageLevelProgress}}tabindex="0"{{/if}}>
     <div role="list" class="js-children"></div>
     <div class="aria-label a11y-ignore-focus prevent-default" tabindex="0" aria-label="{{_globals._extensions._pageLevelProgress.pageLevelProgressEnd}}"/>
 </div>

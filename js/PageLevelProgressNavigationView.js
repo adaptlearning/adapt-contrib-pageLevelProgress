@@ -9,7 +9,7 @@ define([
 
         tagName: 'button',
 
-        className: 'base page-level-progress-navigation',
+        className: 'base pagelevelprogress-navigation',
 
         events: {
             'click': 'onProgressClicked'
@@ -40,18 +40,14 @@ define([
             this.indicatorView = new PageLevelProgressIndicatorView({
                 model: this.model,
                 collection: this.collection,
-                calculatePercentage: function() {
-                    var completionObject = completionCalculations.calculateCompletion(this.model);
-                    // take all assessment, nonassessment and subprogress into percentage
-                    // this allows the user to see if assessments have been passed, if assessment components can be retaken, and all other component's completion
-                    var completed = completionObject.nonAssessmentCompleted + completionObject.assessmentCompleted + completionObject.subProgressCompleted;
-                    var total  = completionObject.nonAssessmentTotal + completionObject.assessmentTotal + completionObject.subProgressTotal;
-                    var percentageComplete = Math.floor((completed / total)*100);
-                    return percentageComplete;
-                },
+                calculatePercentage: this._getPageCompletionPercentage,
                 ariaLabel: Adapt.course.get('_globals')._extensions._pageLevelProgress.pageLevelProgressIndicatorBar
             });
             this.$el.prepend(this.indicatorView.$el);
+        },
+
+        _getPageCompletionPercentage: function() {
+            return completionCalculations.calculatePercentageComplete(this.model);
         },
 
         deferredUpdate: function() {
@@ -63,18 +59,20 @@ define([
         },
 
         refreshProgressBar: function() {
-            var currentPageComponents = _.filter(this.model.findDescendantModels('components'), function(comp) {
-                return comp.get('_isAvailable') === true;
-            });
-            var availableChildren = completionCalculations.filterAvailableChildren(currentPageComponents);
-            var enabledProgressComponents = completionCalculations.getPageLevelProgressEnabledModels(availableChildren);
-            this.collection.reset(enabledProgressComponents);
+            this.collection.repopulate(enabledProgressItems);
             this.updateProgressBar();
         },
 
         onProgressClicked: function(event) {
             if(event && event.preventDefault) event.preventDefault();
-            Adapt.drawer.triggerCustomView(new PageLevelProgressView({collection: this.collection}).$el, false);
+            Adapt.drawer.triggerCustomView(new PageLevelProgressView({
+                collection: this.collection
+            }).$el, false);
+        },
+
+        remove: function() {
+            Backbone.View.prototype.remove.call(this);
+            this.collection.reset();
         }
 
     });

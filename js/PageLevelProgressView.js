@@ -5,10 +5,10 @@ define([
 
     var PageLevelProgressView = Backbone.View.extend({
 
-        className: 'page-level-progress',
+        className: 'pagelevelprogress',
 
         events: {
-            'click .page-level-progress-item button': 'scrollToPageElement'
+            'click .pagelevelprogress-item button': 'scrollToPageElement'
         },
 
         initialize: function() {
@@ -20,7 +20,7 @@ define([
         scrollToPageElement: function(event) {
             if(event && event.preventDefault) event.preventDefault();
 
-            var currentComponentSelector = '.' + $(event.currentTarget).attr('data-page-level-progress-id');
+            var currentComponentSelector = '.' + $(event.currentTarget).attr('data-pagelevelprogress-id');
 
             Adapt.once('drawer:closed', function() {
                 Adapt.scrollTo(currentComponentSelector, { duration: 400 });
@@ -40,11 +40,6 @@ define([
                     model: model
                 }).$el);
             }.bind(this));
-        },
-
-        remove: function() {
-            Backbone.View.prototype.remove.call(this);
-            this.collection.reset();
         }
 
     });

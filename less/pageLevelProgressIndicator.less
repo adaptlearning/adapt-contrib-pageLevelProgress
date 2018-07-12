@@ -24,17 +24,36 @@
 }
 
 .pagelevelprogress-indicator-inner {
+    position: relative;
+    overflow: hidden;
     box-sizing: border-box;
-    min-width: 8px;
     height: 8px;
     border: 1px solid @foreground-color-inverted;
     border-radius: 25px;
-    background-color: @item-color-hover;
     transition: width 0.25s ease-in;
 }
 
+.pagelevelprogress-indicator-bar {
+    position: absolute;
+    min-width: 8px;
+    height: 100%;
+    background-color: @item-color-hover;
+}
 
-.page-level-progress {
+.pagelevelprogress-navigation {
+    height: @navigation-height;
+
+    .pagelevelprogress-indicator {
+        position: relative;
+        top: -3px;
+        width: 100px;
+        vertical-align: middle;
+    }
+
+}
+
+.pagelevelprogress {
+
     .pagelevelprogress-indicator {
         margin-left:4%;
         .dir-rtl & {
@@ -45,29 +64,31 @@
         border-color: @foreground-color-inverted;
         background-color: @item-color-hover;
     }
+
     .pagelevelprogress-indicator-inner {
         border-color: @item-color-hover;
+    }
+
+    .pagelevelprogress-indicator-bar {
         background-color: @foreground-color-inverted;
     }
+
 }
 
 .menu-item {
+
     .pagelevelprogress-indicator {
         width: 64px;
         border-color: @foreground-color-inverted;
         background-color: @item-color-hover;
     }
+
     .pagelevelprogress-indicator-inner {
         border-color: @item-color-hover;
+    }
+
+    .pagelevelprogress-indicator-bar {
         background-color: @foreground-color-inverted;
     }
-}
 
-.page-level-progress-navigation {
-    .pagelevelprogress-indicator {
-        position: relative;
-        top: -3px;
-        width: 100px;
-        vertical-align: middle;
-    }
 }

@@ -7,7 +7,7 @@ define([
 
         className: function () {
             return [
-                'page-level-progress-item drawer-item',
+                'pagelevelprogress-item drawer-item',
                 this.model.get('_type') + '-indicator'
             ].join(' ');
         },
