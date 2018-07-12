@@ -68,17 +68,17 @@ define([
             return;
         }
 
-        var currentPageComponents = _.filter(pageModel.getAllDescendantModels(true), function(comp) {
+        var currentPageItems = _.filter(pageModel.getAllDescendantModels(true), function(comp) {
             return comp.get('_isAvailable') === true;
         });
-        var availableComponents = completionCalculations.filterAvailableChildren(currentPageComponents);
-        var enabledProgressComponents = completionCalculations.getPageLevelProgressEnabledModels(availableComponents);
+        var availableItems = completionCalculations.filterAvailableChildren(currentPageItems);
+        var enabledProgressItems = completionCalculations.getPageLevelProgressEnabledModels(availableItems);
 
-        if (enabledProgressComponents.length === 0) return;
+        if (enabledProgressItems.length === 0) return;
 
         $('.navigation-drawer-toggle-button').after(new PageLevelProgressNavigationView({
             model: pageModel,
-            collection: new Backbone.Collection(enabledProgressComponents)
+            collection: new Backbone.Collection(enabledProgressItems)
         }).$el);
 
     });
