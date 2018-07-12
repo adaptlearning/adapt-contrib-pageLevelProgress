@@ -1,2 +1,8 @@
-<div class="page-level-progress-completion-inner-indicator {{_type}}-completion-indicator-inner">
+{{import_globals}}
+<div class="pagelevelprogress-indicator-inner {{type}}-indicator-inner" style="width: {{percentageComplete}}%;">
+    {{#if ariaLabel}}
+    <span class="aria-label">
+        {{compile ariaLabel}}
+    </span>
+    {{/if}}
 </div>

@@ -1,6 +1,7 @@
 define([
-   'core/js/adapt'
-], function(Adapt) {
+   'core/js/adapt',
+   './PageLevelProgressItemView'
+], function(Adapt, PageLevelProgressItemView) {
 
     var PageLevelProgressView = Backbone.View.extend({
 
@@ -13,6 +14,7 @@ define([
         initialize: function() {
             this.listenTo(Adapt, 'remove', this.remove);
             this.render();
+            this.addChildren();
         },
 
         scrollToPageElement: function(event) {
@@ -26,14 +28,18 @@ define([
         },
 
         render: function() {
-            var data = {
-                components: this.collection.toJSON(),
-                _globals: Adapt.course.get('_globals')
-            };
             var template = Handlebars.templates['pageLevelProgress'];
-            this.$el.html(template(data));
-            this.$el.a11y_aria_label(true);
+            this.$el.html(template({}));
             return this;
+        },
+
+        addChildren: function() {
+            var $children = this.$('.js-children');
+            this.collection.each(function(model) {
+                $children.append(new PageLevelProgressItemView({
+                    model: model
+                }).$el);
+            }.bind(this));
         }
 
     });

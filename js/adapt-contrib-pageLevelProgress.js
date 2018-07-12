@@ -1,14 +1,9 @@
 define([
     'core/js/adapt',
     './completionCalculations',
-    './PageLevelProgressMenuView',
     './PageLevelProgressNavigationView',
     './PageLevelProgressIndicatorView'
-], function(Adapt, completionCalculations, PageLevelProgressMenuView, PageLevelProgressNavigationView, PageLevelProgressIndicatorView) {
-
-    function setupPageLevelProgress(pageModel, enabledProgressComponents) {
-        new PageLevelProgressNavigationView({model: pageModel, collection: new Backbone.Collection(enabledProgressComponents)});
-    }
+], function(Adapt, completionCalculations, PageLevelProgressNavigationView, PageLevelProgressIndicatorView) {
 
     var types = [ 'menu', 'page', 'article', 'block', 'component' ];
     var eventNames = types.concat(['']).join('View:render ');
@@ -44,20 +39,23 @@ define([
         // Progress bar should not render for course viewType
         if (viewType == 'course') return;
 
-        if (pageLevelProgress && pageLevelProgress._isEnabled) {
-            var completionObject = completionCalculations.calculateCompletion(view.model);
+        if (!pageLevelProgress || !pageLevelProgress._isEnabled) return;
 
-            //take all non-assessment components and subprogress info into the percentage
-            //this allows the user to see if the assessments are passed (subprogress) and all other components are complete
+        view.$el.find('.js-menu-item-progress').append(new PageLevelProgressIndicatorView({
+            model: view.model,
+            type: "menu-item",
+            calculatePercentage: function() {
+                var completionObject = completionCalculations.calculateCompletion(view.model);
+                var completed = completionObject.nonAssessmentCompleted + completionObject.subProgressCompleted;
+                var total = completionObject.nonAssessmentTotal + completionObject.subProgressTotal;
+                // take all non-assessment components and subprogress info into the percentage
+                // this allows the user to see if the assessments are passed (subprogress) and all other components are complete
+                var percentageComplete = Math.floor((completed / total) * 100);
+                return percentageComplete;
+            },
+            ariaLabel: Adapt.course.get('_globals')._extensions._pageLevelProgress.pageLevelProgressMenuBar
+        }).$el);
 
-            var completed = completionObject.nonAssessmentCompleted + completionObject.subProgressCompleted;
-            var total = completionObject.nonAssessmentTotal + completionObject.subProgressTotal;
-
-            var percentageComplete = Math.floor((completed / total) * 100);
-
-            view.model.set('completedChildrenAsPercentage', percentageComplete);
-            view.$el.find('.menu-item-inner').append(new PageLevelProgressMenuView({model: view.model}).$el);
-        }
     });
 
     // This should add/update progress on page navigation bar
@@ -76,9 +74,13 @@ define([
         var availableComponents = completionCalculations.filterAvailableChildren(currentPageComponents);
         var enabledProgressComponents = completionCalculations.getPageLevelProgressEnabledModels(availableComponents);
 
-        if (enabledProgressComponents.length > 0) {
-            setupPageLevelProgress(pageModel, enabledProgressComponents);
-        }
+        if (enabledProgressComponents.length === 0) return;
+
+        $('.navigation-drawer-toggle-button').after(new PageLevelProgressNavigationView({
+            model: pageModel,
+            collection: new Backbone.Collection(enabledProgressComponents)
+        }).$el);
+
     });
 
 });

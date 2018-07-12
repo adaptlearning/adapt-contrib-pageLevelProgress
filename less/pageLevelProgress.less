@@ -21,11 +21,6 @@
         .no-touch &:hover {
             background-color:@drawer-item-hover-color;
             color:@drawer-item-text-hover-color;
-            .page-level-progress-indicator-complete {
-                .page-level-progress-indicator-bar {
-                    background-color:@foreground-color-inverted;
-                }
-            }
         }
     }
 }
@@ -43,37 +38,6 @@
     text-align: right;
 }
 
-.page-level-progress-indicator {
-    width: 16%;
-    height: 10px;
-    margin-left:4%;
-    .dir-rtl & {
-        margin-left:inherit;
-        margin-right:4%;
-    }
-    display: inline-block;
-    border-radius:5px;
-    overflow:hidden;
-    background-color:@item-color-hover;
-}
-
-.page-level-progress-indicator-complete {
-    .page-level-progress-indicator-bar {
-        width:100%;
-        height:10px;
-        background-color:@foreground-color-inverted;
-        .no-touch &:hover {
-            background-color:@foreground-color-inverted;
-        }
-    }
-}
-
-
-
-.page-level-progress-indicator-bar {
-    width:0%;
-}
-
 .page-level-progress-navigation {
     padding:(@navigation-padding+6px);
     @media all and (max-width:(@device-width-medium - 1px)) {
@@ -84,54 +48,4 @@
         float:left;
     }
     display:inline-block;
-    .no-touch &:hover {
-        .page-level-progress-navigation-completion {
-            border-color: darken(@background-color, 15%);
-        }
-        .page-level-progress-navigation-bar {
-            background-color: darken(@primary-color, 10%);
-        }
-    }
-}
-
-.page-level-progress-navigation-completion {
-    width: 100px;
-    height: 8px;
-    overflow: hidden;
-    border: 2px solid @background-color;
-    position: relative;
-    border-radius: 5px;
-
-    @media all and (max-width:(@device-width-small - 1px)) {
-        width: 50px;
-    }
-}
-
-.page-level-progress-navigation-bar {
-    height: 100%;
-    position: absolute;
-    bottom: 0;
-    background-color: @primary-color;
-}
-
-.menu {
-    .page-level-progress-menu-item {
-        padding:@menu-body-padding;
-    }
-
-    .page-level-progress-menu-item-indicator {
-        margin:0 auto;
-        width:100px;
-        height:8px;
-        border:@item-border;
-        border-radius:5px;
-        overflow:hidden;
-        position:relative;
-    }
-
-    .page-level-progress-menu-item-indicator-bar {
-        width:0%;
-        height:8px;
-        background-color:@primary-color;
-    }
 }
