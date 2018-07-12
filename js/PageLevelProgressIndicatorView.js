@@ -12,6 +12,7 @@ define([
             this.addClasses();
             this.checkAria();
             this.setUpEventListeners();
+            this.render();
             this.refresh();
         },
 
@@ -36,7 +37,9 @@ define([
 
         refresh: function() {
             this.checkCompletion();
-            this.render();
+            this.$('.pagelevelprogress-indicator-bar').css({
+                width: this.model.get('percentageComplete')+'%'
+            });
         },
 
         checkCompletion: function() {

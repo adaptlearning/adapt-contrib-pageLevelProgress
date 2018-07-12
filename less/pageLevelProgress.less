@@ -1,36 +1,43 @@
 .drawer {
+
     .pagelevelprogress-item-title {
-        background-color:@drawer-item-color;
-        color:@drawer-item-text-color;
+        background-color: @drawer-item-color;
+        color: @drawer-item-text-color;
         text-decoration: none;
-        padding:@item-padding;
-        display:block;
+        padding: @item-padding;
+        display: block;
+        width: 80%;
+
         &.drawer-item-open.disabled {
-            box-sizing:border-box;
-            background-color:@item-color-disabled;
-            color:@item-text-color-disabled;
+            box-sizing: border-box;
+            background-color: @item-color-disabled;
+            color: @item-text-color-disabled;
             .no-touch &:hover {
-                background-color:@item-color-disabled;
-                color:@item-text-color-disabled;
+                background-color: @item-color-disabled;
+                color: @item-text-color-disabled;
             }
         }
+
         .drawer-item-open {
-            padding:@drawer-item-padding;
-            display:block;
+            padding: @drawer-item-padding;
+            display: block;
         }
+
         .no-touch &:hover {
-            background-color:@drawer-item-hover-color;
-            color:@drawer-item-text-hover-color;
+            background-color: @drawer-item-hover-color;
+            color: @drawer-item-text-hover-color;
         }
+
     }
+
 }
 
 .pagelevelprogress-item-title-inner {
-    float:left;
+    float: left;
     .dir-rtl & {
-        float:right;
+        float: right;
     }
-    width:80%;
+    width: 80%;
 }
 
 .pagelevelprogress-item-optional-text {
@@ -39,13 +46,14 @@
 }
 
 .pagelevelprogress-navigation {
-    padding:(@navigation-padding+6px);
+    display: inline-block;
+    padding: (@navigation-padding+6px);
     @media all and (max-width:(@device-width-medium - 1px)) {
-        padding:(@navigation-padding-mobile+6px);
+        padding: (@navigation-padding-mobile+6px);
     }
-    float:right;
+    float: right;
+
     .dir-rtl & {
-        float:left;
+        float: left;
     }
-    display:inline-block;
 }
