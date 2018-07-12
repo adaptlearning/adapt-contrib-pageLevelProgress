@@ -82,7 +82,7 @@
                 "_isCompletionIndicatorEnabled": {
                   "type": "boolean",
                   "required": true,
-                  "default": true,
+                  "default": false,
                   "title": "Show course completion indicator",
                   "inputType": "Checkbox",
                   "validators": [],
@@ -121,7 +121,7 @@
                 "_isCompletionIndicatorEnabled": {
                   "type": "boolean",
                   "required": true,
-                  "default": true,
+                  "default": false,
                   "title": "Show page completion indicator",
                   "inputType": "Checkbox",
                   "validators": [],
@@ -142,7 +142,7 @@
                 "_isEnabled": {
                   "type": "boolean",
                   "required": true,
-                  "default": true,
+                  "default": false,
                   "title": "Is enabled",
                   "inputType": "Checkbox",
                   "validators": [],
@@ -151,7 +151,7 @@
                 "_isCompletionIndicatorEnabled": {
                   "type": "boolean",
                   "required": true,
-                  "default": true,
+                  "default": false,
                   "title": "Show article completion indicator",
                   "inputType": "Checkbox",
                   "validators": [],
@@ -173,7 +173,7 @@
                 "_isEnabled": {
                   "type": "boolean",
                   "required": true,
-                  "default": true,
+                  "default": false,
                   "title": "Is enabled",
                   "inputType": "Checkbox",
                   "validators": [],
@@ -182,7 +182,7 @@
                 "_isCompletionIndicatorEnabled": {
                   "type": "boolean",
                   "required": true,
-                  "default": true,
+                  "default": false,
                   "title": "Show block completion indicator",
                   "inputType": "Checkbox",
                   "validators": [],
@@ -212,7 +212,7 @@
                 "_isCompletionIndicatorEnabled": {
                   "type": "boolean",
                   "required": true,
-                  "default": true,
+                  "default": false,
                   "title": "Show component completion indicator",
                   "inputType": "Checkbox",
                   "validators": [],
