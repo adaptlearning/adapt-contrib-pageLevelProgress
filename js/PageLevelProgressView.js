@@ -40,6 +40,11 @@ define([
                     model: model
                 }).$el);
             }.bind(this));
+        },
+
+        remove: function() {
+            Backbone.View.prototype.remove.call(this);
+            this.collection.reset();
         }
 
     });
