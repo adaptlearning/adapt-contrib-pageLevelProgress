@@ -68,8 +68,8 @@ define([
             return;
         }
 
-        var currentPageItems = _.filter(pageModel.getAllDescendantModels(true), function(comp) {
-            return comp.get('_isAvailable') === true;
+        var currentPageItems = pageModel.getAllDescendantModels(true).filter(function(item) {
+            return item.get('_isAvailable') === true;
         });
         var availableItems = completionCalculations.filterAvailableChildren(currentPageItems);
         var enabledProgressItems = completionCalculations.getPageLevelProgressEnabledModels(availableItems);
