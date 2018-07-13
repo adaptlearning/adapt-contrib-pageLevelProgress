@@ -19,21 +19,20 @@ define([
 
         scrollToPageElement: function(event) {
             if (event && event.preventDefault) event.preventDefault();
-           
+
             var $target = $(event.currentTarget);
             if ($target.is('.disabled')) return;
-           
+
             var currentComponentSelector = '.' + $target.attr('data-pagelevelprogress-id');
 
             Adapt.once('drawer:closed', function() {
                 Adapt.scrollTo(currentComponentSelector, { duration: 400 });
-            }).trigger('drawer:closeDrawer');
+            }).trigger('drawer:closeDrawer', $(currentComponentSelector));
         },
 
         render: function() {
             var template = Handlebars.templates['pageLevelProgress'];
             this.$el.html(template({}));
-            return this;
         },
 
         addChildren: function() {

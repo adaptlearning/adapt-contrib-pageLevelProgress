@@ -39,7 +39,7 @@
     "optionalContent": {
       "type": "string",
       "required": true,
-      "default": "Optional Content",
+      "default": "Optional content",
       "inputType": "Text",
       "validators": [],
       "translatable": true
