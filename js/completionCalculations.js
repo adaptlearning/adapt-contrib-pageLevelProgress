@@ -109,8 +109,8 @@ define([
     //Get only those models who were enabled for pageLevelProgress
     function getPageLevelProgressEnabledModels(models) {
         return models.filter(function(model) {
-            if (!model.get('_pageLevelProgress')) return;
-            return model.get('_pageLevelProgress')._isEnabled;
+            var config = model.get('_pageLevelProgress');
+            return config && config._isEnabled;
         });
     }
 
