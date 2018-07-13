@@ -59,7 +59,6 @@ define([
             data.type = this.type;
             var template = Handlebars.templates[this.constructor.template];
             this.$el.html(template(data));
-            return this;
         }
 
     }, {

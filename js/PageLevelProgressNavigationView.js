@@ -64,7 +64,7 @@ define([
         },
 
         onProgressClicked: function(event) {
-            if(event && event.preventDefault) event.preventDefault();
+            if (event && event.preventDefault) event.preventDefault();
             Adapt.drawer.triggerCustomView(new PageLevelProgressView({
                 collection: this.collection
             }).$el, false);

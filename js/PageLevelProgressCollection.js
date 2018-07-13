@@ -15,7 +15,8 @@ define([
             this.reset();
             if (!this._pageModel) return;
 
-            var currentPageItems = this._pageModel.getAllDescendantModels(true).filter(function(item) {
+            var allDescendants = this._pageModel.getAllDescendantModels(true);
+            var currentPageItems = allDescendants.filter(function(item) {
                 return item.get('_isAvailable') === true;
             });
             var availableItems = completionCalculations.filterAvailableChildren(currentPageItems);
