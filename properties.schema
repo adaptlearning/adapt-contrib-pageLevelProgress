@@ -23,7 +23,7 @@
     "pageLevelProgressMenuBar": {
       "type": "string",
       "required": true,
-      "default": "Page completed {{percentageComplete}}%",
+      "default": "Page completion {{percentageComplete}}%",
       "inputType": "Text",
       "validators": [],
       "translatable": true
