@@ -13,7 +13,9 @@
     },
     "_pageLevelProgress": {
         "_isEnabled": true,
-        "_isCompletionIndicatorEnabled": true
+        "_showPageCompletion": true,
+        "_isCompletionIndicatorEnabled": true,
+        "_isShownInNavigationBar": true
     }
 }
 

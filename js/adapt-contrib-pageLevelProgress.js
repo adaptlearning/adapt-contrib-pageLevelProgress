@@ -9,6 +9,19 @@ define([
     var PageLevelProgress = Backbone.Controller.extend({
 
         initialize: function() {
+            this.listenTo(Adapt, 'app:dataReady', this.onDataReady);
+        },
+
+        getCourseConfig: function() {
+            return Adapt.course.get('_pageLevelProgress');
+        },
+
+        onDataReady: function() {
+            // Do not proceed if pageLevelProgress is not enabled in course.json
+            var coursePLPConfig = this.getCourseConfig();
+            if (!coursePLPConfig || !coursePLPConfig._isEnabled) {
+                return;
+            }
             this.setUpEventListeners();
         },
 
@@ -34,8 +47,20 @@ define([
 
         renderHeaderIndicatorView: function(view) {
             var model = view.model;
+
             var config = model.get('_pageLevelProgress');
-            if (!config || !config._isEnabled || !config._isCompletionIndicatorEnabled) return;
+            if (!config || !config._isEnabled || !config._isCompletionIndicatorEnabled) {
+                return;
+            }
+
+            var pageModel = _.find(model.getAncestorModels(), function (item) {
+                return item.get('_type') === "page";
+            });
+            var pageConfig = pageModel && pageModel.get('_pageLevelProgress')
+            if (pageConfig && !pageConfig._isEnabled) {
+                return;
+            }
+
             var $headings = view.$('.js-heading');
             $headings.each(function(index, el) {
                 var $el = $(el);
@@ -48,22 +73,22 @@ define([
 
         // This should add/update progress on menuView
         renderMenuItemIndicatorView: function(view) {
-            if (view.model.get('_id') == Adapt.location._currentId) return;
-
-            var coursePLPConfig = Adapt.course.get('_pageLevelProgress');
-
-            // do not proceed if pageLevelProgress is not enabled in course.json
-            if (!coursePLPConfig || !coursePLPConfig._isEnabled) {
+            // Do not render on menu, only render on menu items
+            if (view.model.get('_id') === Adapt.location._currentId) {
                 return;
             }
 
-            var pageLevelProgress = view.model.get('_pageLevelProgress');
-            var viewType = view.model.get('_type');
-
             // Progress bar should not render for course viewType
-            if (viewType == 'course') return;
+            var viewType = view.model.get('_type');
+            if (viewType === 'course') {
+                return;
+            }
 
-            if (!pageLevelProgress || !pageLevelProgress._isEnabled) return;
+            // Do not proceed if pageLevelProgress is not enabled for the content object
+            var pageLevelProgress = view.model.get('_pageLevelProgress');
+            if (!pageLevelProgress || !pageLevelProgress._isEnabled) {
+                return;
+            }
 
             view.$el.find('.js-menu-item-progress').append(new PageLevelProgressIndicatorView({
                 model: view.model,
@@ -79,16 +104,25 @@ define([
 
         // This should add/update progress on page navigation bar
         renderNavigationView: function(pageModel) {
-            var coursePLPConfig = Adapt.course.get('_pageLevelProgress');
-            var pagePLPConfig = pageModel.get('_pageLevelProgress');
+            // Do not render if turned off at course level
+            var coursePLPConfig = this.getCourseConfig();
+            if (coursePLPConfig && coursePLPConfig._isShownInNavigationBar === false) {
+                return
+            }
 
-            // do not proceed if pageLevelProgress is not enabled in course.json or for the content object
-            if (!coursePLPConfig || !coursePLPConfig._isEnabled || !pagePLPConfig || !pagePLPConfig._isEnabled) {
+            // Do not proceed if pageLevelProgress is not enabled for the content object
+            var pagePLPConfig = pageModel.get('_pageLevelProgress');
+            if (!pagePLPConfig || !pagePLPConfig._isEnabled) {
                 return;
             }
 
-            var collection = new PageLevelProgressCollection(null, { pageModel: pageModel});
-            if (collection.length === 0) return;
+            var collection = new PageLevelProgressCollection(null, {
+                pageModel: pageModel
+            });
+
+            if (collection.length === 0) {
+                return;
+            }
 
             $('.navigation-drawer-toggle-button').after(new PageLevelProgressNavigationView({
                 model: pageModel,

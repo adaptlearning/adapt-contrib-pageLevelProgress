@@ -87,6 +87,15 @@
                   "inputType": "Checkbox",
                   "validators": [],
                   "help": "Controls whether the completion indicator shows next to the course title."
+                },
+                "_isShownInNavigationBar": {
+                  "type": "boolean",
+                  "required": true,
+                  "default": true,
+                  "title": "Show progress in the navigation bar",
+                  "inputType": "Checkbox",
+                  "validators": [],
+                  "help": "Controls whether the completion indicator shows in the navigation bar"
                 }
               }
             }
