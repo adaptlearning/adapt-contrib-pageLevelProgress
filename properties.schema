@@ -172,7 +172,6 @@
         },
         "block": {
           "type": "object",
-          "type": "object",
           "properties": {
             "_pageLevelProgress": {
               "type": "object",

@@ -116,10 +116,9 @@ define([
 
     function unavailableInHierarchy(parents) {
         if (parents.length === 0) return;
-        var firstUnavailableParent = _.find(parents, function(parent) {
+        return parents.some(function(parent) {
             return !parent.get('_isAvailable');
         });
-        return Boolean(firstUnavailableParent);
     }
 
     function filterAvailableChildren(children) {

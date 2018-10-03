@@ -37,9 +37,7 @@ define([
 
         refresh: function() {
             this.checkCompletion();
-            this.$('.pagelevelprogress-indicator-bar').css({
-                width: this.model.get('percentageComplete')+'%'
-            });
+            this.render();
         },
 
         checkCompletion: function() {
