@@ -61,8 +61,6 @@ Several elements of **Page Level Progress** have been assigned a label using the
 
 ## Limitations  
 
-## Limitations
- 
 No known limitations.  
 
 ----------------------------
