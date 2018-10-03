@@ -13,12 +13,13 @@ define([
         var subProgressCompleted = 0;
         var subProgressTotal = 0;
         var isComplete = contentObjectModel.get("_isComplete") ? 1 : 0;
+        var children;
 
         switch (viewType) {
             case 'page':
                 // If it's a page
                 var descendantComponents = contentObjectModel.findDescendantModels('components');
-                var children = descendantComponents.filter(function(comp) {
+                children = descendantComponents.filter(function(comp) {
                     return comp.get('_isAvailable') === true && comp.get('_isOptional') === false;
                 });
 
@@ -60,7 +61,7 @@ define([
                 return pageCompletion;
             case 'menu':
                 // If it's a sub-menu
-                var children = contentObjectModel.get('_children').models;
+                children = contentObjectModel.get('_children').models;
                 children.forEach(function(contentObject) {
                     var completionObject = calculateCompletion(contentObject);
                     subProgressCompleted += contentObjectModel.subProgressCompleted || 0;

@@ -56,7 +56,7 @@ define([
             var pageModel = _.find(model.getAncestorModels(), function (item) {
                 return item.get('_type') === "page";
             });
-            var pageConfig = pageModel && pageModel.get('_pageLevelProgress')
+            var pageConfig = pageModel && pageModel.get('_pageLevelProgress');
             if (pageConfig && !pageConfig._isEnabled) {
                 return;
             }
@@ -107,7 +107,7 @@ define([
             // Do not render if turned off at course level
             var coursePLPConfig = this.getCourseConfig();
             if (coursePLPConfig && coursePLPConfig._isShownInNavigationBar === false) {
-                return
+                return;
             }
 
             // Do not proceed if pageLevelProgress is not enabled for the content object

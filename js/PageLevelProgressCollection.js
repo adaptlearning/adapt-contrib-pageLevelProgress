@@ -1,7 +1,6 @@
 define([
-    'core/js/adapt',
     './completionCalculations'
-], function(Adapt, completionCalculations) {
+], function(completionCalculations) {
 
     var PageLevelProgressCollection = Backbone.Collection.extend({
 
