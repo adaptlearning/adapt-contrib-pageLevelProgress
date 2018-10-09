@@ -33,7 +33,7 @@ define([
             //this allows the user to see if the assessments are passed (subprogress) and all other components are complete
 
             var completed = completionObject.nonAssessmentCompleted + completionObject.assessmentCompleted + completionObject.subProgressCompleted;
-            var total  = completionObject.nonAssessmentTotal + completionObject.assessmentTotal + completionObject.subProgressTotal;
+            var total = completionObject.nonAssessmentTotal + completionObject.assessmentTotal + completionObject.subProgressTotal;
 
             var percentageComplete = Math.floor((completed / total) * 100);
 

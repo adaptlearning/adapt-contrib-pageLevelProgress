@@ -12,7 +12,8 @@
         "hideCorrectAnswer": "My Answer"
     },
     "_pageLevelProgress": {
-        "_isEnabled": true
+        "_isEnabled": true,
+        "_showPageCompletion": true
     }
 }
 
@@ -33,7 +34,8 @@
     "duration": "2 mins",
     "_pageLevelProgress": {
         "_isEnabled": true,
-        "_excludeAssessments": true
+        "_showPageCompletion": true,
+        "_excludeAssessments": false
     }
 }
 
