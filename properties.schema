@@ -135,6 +135,15 @@
                   "inputType": "Checkbox",
                   "validators": [],
                   "help": "Controls whether the completion indicator shows next to the page title."
+                },
+                "_excludeAssessments": {
+                  "type": "boolean",
+                  "required": false,
+                  "default": false,
+                  "title": "Exclude assessments.",
+                  "inputType": "Checkbox",
+                  "validators": [],
+                  "help": "Controls whether the progress calculations will include assessments."
                 }
               }
             }

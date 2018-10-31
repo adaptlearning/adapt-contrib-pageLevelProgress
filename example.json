@@ -36,6 +36,8 @@
     "duration": "2 mins",
     "_pageLevelProgress": {
         "_isEnabled": true,
+        "_showPageCompletion": true,
+        "_excludeAssessments": false,
         "_isCompletionIndicatorEnabled": true
     }
 }
