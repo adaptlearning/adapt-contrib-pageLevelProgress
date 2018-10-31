@@ -82,6 +82,7 @@ define([
                     "assessmentCompleted": assessmentComponentsCompleted,
                     "assessmentTotal": assessmentComponentsTotal,
                 };
+
         }
     }
 

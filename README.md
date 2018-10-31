@@ -36,9 +36,9 @@ The absence of the **_pageLevelProgress** object in a component model is interpr
 
 By default, calculation of the percentage of child components that have been completed includes all components, even those that have pageLevelProgress disabled and those with no **_pageLevelProgress** object in the component model. In order to have a component ignored in this calculation, you must set either `_isOptional` to `true` in the component model (*components.json*) or set the `_showPageCompletion` property (see [Attributes](#attributes)) to `false` in either *course.json* or *contentObjects.json*
 
-The same **_pageLevelProgress** object may be added to components (*components.json*), blocks (*blocks.json*) and articles  (*articles.json*). At this level `"_isEnabled"` adds a bar to the list of progress items appearing in the drawer. Setting `"_excludeAssessments"` to `true` will prevent assessments from being included in calculations for page level progress. Adding `"_isCompletionIndicatorEnabled"` at this level adds a progress bar next to the title of element in the page.
+The same **_pageLevelProgress** object may be added to components (*components.json*), blocks (*blocks.json*) and articles  (*articles.json*). At this level `"_isEnabled"` adds a bar to the list of progress items appearing in the drawer. Adding `"_isCompletionIndicatorEnabled"` at this level adds a progress bar next to the title of element in the page.
 
-The same **_pageLevelProgress** object may be added to contentObjects (*contentObjects.json*). At this level `"_isEnabled"` governs whether a progress bar will be displayed on the menu item. It does not act to provide defaults for its child components. It does not override their settings. Adding `"_isCompletionIndicatorEnabled"` at this level adds a progress bar next to the title of element in the menu.
+The same **_pageLevelProgress** object may be added to contentObjects (*contentObjects.json*). At this level `"_isEnabled"` governs whether a progress bar will be displayed on the menu item. It does not act to provide defaults for its child components. It does not override their settings. Setting `"_excludeAssessments"` to `true` will prevent assessments from being included in calculations for page level progress. Adding `"_isCompletionIndicatorEnabled"` at this level adds a progress bar next to the title of element in the menu.
 
 The same **_pageLevelProgress** object may be added to the course (*course.json*). At this level, `"_isEnabled"` can be used to disable **Page Level Progress** on components and contentObjects that have `"_isEnabled": true`. In some cases, indicators are required on the page but not in the drawer, `"_isShownInNavigationBar"` is used to turn off the drawer button.
 >**Note:** Setting the **_pageLevelProgress** object in *course.json* does not provide defaults for components, blocks, articles or contentObjects. It cannot be used to enable **Page Level Progress** on components or contentObjects that have `"_isEnabled": false` or that do not have the **_pageLevelProgress** object in their model json.
@@ -64,10 +64,9 @@ Several elements of **Page Level Progress** have been assigned a label using the
 
 No known limitations.
 
-----------------------------
-**Version number:**  3.1.0   <a href="https://community.adaptlearning.org/" target="_blank"><img src="https://github.com/adaptlearning/documentation/blob/master/04_wiki_assets/plug-ins/images/adapt-logo-mrgn-lft.jpg" alt="adapt learning logo" align="right"></a>
-**Framework versions:**  2.2+
-**Author / maintainer:** Adapt Core Team with [contributors](https://github.com/adaptlearning/adapt-contrib-pageLevelProgress/graphs/contributors)
-**Accessibility support:** WAI AA
-**RTL support:** yes
-**Cross-platform coverage:** Chrome, Chrome for Android, Firefox (ESR + latest version), Edge, IE11, IE Mobile 11, Safari 11+12 for macOS+iOS, Opera
+**Version number:**  3.1.0   <a href="https://community.adaptlearning.org/" target="_blank"><img src="https://github.com/adaptlearning/documentation/blob/master/04_wiki_assets/plug-ins/images/adapt-logo-mrgn-lft.jpg" alt="adapt learning logo" align="right"></a>  
+**Framework versions:**  2.2+  
+**Author / maintainer:** Adapt Core Team with [contributors](https://github.com/adaptlearning/adapt-contrib-pageLevelProgress/graphs/contributors)  
+**Accessibility support:** WAI AA  
+**RTL support:** yes  
+**Cross-platform coverage:** Chrome, Chrome for Android, Firefox (ESR + latest version), Edge, IE11, IE Mobile 11, Safari 11+12 for macOS+iOS, Opera  
