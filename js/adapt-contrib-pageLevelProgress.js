@@ -27,12 +27,12 @@ define([
 
         setUpEventListeners: function() {
             var headerIndicatorTypes = [
-                    'menu',
-                    'page',
-                    'article',
-                    'block',
-                    'component'
-                ];
+                'menu',
+                'page',
+                'article',
+                'block',
+                'component'
+            ];
 
             var headerIndicatorEventNames = headerIndicatorTypes
                 .concat(['']).join('View:render ');
