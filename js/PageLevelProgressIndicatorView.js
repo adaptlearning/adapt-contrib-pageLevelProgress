@@ -7,8 +7,8 @@ define([
         initialize: function(options) {
             options = options || {};
             this.calculatePercentage = options.calculatePercentage || this.calculatePercentage;
-            this.ariaLabel = options.ariaLabel || "";
-            this.type = options.type || this.model.get("_type");
+            this.ariaLabel = options.ariaLabel || '';
+            this.type = options.type || this.model.get('_type');
             this.addClasses();
             this.checkAria();
             this.setUpEventListeners();
@@ -30,9 +30,9 @@ define([
 
         setUpEventListeners: function() {
             this.listenTo(Adapt, 'remove', this.remove);
-            this.listenTo(this.model, "change:_isComplete", this.refresh);
+            this.listenTo(this.model, 'change:_isComplete', this.refresh);
             if (!this.collection) return;
-            this.listenTo(this.collection, "change:_isComplete", this.refresh);
+            this.listenTo(this.collection, 'change:_isComplete', this.refresh);
         },
 
         refresh: function() {
@@ -42,9 +42,9 @@ define([
 
         checkCompletion: function() {
             var percentage = this.calculatePercentage();
-            this.model.set("percentageComplete", percentage);
-            this.$el.toggleClass("complete", percentage === 100);
-            this.$el.toggleClass("incomplete", percentage !== 100);
+            this.model.set('percentageComplete', percentage);
+            this.$el.toggleClass('complete', percentage === 100);
+            this.$el.toggleClass('incomplete', percentage !== 100);
         },
 
         calculatePercentage: function() {
