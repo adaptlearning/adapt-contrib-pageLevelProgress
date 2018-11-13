@@ -53,9 +53,7 @@ define([
                 return;
             }
 
-            var pageModel = _.find(model.getAncestorModels(), function (item) {
-                return item.get('_type') === "page";
-            });
+            var pageModel = model.findAncestor('contentObjects');
             var pageConfig = pageModel && pageModel.get('_pageLevelProgress');
             if (pageConfig && !pageConfig._isEnabled) {
                 return;
