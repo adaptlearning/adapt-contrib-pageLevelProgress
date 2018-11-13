@@ -119,7 +119,7 @@ define([
     }
 
     function unavailableInHierarchy(parents) {
-        if (parents.length === 0) return;
+        if (!parents) return;
         return parents.some(function(parent) {
             return !parent.get('_isAvailable');
         });
