@@ -2,25 +2,34 @@ define([
     'core/js/adapt'
 ], function(Adapt) {
 
+    var Completion = Backbone.Controller.extend({
+
+        subProgressCompleted: 0,
+        subProgressTotal: 0,
+        nonAssessmentCompleted: 0,
+        nonAssessmentTotal: 0,
+        assessmentCompleted: 0,
+        assessmentTotal: 0
+
+    });
+
     // Calculate completion of a contentObject
     function calculateCompletion(contentObjectModel) {
 
+        var completion = new Completion();
+
         var viewType = contentObjectModel.get('_type');
-        var nonAssessmentComponentsTotal = 0;
-        var nonAssessmentComponentsCompleted = 0;
-        var assessmentComponentsTotal = 0;
-        var assessmentComponentsCompleted = 0;
-        var subProgressCompleted = 0;
-        var subProgressTotal = 0;
-        var isComplete = contentObjectModel.get("_isComplete") ? 1 : 0;
+        var isComplete = contentObjectModel.get('_isComplete') ? 1 : 0;
         var children;
 
         switch (viewType) {
             case 'page':
                 // If it's a page
-                var descendantComponents = contentObjectModel.findDescendantModels('components');
-                children = descendantComponents.filter(function(comp) {
-                    return comp.get('_isAvailable') === true && comp.get('_isOptional') === false;
+                children = contentObjectModel.findDescendantModels('components', {
+                    where: {
+                        _isAvailable: true,
+                        _isOptional: false
+                    }
                 });
 
                 var availableChildren = filterAvailableChildren(children);
@@ -28,62 +37,47 @@ define([
 
                 var nonAssessmentComponents = getNonAssessmentComponents(components);
 
-                nonAssessmentComponentsTotal = nonAssessmentComponents.length;
-                nonAssessmentComponentsCompleted = getComponentsCompleted(nonAssessmentComponents).length;
+                completion.nonAssessmentTotal = nonAssessmentComponents.length;
+                completion.nonAssessmentCompleted = getComponentsCompleted(nonAssessmentComponents).length;
 
                 var assessmentComponents = getAssessmentComponents(components);
 
-                assessmentComponentsTotal = assessmentComponents.length;
-                assessmentComponentsCompleted = getComponentsInteractionCompleted(assessmentComponents).length;
+                completion.assessmentTotal = assessmentComponents.length;
+                completion.assessmentCompleted = getComponentsInteractionCompleted(assessmentComponents).length;
 
                 if (!contentObjectModel.get('_pageLevelProgress')._excludeAssessments) {
-                    subProgressCompleted = contentObjectModel.get("_subProgressComplete") || 0;
-                    subProgressTotal = contentObjectModel.get("_subProgressTotal") || 0;
+                    completion.subProgressCompleted = contentObjectModel.get('_subProgressComplete') || 0;
+                    completion.subProgressTotal = contentObjectModel.get('_subProgressTotal') || 0;
                 }
 
-                var pageCompletion = {
-                    "subProgressCompleted": subProgressCompleted,
-                    "subProgressTotal": subProgressTotal,
-                    "nonAssessmentCompleted": nonAssessmentComponentsCompleted,
-                    "nonAssessmentTotal": nonAssessmentComponentsTotal,
-                    "assessmentCompleted": assessmentComponentsCompleted,
-                    "assessmentTotal": assessmentComponentsTotal
-                };
-
-                var showPageCompletionCourse = Adapt.course.get("_pageLevelProgress") && Adapt.course.get("_pageLevelProgress")._showPageCompletion !== false;
-                var showPageCompletionPage = contentObjectModel.get("_pageLevelProgress") && contentObjectModel.get("_pageLevelProgress")._showPageCompletion !== false;
+                var showPageCompletionCourse = Adapt.course.get('_pageLevelProgress') && Adapt.course.get('_pageLevelProgress')._showPageCompletion !== false;
+                var showPageCompletionPage = contentObjectModel.get('_pageLevelProgress') && contentObjectModel.get('_pageLevelProgress')._showPageCompletion !== false;
 
                 if (showPageCompletionCourse && showPageCompletionPage) {
                     // optionally add one point extra for page completion to eliminate incomplete pages and full progress bars
                     // if _showPageCompletion is true then the progress bar should also consider it so add 1 to nonAssessmentTotal
-                    pageCompletion.nonAssessmentCompleted += isComplete;
-                    pageCompletion.nonAssessmentTotal += 1;
+                    completion.nonAssessmentCompleted += isComplete;
+                    completion.nonAssessmentTotal += 1;
                 }
 
-                return pageCompletion;
+                break;
             case 'menu':
                 // If it's a sub-menu
                 children = contentObjectModel.get('_children').models;
                 children.forEach(function(contentObject) {
                     var completionObject = calculateCompletion(contentObject);
-                    subProgressCompleted += contentObjectModel.subProgressCompleted || 0;
-                    subProgressTotal += contentObjectModel.subProgressTotal || 0;
-                    nonAssessmentComponentsTotal += completionObject.nonAssessmentTotal;
-                    nonAssessmentComponentsCompleted += completionObject.nonAssessmentCompleted;
-                    assessmentComponentsTotal += completionObject.assessmentTotal;
-                    assessmentComponentsCompleted += completionObject.assessmentCompleted;
+                    completion.subProgressCompleted += contentObjectModel.subProgressCompleted || 0;
+                    completion.subProgressTotal += contentObjectModel.subProgressTotal || 0;
+                    completion.nonAssessmentTotal += completionObject.nonAssessmentTotal;
+                    completion.nonAssessmentCompleted += completionObject.nonAssessmentCompleted;
+                    completion.assessmentTotal += completionObject.assessmentTotal;
+                    completion.assessmentCompleted += completionObject.assessmentCompleted;
                 });
-
-                return {
-                    "subProgressCompleted": subProgressCompleted,
-                    "subProgressTotal" : subProgressTotal,
-                    "nonAssessmentCompleted": nonAssessmentComponentsCompleted,
-                    "nonAssessmentTotal": nonAssessmentComponentsTotal,
-                    "assessmentCompleted": assessmentComponentsCompleted,
-                    "assessmentTotal": assessmentComponentsTotal,
-                };
+                break;
 
         }
+
+        return completion;
     }
 
     function getNonAssessmentComponents(models) {

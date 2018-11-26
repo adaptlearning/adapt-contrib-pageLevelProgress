@@ -29,7 +29,7 @@ define([
         },
 
         addIndicator: function() {
-            if (this.model.get("_isOptional")) return;
+            if (this.model.get('_isOptional')) return;
             var item = new PageLevelProgressIndicatorView({
                 model: this.model
             });

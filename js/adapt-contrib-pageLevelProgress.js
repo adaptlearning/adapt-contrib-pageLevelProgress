@@ -90,7 +90,7 @@ define([
 
             view.$el.find('.js-menu-item-progress').append(new PageLevelProgressIndicatorView({
                 model: view.model,
-                type: "menu-item",
+                type: 'menu-item',
                 calculatePercentage: this._getMenuItemCompletionPercentage.bind(view),
                 ariaLabel: Adapt.course.get('_globals')._extensions._pageLevelProgress.pageLevelProgressMenuBar
             }).$el);

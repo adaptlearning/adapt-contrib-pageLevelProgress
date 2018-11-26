@@ -16,7 +16,7 @@ define([
         },
 
         initialize: function() {
-            _.bindAll(this, "updateProgressBar");
+            _.bindAll(this, 'updateProgressBar');
             this.setUpEventListeners();
             this.render();
             this.addIndicator();

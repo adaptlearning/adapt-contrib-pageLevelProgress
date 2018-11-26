@@ -25,7 +25,7 @@ define([
 
         checkAria: function() {
             if (this.ariaLabel) return;
-            this.$el.attr("aria-hidden", true);
+            this.$el.attr('aria-hidden', true);
         },
 
         setUpEventListeners: function() {
@@ -43,12 +43,13 @@ define([
         checkCompletion: function() {
             var percentage = this.calculatePercentage();
             this.model.set('percentageComplete', percentage);
-            this.$el.toggleClass('complete', percentage === 100);
-            this.$el.toggleClass('incomplete', percentage !== 100);
+            this.$el
+                .toggleClass('complete', percentage === 100)
+                .toggleClass('incomplete', percentage !== 100);
         },
 
         calculatePercentage: function() {
-            return this.model.get("_isComplete") ? 100 : 0;
+            return this.model.get('_isComplete') ? 100 : 0;
         },
 
         render: function() {
