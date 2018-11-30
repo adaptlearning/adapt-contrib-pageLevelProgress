@@ -15,7 +15,7 @@
     "pageLevelProgressIndicatorBar": {
       "type": "string",
       "required": true,
-      "default": "Progress bar. Select here to view your current progress, and select an item to navigate to it. You have completed ",
+      "default": "Page progress. Use this to listen to the list of regions in this topic and whether they're completed. You can jump directly to any that are incomplete or which sound particularly interesting. {{percentageComplete}}%",
       "inputType": "Text",
       "validators": [],
       "translatable": true
@@ -23,7 +23,7 @@
     "pageLevelProgressMenuBar": {
       "type": "string",
       "required": true,
-      "default": "You have completed ",
+      "default": "Page completion {{percentageComplete}}%",
       "inputType": "Text",
       "validators": [],
       "translatable": true
@@ -39,7 +39,7 @@
     "optionalContent": {
       "type": "string",
       "required": true,
-      "default": "Optional Content",
+      "default": "Optional content",
       "inputType": "Text",
       "validators": [],
       "translatable": true
@@ -78,6 +78,24 @@
                   "inputType": "Checkbox",
                   "validators": [],
                   "help": "Controls whether the progress calculations are based on all components - or only those that are set to be displayed in Page Level Progress."
+                },
+                "_isCompletionIndicatorEnabled": {
+                  "type": "boolean",
+                  "required": true,
+                  "default": false,
+                  "title": "Show course completion indicator",
+                  "inputType": "Checkbox",
+                  "validators": [],
+                  "help": "Controls whether the completion indicator shows next to the course title."
+                },
+                "_isShownInNavigationBar": {
+                  "type": "boolean",
+                  "required": true,
+                  "default": true,
+                  "title": "Show progress in the navigation bar",
+                  "inputType": "Checkbox",
+                  "validators": [],
+                  "help": "Controls whether the completion indicator shows in the navigation bar"
                 }
               }
             }
@@ -109,6 +127,15 @@
                   "validators": [],
                   "help": "Controls whether the progress calculations for this page are based on all components - or only those that are set to be displayed in Page Level Progress."
                 },
+                "_isCompletionIndicatorEnabled": {
+                  "type": "boolean",
+                  "required": true,
+                  "default": false,
+                  "title": "Show page completion indicator",
+                  "inputType": "Checkbox",
+                  "validators": [],
+                  "help": "Controls whether the completion indicator shows next to the page title."
+                },
                 "_excludeAssessments": {
                   "type": "boolean",
                   "required": false,
@@ -123,10 +150,64 @@
           }
         },
         "article": {
-          "type": "object"
+          "type": "object",
+          "properties": {
+            "_pageLevelProgress": {
+              "type": "object",
+              "required": false,
+              "legend": "Page Level Progress",
+              "properties": {
+                "_isEnabled": {
+                  "type": "boolean",
+                  "required": true,
+                  "default": false,
+                  "title": "Is enabled",
+                  "inputType": "Checkbox",
+                  "validators": [],
+                  "help": "Controls whether the Page Level Progress extension is used on this article."
+                },
+                "_isCompletionIndicatorEnabled": {
+                  "type": "boolean",
+                  "required": true,
+                  "default": false,
+                  "title": "Show article completion indicator",
+                  "inputType": "Checkbox",
+                  "validators": [],
+                  "help": "Controls whether the completion indicator shows next to the article title."
+                }
+              }
+            }
+          }
         },
         "block": {
-          "type": "object"
+          "type": "object",
+          "properties": {
+            "_pageLevelProgress": {
+              "type": "object",
+              "required": false,
+              "legend": "Page Level Progress",
+              "properties": {
+                "_isEnabled": {
+                  "type": "boolean",
+                  "required": true,
+                  "default": false,
+                  "title": "Is enabled",
+                  "inputType": "Checkbox",
+                  "validators": [],
+                  "help": "Controls whether the Page Level Progress extension is used on this block."
+                },
+                "_isCompletionIndicatorEnabled": {
+                  "type": "boolean",
+                  "required": true,
+                  "default": false,
+                  "title": "Show block completion indicator",
+                  "inputType": "Checkbox",
+                  "validators": [],
+                  "help": "Controls whether the completion indicator shows next to the block title."
+                }
+              }
+            }
+          }
         },
         "component": {
           "type": "object",
@@ -144,6 +225,15 @@
                   "inputType": "Checkbox",
                   "validators": [],
                   "help": "Controls whether this component should be displayed in the Page Level Progress extension or not."
+                },
+                "_isCompletionIndicatorEnabled": {
+                  "type": "boolean",
+                  "required": true,
+                  "default": false,
+                  "title": "Show component completion indicator",
+                  "inputType": "Checkbox",
+                  "validators": [],
+                  "help": "Controls whether the completion indicator shows next to the component title."
                 }
               }
             }
