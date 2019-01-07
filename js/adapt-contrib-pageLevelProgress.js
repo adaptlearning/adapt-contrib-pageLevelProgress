@@ -43,6 +43,16 @@ define([
                 'menuView:postRender': this.renderMenuItemIndicatorView,
                 'router:page': this.renderNavigationView
             });
+
+            this.listenTo(Adapt.course, "bubble:change:_isComplete", this.onCompletionChange);
+        },
+
+        onCompletionChange: function(event) {
+            var currentModel = Adapt.findById(Adapt.location._currentId);
+            Adapt.trigger("pageLevelProgress:percentageCompleteChange", {
+                current: completionCalculations.calculatePercentageComplete(currentModel),
+                course: completionCalculations.calculatePercentageComplete(Adapt.course)
+            });
         },
 
         renderHeaderIndicatorView: function(view) {
