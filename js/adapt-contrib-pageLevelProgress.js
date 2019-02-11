@@ -49,10 +49,14 @@ define([
 
         onCompletionChange: function(event) {
             var currentModel = Adapt.findById(Adapt.location._currentId);
-            Adapt.trigger("pageLevelProgress:percentageCompleteChange", {
-                current: completionCalculations.calculatePercentageComplete(currentModel),
+            var completionState = {
+                currentLocation: completionCalculations.calculatePercentageComplete(currentModel),
                 course: completionCalculations.calculatePercentageComplete(Adapt.course)
-            });
+            };
+            var hasChanged = !_.isMatch(this._previousCompletionState, completionState);
+            if (!hasChanged) return;
+            this._previousCompletionState = completionState;
+            Adapt.trigger("pageLevelProgress:percentageCompleteChange", completionState);
         },
 
         renderHeaderIndicatorView: function(view) {
