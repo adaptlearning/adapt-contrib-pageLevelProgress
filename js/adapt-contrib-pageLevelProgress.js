@@ -44,7 +44,7 @@ define([
                 'router:page': this.renderNavigationView
             });
 
-            this.listenTo(Adapt.course, "bubble:change:_isComplete", this.onCompletionChange);
+            this.listenTo(Adapt.course, 'bubble:change:_isComplete', this.onCompletionChange);
         },
 
         onCompletionChange: function(event) {
@@ -56,7 +56,7 @@ define([
             var hasChanged = !_.isMatch(this._previousCompletionState, completionState);
             if (!hasChanged) return;
             this._previousCompletionState = completionState;
-            Adapt.trigger("pageLevelProgress:percentageCompleteChange", completionState);
+            Adapt.trigger('pageLevelProgress:percentageCompleteChange', completionState);
         },
 
         renderHeaderIndicatorView: function(view) {
