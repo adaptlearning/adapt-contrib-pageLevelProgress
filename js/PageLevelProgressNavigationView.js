@@ -9,7 +9,7 @@ define([
 
     tagName: 'button',
 
-    className: 'base pagelevelprogress-navigation',
+    className: 'btn-icon nav__btn nav__pagelevelprogress-btn pagelevelprogress__nav-btn',
 
     events: {
       'click': 'onProgressClicked'

@@ -8,7 +8,7 @@ define([
     className: 'pagelevelprogress',
 
     events: {
-      'click .pagelevelprogress-item button': 'scrollToPageElement'
+      'click .js-pagelevelprogress-item-click': 'scrollToPageElement'
     },
 
     initialize: function() {
@@ -21,7 +21,7 @@ define([
       if (event && event.preventDefault) event.preventDefault();
 
       var $target = $(event.currentTarget);
-      if ($target.is('.disabled')) return;
+      if ($target.is('.is-disabled')) return;
 
       var currentComponentSelector = '.' + $target.attr('data-pagelevelprogress-id');
 

@@ -1,10 +1,14 @@
+{{! make the _globals object in course.json available to this template}}
 {{import_globals}}
-<div class="pagelevelprogress-indicator-inner {{type}}-indicator-inner">
-  <div class="pagelevelprogress-indicator-bar" style="width: {{percentageComplete}}%;">
-  </div>
+
+<div class="pagelevelprogress__indicator-inner">
+
+  <div class="pagelevelprogress__indicator-bar" style="width: {{percentageComplete}}%;"></div>
+
   {{#if ariaLabel}}
   <span class="aria-label">
     {{compile ariaLabel}}
   </span>
   {{/if}}
+
 </div>

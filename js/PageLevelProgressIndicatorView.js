@@ -18,8 +18,8 @@ define([
 
     addClasses: function() {
       this.$el.addClass([
-        'pagelevelprogress-indicator',
-        this.type + '-indicator'
+        'pagelevelprogress__indicator',
+        'is-' + this.type
       ].join(' '));
     },
 
@@ -44,8 +44,8 @@ define([
       var percentage = this.calculatePercentage();
       this.model.set('percentageComplete', percentage);
       this.$el
-          .toggleClass('complete', percentage === 100)
-          .toggleClass('incomplete', percentage !== 100);
+          .toggleClass('is-complete', percentage === 100)
+          .toggleClass('is-incomplete', percentage !== 100);
     },
 
     calculatePercentage: function() {

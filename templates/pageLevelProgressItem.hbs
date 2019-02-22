@@ -1,13 +1,20 @@
 <button
-    class="base pagelevelprogress-item-title clearfix drawer-item-open{{#unless _isVisible}} disabled{{/unless}} js-indicator"
-    data-pagelevelprogress-id="{{_id}}"
-    aria-label="{{#unless _isVisible}}{{_globals._accessibility._ariaLabels.locked}}. {{/unless}}{{#if _isOptional}}{{_globals._extensions._pageLevelProgress.optionalContent}}. {{else}}{{#if _isComplete}}{{_globals._accessibility._ariaLabels.complete}}. {{else}}{{_globals._accessibility._ariaLabels.incomplete}}. {{/if}}{{/if}}{{compile title}}">
-  <div class="pagelevelprogress-item-title-inner">
-    {{{compile title}}}
+  class="pagelevelprogress__item-open drawer__item-open{{#unless _isVisible}} is-disabled{{/unless}} js-indicator js-pagelevelprogress-item-click"
+  data-pagelevelprogress-id="{{_id}}"
+  aria-label="{{#unless _isVisible}}{{_globals._accessibility._ariaLabels.locked}}.{{/unless}}{{#if _isOptional}} {{_globals._extensions._pageLevelProgress.optionalContent}}.{{else}}{{#if _isComplete}} {{_globals._accessibility._ariaLabels.complete}}.{{else}} {{_globals._accessibility._ariaLabels.incomplete}}.{{/if}}{{/if}} {{compile title}}">
+
+  <div class="pagelevelprogress__item-title">
+    <div class="pagelevelprogress__item-title-inner">
+      {{{compile title}}}
+    </div>
   </div>
+
   {{#if _isOptional}}
-  <div class="page-level-progress-item-optional-text">
-    {{_globals._extensions._pageLevelProgress.optionalContent}}
+  <div class="pagelevelprogress__item-optional">
+    <div class="pagelevelprogress__item-optional-inner">
+      {{_globals._extensions._pageLevelProgress.optionalContent}}
+    </div>
   </div>
   {{/if}}
+
 </button>

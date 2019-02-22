@@ -122,7 +122,7 @@ define([
         return;
       }
 
-      $('.navigation-drawer-toggle-button').after(new PageLevelProgressNavigationView({
+      $('.nav__drawer-btn').after(new PageLevelProgressNavigationView({
         model: pageModel,
         collection: collection
       }).$el);
