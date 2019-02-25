@@ -45,7 +45,7 @@ define([
                 completion.assessmentTotal = assessmentComponents.length;
                 completion.assessmentCompleted = getComponentsInteractionCompleted(assessmentComponents).length;
 
-                if (!contentObjectModel.get('_pageLevelProgress')._excludeAssessments) {
+                if (contentObjectModel.get('_pageLevelProgress')._excludeAssessments !== true) {
                     completion.subProgressCompleted = contentObjectModel.get('_subProgressComplete') || 0;
                     completion.subProgressTotal = contentObjectModel.get('_subProgressTotal') || 0;
                 }
@@ -61,13 +61,13 @@ define([
                 }
 
                 break;
-            case 'menu':
+            case 'menu': case 'course':
                 // If it's a sub-menu
                 children = contentObjectModel.get('_children').models;
                 children.forEach(function(contentObject) {
                     var completionObject = calculateCompletion(contentObject);
-                    completion.subProgressCompleted += contentObjectModel.subProgressCompleted || 0;
-                    completion.subProgressTotal += contentObjectModel.subProgressTotal || 0;
+                    completion.subProgressCompleted += completionObject.subProgressCompleted || 0;
+                    completion.subProgressTotal += completionObject.subProgressTotal || 0;
                     completion.nonAssessmentTotal += completionObject.nonAssessmentTotal;
                     completion.nonAssessmentCompleted += completionObject.nonAssessmentCompleted;
                     completion.assessmentTotal += completionObject.assessmentTotal;
