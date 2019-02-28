@@ -28,6 +28,7 @@ define([
     setUpEventListeners: function() {
       var headerIndicatorTypes = [
         'menu',
+        'menuItem',
         'page',
         'article',
         'block',
@@ -40,7 +41,7 @@ define([
       this.listenTo(Adapt, headerIndicatorEventNames, this.renderHeaderIndicatorView);
 
       this.listenTo(Adapt, {
-        'menuView:postRender': this.renderMenuItemIndicatorView,
+        'menuItemView:postRender': this.renderMenuItemIndicatorView,
         'router:page': this.renderNavigationView
       });
 
