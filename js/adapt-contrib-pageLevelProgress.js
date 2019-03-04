@@ -9,7 +9,7 @@ define([
     var PageLevelProgress = Backbone.Controller.extend({
 
         initialize: function() {
-            this.listenTo(Adapt, 'app:dataReady', this.onDataReady);
+            this.listenToOnce(Adapt, 'app:dataReady', this.onDataReady);
         },
 
         getCourseConfig: function() {
