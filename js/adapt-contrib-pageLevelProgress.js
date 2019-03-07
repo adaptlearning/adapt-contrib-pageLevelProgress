@@ -12,6 +12,7 @@ define([
             Adapt.on({
                 'app:dataReady': this.onDataReady.bind(this),
                 'app:languageChanged': function() {
+                    // Remove events created by setUpEventListeners
                     this.stopListening();
                 }.bind(this)
             });
