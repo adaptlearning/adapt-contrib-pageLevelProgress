@@ -12,7 +12,8 @@ define([
             Adapt.on({
                 'app:dataReady': this.onDataReady.bind(this),
                 'app:languageChanged': function() {
-                    // Remove events created by setUpEventListeners
+                    // Removes only those event handlers created by setUpEventListeners
+                    // see https://github.com/adaptlearning/adapt_framework/issues/2368
                     this.stopListening();
                 }.bind(this)
             });
