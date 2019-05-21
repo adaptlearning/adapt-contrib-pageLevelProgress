@@ -59,7 +59,7 @@ define([
         },
 
         refreshProgressBar: function() {
-            this.collection.repopulate(enabledProgressItems);
+            this.collection.repopulate();
             this.updateProgressBar();
         },
 
