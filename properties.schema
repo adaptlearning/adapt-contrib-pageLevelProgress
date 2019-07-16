@@ -125,7 +125,7 @@
                   "title": "Show page completion",
                   "inputType": "Checkbox",
                   "validators": [],
-                  "help": "Controls whether the progress calculations for this page are based on all components - or only those that are set to be displayed in Page Level Progress."
+                  "help": "Controls whether the progress calculations for this page are based on all components and the overall page - or only the components that are set to be displayed in Page Level Progress."
                 },
                 "_isCompletionIndicatorEnabled": {
                   "type": "boolean",
