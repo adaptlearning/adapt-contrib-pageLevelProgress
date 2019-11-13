@@ -1,17 +1,17 @@
 {
-    "name": "adapt-contrib-pageLevelProgress",
-    "version": "4.1.3",
-    "framework": ">=4.1",
-    "homepage": "https://github.com/adaptlearning/adapt-contrib-pageLevelProgress",
-    "issues": "https://github.com/adaptlearning/adapt_framework/issues/new",
-    "displayName": "Page Level Progress",
-    "extension": "pageLevelProgress",
-    "description": "An extension to show a learner's progress through a page via a progress bar displayed in the top navigation area.",
-    "main": "/js/adapt-contrib-pageLevelProgress.js",
-    "keywords": [
-        "adapt-plugin",
-        "adapt-extension"
-    ],
-    "license": "GPLv3",
-    "targetAttribute": "_pageLevelProgress"
+  "name": "adapt-contrib-pageLevelProgress",
+  "version": "5.0.0",
+  "framework": ">=5",
+  "homepage": "https://github.com/adaptlearning/adapt-contrib-pageLevelProgress",
+  "issues": "https://github.com/adaptlearning/adapt_framework/issues/new",
+  "extension": "pageLevelProgress",
+  "displayName": "Page Level Progress",
+  "description": "An extension to show a learner's progress through a page via a progress bar displayed in the top navigation area.",
+  "main": "/js/adapt-contrib-pageLevelProgress.js",
+  "keywords": [
+    "adapt-plugin",
+    "adapt-extension"
+  ],
+  "license": "GPL-3.0",
+  "targetAttribute": "_pageLevelProgress"
 }

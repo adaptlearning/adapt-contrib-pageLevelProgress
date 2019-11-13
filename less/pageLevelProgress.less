@@ -1,59 +1,38 @@
-.drawer {
-
-    .pagelevelprogress-item-title {
-        background-color: @drawer-item-color;
-        color: @drawer-item-text-color;
-        text-decoration: none;
-        padding: @item-padding;
-        display: block;
-        width: 80%;
-
-        &.drawer-item-open.disabled {
-            box-sizing: border-box;
-            background-color: @item-color-disabled;
-            color: @item-text-color-disabled;
-            .no-touch &:hover {
-                background-color: @item-color-disabled;
-                color: @item-text-color-disabled;
-            }
-        }
-
-        .drawer-item-open {
-            padding: @drawer-item-padding;
-            display: block;
-        }
-
-        .no-touch &:hover {
-            background-color: @drawer-item-hover-color;
-            color: @drawer-item-text-hover-color;
-        }
-
-    }
-
+// --------------------------------------------------
+// PLP nav bar button
+// --------------------------------------------------
+.nav {
+  &__pagelevelprogress-btn {
+    .u-float-right();
+    padding: @icon-size (@icon-size / 2);
+  }
 }
+// --------------------------------------------------
 
-.pagelevelprogress-item-title-inner {
-    float: left;
-    .dir-rtl & {
-        float: right;
-    }
-    width: 80%;
+// --------------------------------------------------
+// PLP drawer
+// --------------------------------------------------
+.drawer .pagelevelprogress {
+  &__item-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  &__item-title {
+    width: 75%;
+  }
+
+  &__indicator {
+    margin: 0 calc(~'12.5% - 1rem');
+  }
+
+  &__item-optional {
+    width: 5rem;
+  }
+
+  &__item-optional-inner {
+    font-size: 0.75rem;
+  }
 }
-
-.pagelevelprogress-item-optional-text {
-    line-height: 1em;
-    text-align: right;
-}
-
-.pagelevelprogress-navigation {
-    display: inline-block;
-    padding: (@navigation-padding+6px);
-    @media all and (max-width:(@device-width-medium - 1px)) {
-        padding: (@navigation-padding-mobile+6px);
-    }
-    float: right;
-
-    .dir-rtl & {
-        float: left;
-    }
-}
+// --------------------------------------------------
