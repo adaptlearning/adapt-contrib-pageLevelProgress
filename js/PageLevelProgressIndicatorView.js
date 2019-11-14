@@ -11,6 +11,7 @@ define([
       this.type = options.type || this.model.get('_type');
       this.addClasses();
       this.setUpEventListeners();
+      this.setPercentageComplete();
       this.render();
       this.refresh();
     },
@@ -21,16 +22,13 @@ define([
         'is-' + this.type
       ].join(' '));
     },
-
+    
     checkAria: function() {
       if (!this.ariaLabel) {
         this.$el.attr('aria-hidden', true);
         return;
       }
-      var data = this.model.toJSON();
-      data.ariaLabel = this.ariaLabel;
-      data.type = this.type;
-      this.model.set('percentageComplete', percentage);
+      var data = this.getRenderData();
       this.$('.js-indicator-aria-label').html(Handlebars.compile(this.ariaLabel)(data));
     },
 
@@ -39,6 +37,29 @@ define([
       this.listenTo(this.model, 'change:_isComplete', this.refresh);
       if (!this.collection) return;
       this.listenTo(this.collection, 'change:_isComplete', this.refresh);
+    },
+    
+    setPercentageComplete: function() {
+      var percentage =  this.calculatePercentage();
+      this.model.set('percentageComplete', percentage);
+      return percentage;
+    },
+
+    calculatePercentage: function() {
+      return this.model.get('_isComplete') ? 100 : 0;
+    },
+
+    render: function() {
+      var data = this.getRenderData();
+      var template = Handlebars.templates[this.constructor.template];
+      this.$el.html(template(data));
+    },
+    
+    getRenderData: function() {
+      var data = this.model.toJSON();
+      data.ariaLabel = this.ariaLabel;
+      data.type = this.type;
+      return data;
     },
 
     refresh: function() {
@@ -50,23 +71,10 @@ define([
     },
 
     checkCompletion: function() {
-      var percentage = this.calculatePercentage();
-      this.model.set('percentageComplete', percentage);
+      var percentage = this.setPercentageComplete();
       this.$el
           .toggleClass('is-complete', percentage === 100)
           .toggleClass('is-incomplete', percentage !== 100);
-    },
-
-    calculatePercentage: function() {
-      return this.model.get('_isComplete') ? 100 : 0;
-    },
-
-    render: function() {
-      var data = this.model.toJSON();
-      data.ariaLabel = this.ariaLabel;
-      data.type = this.type;
-      var template = Handlebars.templates[this.constructor.template];
-      this.$el.html(template(data));
     }
 
   }, {
