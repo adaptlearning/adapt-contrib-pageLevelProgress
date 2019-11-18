@@ -3,10 +3,10 @@
 
 <div class="pagelevelprogress__indicator-inner">
 
-  <div class="pagelevelprogress__indicator-bar" style="width: {{percentageComplete}}%;"></div>
+  <div class="pagelevelprogress__indicator-bar js-indicator-bar" style="width: {{percentageComplete}}%;"></div>
 
   {{#if ariaLabel}}
-  <span class="aria-label">
+  <span class="aria-label js-indicator-aria-label">
     {{compile ariaLabel}}
   </span>
   {{/if}}

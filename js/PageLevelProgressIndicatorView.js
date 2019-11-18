@@ -10,8 +10,8 @@ define([
       this.ariaLabel = options.ariaLabel || '';
       this.type = options.type || this.model.get('_type');
       this.addClasses();
-      this.checkAria();
       this.setUpEventListeners();
+      this.setPercentageComplete();
       this.render();
       this.refresh();
     },
@@ -22,10 +22,14 @@ define([
         'is-' + this.type
       ].join(' '));
     },
-
+    
     checkAria: function() {
-      if (this.ariaLabel) return;
-      this.$el.attr('aria-hidden', true);
+      if (!this.ariaLabel) {
+        this.$el.attr('aria-hidden', true);
+        return;
+      }
+      var data = this.getRenderData();
+      this.$('.js-indicator-aria-label').html(Handlebars.compile(this.ariaLabel)(data));
     },
 
     setUpEventListeners: function() {
@@ -34,18 +38,11 @@ define([
       if (!this.collection) return;
       this.listenTo(this.collection, 'change:_isComplete', this.refresh);
     },
-
-    refresh: function() {
-      this.checkCompletion();
-      this.render();
-    },
-
-    checkCompletion: function() {
-      var percentage = this.calculatePercentage();
+    
+    setPercentageComplete: function() {
+      var percentage =  this.calculatePercentage();
       this.model.set('percentageComplete', percentage);
-      this.$el
-          .toggleClass('is-complete', percentage === 100)
-          .toggleClass('is-incomplete', percentage !== 100);
+      return percentage;
     },
 
     calculatePercentage: function() {
@@ -53,11 +50,31 @@ define([
     },
 
     render: function() {
+      var data = this.getRenderData();
+      var template = Handlebars.templates[this.constructor.template];
+      this.$el.html(template(data));
+    },
+    
+    getRenderData: function() {
       var data = this.model.toJSON();
       data.ariaLabel = this.ariaLabel;
       data.type = this.type;
-      var template = Handlebars.templates[this.constructor.template];
-      this.$el.html(template(data));
+      return data;
+    },
+
+    refresh: function() {
+      this.checkCompletion();
+      this.checkAria();
+      this.$('.js-indicator-bar').css({
+        width: this.calculatePercentage() + '%'
+      });
+    },
+
+    checkCompletion: function() {
+      var percentage = this.setPercentageComplete();
+      this.$el
+          .toggleClass('is-complete', percentage === 100)
+          .toggleClass('is-incomplete', percentage !== 100);
     }
 
   }, {
