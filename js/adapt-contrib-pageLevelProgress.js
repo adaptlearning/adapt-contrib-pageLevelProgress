@@ -48,7 +48,7 @@ define([
 
       this.listenTo(Adapt, {
         'menuItemView:postRender': this.renderMenuItemIndicatorView,
-        'router:page': this.renderNavigationView
+        'router:page router:menu': this.renderNavigationView
       });
 
       this.listenTo(Adapt.course, 'bubble:change:_isComplete', this.onCompletionChange);
@@ -132,6 +132,10 @@ define([
         return;
       }
 
+      var subjectModel = coursePLPConfig._showAllContent ?
+        Adapt.course :
+        pageModel;
+
       // Do not proceed if pageLevelProgress is not enabled for the content object
       var pagePLPConfig = pageModel.get('_pageLevelProgress');
       if (!pagePLPConfig || !pagePLPConfig._isEnabled) {
@@ -139,7 +143,7 @@ define([
       }
 
       var collection = new PageLevelProgressCollection(null, {
-        pageModel: pageModel
+        pageModel:subjectModel
       });
 
       if (collection.length === 0) {
@@ -147,7 +151,7 @@ define([
       }
 
       $('.nav__drawer-btn').after(new PageLevelProgressNavigationView({
-        model: pageModel,
+        model: subjectModel,
         collection: collection
       }).$el);
     }

@@ -96,6 +96,15 @@
                   "inputType": "Checkbox",
                   "validators": [],
                   "help": "Controls whether the completion indicator shows in the navigation bar"
+                },
+                "_showAllContent": {
+                  "type": "boolean",
+                  "required": true,
+                  "default": true,
+                  "title": "Show all content in drawer",
+                  "inputType": "Checkbox",
+                  "validators": [],
+                  "help": "Controls whether the drawer will display all content which is Page Level Progress enabled always"
                 }
               }
             }

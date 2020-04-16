@@ -56,6 +56,8 @@ Visit the [**Page Level Progress** wiki](https://github.com/adaptlearning/adapt-
 
 >**\_showPageCompletion** (boolean): Set to `false` to have the overall progress calculated only from components that have been set to display in **Page Level Progress** (ignoring the completion of those that haven't). This property should be applied only to *course.json* and *contentObjects.json*; adding it to *components.json* will have no effect.
 
+>**\_showAllContent** (boolean): Set to `true` to have all content display in **Page Level Progress** This property should be applied only to *course.json*; adding it to *components.json* will have no effect.
+
 ### Accessibility
 Several elements of **Page Level Progress** have been assigned a label using the [aria-label](https://github.com/adaptlearning/adapt_framework/wiki/Aria-Labels) attribute: **pageLevelProgress**, **pageLevelProgressIndicatorBar**, and **pageLevelProgressEnd**. These labels are not visible elements. They are utilized by assistive technology such as screen readers. Should the label texts need to be customised, they can be found within the **globals** object in [*properties.schema*](https://github.com/adaptlearning/adapt-contrib-pageLevelProgress/blob/master/properties.schema).
 <div float align=right><a href="#top">Back to Top</a></div>

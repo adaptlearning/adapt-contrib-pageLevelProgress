@@ -3,7 +3,8 @@
         "_isEnabled": true,
         "_showPageCompletion": true,
         "_isCompletionIndicatorEnabled": true,
-        "_isShownInNavigationBar": true
+        "_isShownInNavigationBar": true,
+        "_showAllContent": true
     }
 
     // To go on a contentObject
