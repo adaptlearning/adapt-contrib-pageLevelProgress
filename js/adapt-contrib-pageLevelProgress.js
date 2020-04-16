@@ -143,7 +143,7 @@ define([
       }
 
       var collection = new PageLevelProgressCollection(null, {
-        pageModel:subjectModel
+        pageModel: subjectModel
       });
 
       if (collection.length === 0) {
