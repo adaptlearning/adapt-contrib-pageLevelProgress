@@ -48,7 +48,7 @@ define([
 
       this.listenTo(Adapt, {
         'menuItemView:postRender': this.renderMenuItemIndicatorView,
-        'router:page router:menu': this.renderNavigationView
+        'router:page': this.renderNavigationView
       });
 
       this.listenTo(Adapt.course, 'bubble:change:_isComplete', this.onCompletionChange);
