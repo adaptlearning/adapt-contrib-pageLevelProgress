@@ -1,10 +1,12 @@
 define([
+  'core/js/adapt',
   './completionCalculations'
-], function(completionCalculations) {
+], function(Adapt, completionCalculations) {
 
   var PageLevelProgressCollection = Backbone.Collection.extend({
 
     initialize: function(models, options) {
+      this.listenTo(Adapt, 'remove', this.reset);
       if (!options || !options.pageModel) return;
       this._pageModel = options.pageModel;
       this.repopulate();
