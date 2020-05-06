@@ -25,11 +25,8 @@ define([
     switch (viewType) {
       case 'page':
         // If it's a page
-        children = contentObjectModel.findDescendantModels('components', {
-          where: {
-            _isAvailable: true,
-            _isOptional: false
-          }
+        children = contentObjectModel.getAllDescendantModels().filter(function(model) {
+          return model.get('_isAvailable') && !model.get('_isOptional');
         });
 
         var availableChildren = filterAvailableChildren(children);
