@@ -6,6 +6,7 @@ define([
 
     initialize: function(options) {
       options = options || {};
+      this.parent = options.parent;
       this.calculatePercentage = options.calculatePercentage || this.calculatePercentage;
       this.ariaLabel = options.ariaLabel || '';
       this.type = options.type || this.model.get('_type');
@@ -33,7 +34,11 @@ define([
     },
 
     setUpEventListeners: function() {
-      this.listenTo(Adapt, 'remove', this.remove);
+      if (this.parent) {
+        this.listenToOnce(this.parent, 'postRemove', this.remove);
+      } else {
+        this.listenTo(Adapt, 'remove', this.remove);
+      }
       this.listenTo(this.model, 'change:_isComplete', this.refresh);
       if (!this.collection) return;
       this.listenTo(this.collection, 'change:_isComplete', this.refresh);
