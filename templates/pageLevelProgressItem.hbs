@@ -1,7 +1,7 @@
 <button
-  class="pagelevelprogress__item-btn drawer__item-btn{{#unless _isVisible}} is-disabled{{/unless}} js-indicator js-pagelevelprogress-item-click"
+  class="pagelevelprogress__item-btn drawer__item-btn{{#any _isLocked (none _isVisible)}} is-disabled{{/any}} js-indicator js-pagelevelprogress-item-click"
   data-pagelevelprogress-id="{{_id}}"
-  aria-label="{{#unless _isVisible}}{{_globals._accessibility._ariaLabels.locked}}.{{/unless}}{{#if _isOptional}} {{_globals._extensions._pageLevelProgress.optionalContent}}.{{else}}{{#if _isComplete}} {{_globals._accessibility._ariaLabels.complete}}.{{else}} {{_globals._accessibility._ariaLabels.incomplete}}.{{/if}}{{/if}} {{compile title}}">
+  aria-label="{{#any _isLocked (none _isVisible)}}{{_globals._accessibility._ariaLabels.locked}}.{{/any}}{{#if _isOptional}} {{_globals._extensions._pageLevelProgress.optionalContent}}.{{else}}{{#if _isComplete}} {{_globals._accessibility._ariaLabels.complete}}.{{else}} {{_globals._accessibility._ariaLabels.incomplete}}.{{/if}}{{/if}} {{compile title}}">
 
   <div class="pagelevelprogress__item-title drawer__item-title">
     <div class="pagelevelprogress__item-title-inner drawer__item-title-inner">
