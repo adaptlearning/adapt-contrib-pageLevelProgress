@@ -87,6 +87,7 @@ define([
       $headings.each(function(index, el) {
         var $el = $(el);
         var indicatorView = new PageLevelProgressIndicatorView({
+          parent: view,
           model: model
         });
         indicatorView.$el.insertAfter($el);
@@ -113,6 +114,7 @@ define([
       }
 
       view.$el.find('.js-menu-item-progress').append(new PageLevelProgressIndicatorView({
+        parent: view,
         model: view.model,
         type: 'menu-item',
         calculatePercentage: this._getMenuItemCompletionPercentage.bind(view),
