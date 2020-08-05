@@ -163,6 +163,10 @@ define([
       }).$el);
 
       Adapt.navigation.add(navigationItem);
+      Adapt.once('remove', () => {
+        Adapt.navigation.remove(navigationItem);
+      });
+
     }
 
   });
