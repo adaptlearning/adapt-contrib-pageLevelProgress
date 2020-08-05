@@ -1,10 +1,12 @@
 define([
   'core/js/adapt',
+  'core/js/models/navigationItemModel',
+  'core/js/views/navigationItemView',
   './completionCalculations',
   './PageLevelProgressNavigationView',
   './PageLevelProgressIndicatorView',
   './PageLevelProgressCollection'
-], function(Adapt, completionCalculations, PageLevelProgressNavigationView, PageLevelProgressIndicatorView, PageLevelProgressCollection) {
+], function(Adapt, NavigationItemModel, NavigationItemView, completionCalculations, PageLevelProgressNavigationView, PageLevelProgressIndicatorView, PageLevelProgressCollection) {
 
   var PageLevelProgress = Backbone.Controller.extend({
 
@@ -148,10 +150,19 @@ define([
         return;
       }
 
-      $('.nav__drawer-btn').after(new PageLevelProgressNavigationView({
+      const navigationItem = new NavigationItemView({
+        model: new NavigationItemModel({
+          _name: 'pageLevelProcess',
+          _order: 500,
+          _layout: 'right'
+        }),
+      });
+      navigationItem.$el.append(new PageLevelProgressNavigationView({
         model: pageModel,
         collection: collection
       }).$el);
+
+      Adapt.navigation.add(navigationItem);
     }
 
   });
