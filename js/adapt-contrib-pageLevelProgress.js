@@ -152,7 +152,7 @@ define([
 
       const navigationItem = new NavigationItemView({
         model: new NavigationItemModel({
-          _name: 'pageLevelProcess',
+          _name: 'pageLevelProgress',
           _order: 500,
           _layout: 'right'
         }),
