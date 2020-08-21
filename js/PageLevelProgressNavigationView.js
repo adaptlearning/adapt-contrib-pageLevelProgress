@@ -27,7 +27,7 @@ define([
       this.listenTo(Adapt, {
         'remove': this.remove,
         'router:location': this.updateProgressBar,
-        'pageLevelProgress:update': this.refreshProgressBar
+        'view:childAdded pageLevelProgress:update': this.refreshProgressBar
       });
     },
 
