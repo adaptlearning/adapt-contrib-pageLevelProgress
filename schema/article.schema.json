@@ -1,0 +1,33 @@
+{
+  "$anchor": "pageLevelProgress-article",
+  "$schema": "http://json-schema.org/draft/2019-09/schema#",
+  "type": "object",
+  "$merge": {
+    "source": {
+      "$ref": "article"
+    },
+    "with": {
+      "properties": {
+        "_pageLevelProgress": {
+          "type": "object",
+          "title": "Page Level Progress",
+          "default": {},
+          "properties": {
+            "_isEnabled": {
+              "type": "boolean",
+              "title": "Is enabled",
+              "description": "Controls whether the Page Level Progress extension is used on this article.",
+              "default": false
+            },
+            "_isCompletionIndicatorEnabled": {
+              "type": "boolean",
+              "title": "Show article completion indicator",
+              "description": "Controls whether the completion indicator shows next to the article title.",
+              "default": false
+            }
+          }
+        }
+      }
+    }
+  }
+}

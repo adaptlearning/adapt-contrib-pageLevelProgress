@@ -1,0 +1,33 @@
+{
+  "$anchor": "pageLevelProgress-component",
+  "$schema": "http://json-schema.org/draft/2019-09/schema#",
+  "type": "object",
+  "$merge": {
+    "source": {
+      "$ref": "component"
+    },
+    "with": {
+      "properties": {
+        "_pageLevelProgress": {
+          "type": "object",
+          "title": "Page Level Progress",
+          "default": {},
+          "properties": {
+            "_isEnabled": {
+              "type": "boolean",
+              "title": "Is enabled",
+              "description": "Controls whether this component should be displayed in the Page Level Progress extension or not.",
+              "default": true
+            },
+            "_isCompletionIndicatorEnabled": {
+              "type": "boolean",
+              "title": "Show component completion indicator",
+              "description": "Controls whether the completion indicator shows next to the component title.",
+              "default": false
+            }
+          }
+        }
+      }
+    }
+  }
+}
