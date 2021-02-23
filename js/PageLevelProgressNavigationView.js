@@ -6,6 +6,9 @@ define([
 ], function(Adapt, completionCalculations, PageLevelProgressView, PageLevelProgressIndicatorView) {
 
   var PageLevelProgressNavigationView = Backbone.View.extend({
+    attributes: {
+      'role': 'button'
+    },
 
     tagName: 'button',
 
