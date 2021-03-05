@@ -15,14 +15,12 @@
           "properties": {
             "_isEnabled": {
               "type": "boolean",
-              "title": "Is enabled",
-              "description": "Controls whether the Page Level Progress extension is used on this block.",
+              "title": "Enable Page Level Progress",
               "default": false
             },
             "_isCompletionIndicatorEnabled": {
               "type": "boolean",
-              "title": "Show block completion indicator",
-              "description": "Controls whether the completion indicator shows next to the block title.",
+              "title": "Show inline completion indicator",
               "default": false
             }
           }

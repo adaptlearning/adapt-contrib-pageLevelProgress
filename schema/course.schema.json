@@ -67,26 +67,23 @@
           "properties": {
             "_isEnabled": {
               "type": "boolean",
-              "title": "Is enabled",
-              "description": "Controls whether the Page Level Progress extension is enabled or disabled.",
+              "title": "Enable Page Level Progress",
               "default": true
             },
             "_showPageCompletion": {
               "type": "boolean",
-              "title": "Show page completion",
-              "description": "Controls whether the progress calculations are based on all components - or only those that are set to be displayed in Page Level Progress.",
+              "title": "Include overall page completion",
+              "description": "Controls whether the progress calculations are based on all components - or only those that are set to be displayed in Page Level Progress",
               "default": true
             },
             "_isCompletionIndicatorEnabled": {
               "type": "boolean",
-              "title": "Show course completion indicator",
-              "description": "Controls whether the completion indicator shows next to the course title.",
+              "title": "Show inline completion indicator",
               "default": false
             },
             "_isShownInNavigationBar": {
               "type": "boolean",
               "title": "Show progress in the navigation bar",
-              "description": "Controls whether the completion indicator shows in the navigation bar",
               "default": true
             }
           }

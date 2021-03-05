@@ -15,14 +15,12 @@
           "properties": {
             "_isEnabled": {
               "type": "boolean",
-              "title": "Is enabled",
-              "description": "Controls whether this component should be displayed in the Page Level Progress extension or not.",
+              "title": "Enable Page Level Progress",
               "default": true
             },
             "_isCompletionIndicatorEnabled": {
               "type": "boolean",
-              "title": "Show component completion indicator",
-              "description": "Controls whether the completion indicator shows next to the component title.",
+              "title": "Show inline completion indicator",
               "default": false
             }
           }

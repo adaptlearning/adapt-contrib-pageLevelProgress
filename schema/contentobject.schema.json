@@ -15,26 +15,24 @@
           "properties": {
             "_isEnabled": {
               "type": "boolean",
-              "title": "Is enabled",
-              "description": "Controls whether the Page Level Progress extension is enabled or disabled for this page.",
+              "title": "Enable Page Level Progress",
               "default": true
             },
             "_showPageCompletion": {
               "type": "boolean",
-              "title": "Show page completion",
-              "description": "Controls whether the progress calculations for this page are based on all components and the overall page - or only the components that are set to be displayed in Page Level Progress.",
+              "title": "Include overall page completion",
+              "description": "Controls whether the progress calculations for this page are based on all components and the overall page - or only the components that are set to be displayed in Page Level Progress",
               "default": true
             },
             "_isCompletionIndicatorEnabled": {
               "type": "boolean",
-              "title": "Show page completion indicator",
-              "description": "Controls whether the completion indicator shows next to the page title.",
+              "title": "Show inline completion indicator",
               "default": false
             },
             "_excludeAssessments": {
               "type": "boolean",
-              "title": "Exclude assessments.",
-              "description": "Controls whether the progress calculations will include assessments.",
+              "title": "Exclude assessment completion",
+              "description": "Controls whether the progress calculations will include assessments",
               "default": false
             }
           }
