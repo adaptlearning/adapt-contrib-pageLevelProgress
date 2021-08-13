@@ -1,0 +1,31 @@
+{
+  "$anchor": "pageLevelProgress-block",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "$patch": {
+    "source": {
+      "$ref": "block"
+    },
+    "with": {
+      "properties": {
+        "_pageLevelProgress": {
+          "type": "object",
+          "title": "Page Level Progress",
+          "default": {},
+          "properties": {
+            "_isEnabled": {
+              "type": "boolean",
+              "title": "Enable Page Level Progress",
+              "default": false
+            },
+            "_isCompletionIndicatorEnabled": {
+              "type": "boolean",
+              "title": "Show inline completion indicator",
+              "default": false
+            }
+          }
+        }
+      }
+    }
+  }
+}
