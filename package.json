@@ -1,10 +1,9 @@
-  
 {
   "name": "adapt-contrib-pageLevelProgress",
-  "version": "5.1.0",
+  "version": "5.2.0",
   "framework": ">=5.7",
   "homepage": "https://github.com/adaptlearning/adapt-contrib-pageLevelProgress",
-  "issues": "https://github.com/adaptlearning/adapt_framework/issues/new",
+  "bugs": "https://github.com/adaptlearning/adapt-contrib-pageLevelProgress/issues",
   "extension": "pageLevelProgress",
   "displayName": "Page Level Progress",
   "description": "An extension to show a learner's progress through a page via a progress bar displayed in the top navigation area.",
