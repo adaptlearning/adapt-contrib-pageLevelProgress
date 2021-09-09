@@ -6,33 +6,28 @@ define([
   './PageLevelProgressCollection'
 ], function(Adapt, completionCalculations, PageLevelProgressNavigationView, PageLevelProgressIndicatorView, PageLevelProgressCollection) {
 
-  var PageLevelProgress = Backbone.Controller.extend({
+  class PageLevelProgress extends Backbone.Controller {
 
-    initialize: function() {
-      Adapt.on({
-        'app:dataReady': this.onDataReady.bind(this),
-        'app:languageChanged': function() {
-          // Remove events created by setUpEventListeners
-          this.stopListening();
-        }.bind(this)
+    initialize() {
+      this.listenTo(Adapt, {
+        'app:dataReady': this.onDataReady,
+        'app:languageChanged': this.stopListening() // Remove events created by setUpEventListeners
       });
-    },
+    }
 
-    getCourseConfig: function() {
+    getCourseConfig() {
       return Adapt.course.get('_pageLevelProgress');
-    },
+    }
 
-    onDataReady: function() {
+    onDataReady() {
       // Do not proceed if pageLevelProgress is not enabled in course.json
-      var coursePLPConfig = this.getCourseConfig();
-      if (!coursePLPConfig || !coursePLPConfig._isEnabled) {
-        return;
-      }
+      const coursePLPConfig = this.getCourseConfig();
+      if (!coursePLPConfig?._isEnabled) return;
       this.setUpEventListeners();
-    },
+    }
 
-    setUpEventListeners: function() {
-      var headerIndicatorTypes = [
+    setUpEventListeners() {
+      const headerIndicatorTypes = [
         'menu',
         'menuItem',
         'page',
@@ -41,8 +36,9 @@ define([
         'component'
       ];
 
-      var headerIndicatorEventNames = headerIndicatorTypes
-        .concat(['']).join('View:render ');
+      const headerIndicatorEventNames = headerIndicatorTypes
+        .concat([''])
+        .join('View:render ');
 
       this.listenTo(Adapt, headerIndicatorEventNames, this.renderHeaderIndicatorView);
 
@@ -52,64 +48,64 @@ define([
       });
 
       this.listenTo(Adapt.course, 'bubble:change:_isComplete', this.onCompletionChange);
-    },
+    }
 
-    onCompletionChange: function(event) {
+    onCompletionChange(event) {
       if (!Adapt.location._currentId) return;
 
-      var currentModel = Adapt.findById(Adapt.location._currentId);
-      var completionState = {
+      const currentModel = Adapt.findById(Adapt.location._currentId);
+      const completionState = {
         currentLocation: completionCalculations.calculatePercentageComplete(currentModel),
         course: completionCalculations.calculatePercentageComplete(Adapt.course)
       };
-      var hasChanged = !_.isMatch(this._previousCompletionState, completionState);
+      const hasChanged = !_.isMatch(this._previousCompletionState, completionState);
       if (!hasChanged) return;
 
       this._previousCompletionState = completionState;
       Adapt.trigger('pageLevelProgress:percentageCompleteChange', completionState);
-    },
+    }
 
-    renderHeaderIndicatorView: function(view) {
-      var model = view.model;
+    renderHeaderIndicatorView(view) {
+      const model = view.model;
 
-      var config = model.get('_pageLevelProgress');
+      const config = model.get('_pageLevelProgress');
       if (!config || !config._isEnabled || !config._isCompletionIndicatorEnabled) {
         return;
       }
 
-      var pageModel = model.findAncestor('contentObjects');
-      var pageConfig = pageModel && pageModel.get('_pageLevelProgress');
-      if (pageConfig && !pageConfig._isEnabled) {
+      const pageModel = model.findAncestor('contentObjects');
+      const pageConfig = pageModel && pageModel.get('_pageLevelProgress');
+      if (!pageConfig?._isEnabled) {
         return;
       }
 
-      var $headings = view.$('.js-heading');
-      $headings.each(function(index, el) {
-        var $el = $(el);
-        var indicatorView = new PageLevelProgressIndicatorView({
+      const $headings = view.$('.js-heading');
+      $headings.each((index, el) => {
+        const $el = $(el);
+        const indicatorView = new PageLevelProgressIndicatorView({
           parent: view,
           model: model
         });
         indicatorView.$el.insertAfter($el);
       });
-    },
+    }
 
     // This should add/update progress on menuView
-    renderMenuItemIndicatorView: function(view) {
+    renderMenuItemIndicatorView(view) {
       // Do not render on menu, only render on menu items
       if (view.model.get('_id') === Adapt.location._currentId) {
         return;
       }
 
       // Progress bar should not render for course viewType
-      var viewType = view.model.get('_type');
+      const viewType = view.model.get('_type');
       if (viewType === 'course') {
         return;
       }
 
       // Do not proceed if pageLevelProgress is not enabled for the content object
-      var pageLevelProgress = view.model.get('_pageLevelProgress');
-      if (!pageLevelProgress || !pageLevelProgress._isEnabled) {
+      const pageLevelProgress = view.model.get('_pageLevelProgress');
+      if (!pageLevelProgress?._isEnabled) {
         return;
       }
 
@@ -120,41 +116,37 @@ define([
         calculatePercentage: this._getMenuItemCompletionPercentage.bind(view),
         ariaLabel: Adapt.course.get('_globals')._extensions._pageLevelProgress.pageLevelProgressMenuBar
       }).$el);
-    },
+    }
 
-    _getMenuItemCompletionPercentage: function() {
+    _getMenuItemCompletionPercentage() {
       return completionCalculations.calculatePercentageComplete(this.model);
-    },
+    }
 
     // This should add/update progress on page navigation bar
-    renderNavigationView: function(pageModel) {
+    renderNavigationView(pageModel) {
       // Do not render if turned off at course level
-      var coursePLPConfig = this.getCourseConfig();
-      if (coursePLPConfig && coursePLPConfig._isShownInNavigationBar === false) {
+      const coursePLPConfig = this.getCourseConfig();
+      if (coursePLPConfig?._isShownInNavigationBar === false) {
         return;
       }
 
       // Do not proceed if pageLevelProgress is not enabled for the content object
-      var pagePLPConfig = pageModel.get('_pageLevelProgress');
-      if (!pagePLPConfig || !pagePLPConfig._isEnabled) {
-        return;
-      }
+      const pagePLPConfig = pageModel.get('_pageLevelProgress');
+      if (!pagePLPConfig?._isEnabled) return;
 
-      var collection = new PageLevelProgressCollection(null, {
-        pageModel: pageModel
+      const collection = new PageLevelProgressCollection(null, {
+        pageModel
       });
 
-      if (collection.length === 0) {
-        return;
-      }
+      if (collection.length === 0) return;
 
       $('.nav__drawer-btn').after(new PageLevelProgressNavigationView({
         model: pageModel,
-        collection: collection
+        collection
       }).$el);
     }
 
-  });
+  }
 
   Adapt.pageLevelProgress = new PageLevelProgress();
 
