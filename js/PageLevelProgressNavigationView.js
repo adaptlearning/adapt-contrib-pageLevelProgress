@@ -1,82 +1,82 @@
-define([
-  'core/js/adapt',
-  './completionCalculations',
-  './PageLevelProgressView',
-  './PageLevelProgressIndicatorView'
-], function(Adapt, completionCalculations, PageLevelProgressView, PageLevelProgressIndicatorView) {
+import Adapt from 'core/js/adapt';
+import completionCalculations from './completionCalculations';
+import PageLevelProgressView from './PageLevelProgressView';
+import PageLevelProgressIndicatorView from './PageLevelProgressIndicatorView';
 
-  var PageLevelProgressNavigationView = Backbone.View.extend({
+export default class PageLevelProgressNavigationView extends Backbone.View {
 
-    tagName: 'button',
+  tagName() {
+    return 'button';
+  }
 
-    className: 'btn-icon nav__btn nav__pagelevelprogress-btn pagelevelprogress__nav-btn',
+  className() {
+    return 'btn-icon nav__btn nav__pagelevelprogress-btn pagelevelprogress__nav-btn';
+  }
 
-    events: {
-      'click': 'onProgressClicked'
-    },
+  events() {
+    return {
+      click: 'onProgressClicked'
+    };
+  }
 
-    initialize: function() {
-      _.bindAll(this, 'updateProgressBar');
-      this.setUpEventListeners();
-      this.render();
-      this.addIndicator();
-      this.deferredUpdate();
-    },
+  initialize() {
+    _.bindAll(this, 'updateProgressBar');
+    this.setUpEventListeners();
+    this.render();
+    this.addIndicator();
+    this.deferredUpdate();
+  }
 
-    setUpEventListeners: function() {
-      this.listenTo(Adapt, {
-        'remove': this.remove,
-        'router:location': this.updateProgressBar,
-        'view:childAdded pageLevelProgress:update': this.refreshProgressBar
-      });
-    },
+  setUpEventListeners() {
+    this.listenTo(Adapt, {
+      remove: this.remove,
+      'router:location': this.updateProgressBar,
+      'view:childAdded pageLevelProgress:update': this.refreshProgressBar
+    });
+  }
 
-    render: function() {
-      var template = Handlebars.templates['pageLevelProgressNavigation'];
-      this.$el.html(template({}));
-    },
+  render() {
+    const template = Handlebars.templates.pageLevelProgressNavigation;
+    this.$el.html(template({}));
+  }
 
-    addIndicator: function() {
-      this.indicatorView = new PageLevelProgressIndicatorView({
-        model: this.model,
-        collection: this.collection,
-        calculatePercentage: this._getPageCompletionPercentage,
-        ariaLabel: Adapt.course.get('_globals')._extensions._pageLevelProgress.pageLevelProgressIndicatorBar
-      });
-      this.$el.prepend(this.indicatorView.$el);
-    },
+  addIndicator() {
+    this.indicatorView = new PageLevelProgressIndicatorView({
+      model: this.model,
+      collection: this.collection,
+      calculatePercentage: this._getPageCompletionPercentage,
+      ariaLabel: Adapt.course.get('_globals')._extensions._pageLevelProgress.pageLevelProgressIndicatorBar
+    });
+    this.$el.prepend(this.indicatorView.$el);
+  }
 
-    _getPageCompletionPercentage: function() {
-      return completionCalculations.calculatePercentageComplete(this.model);
-    },
+  _getPageCompletionPercentage() {
+    return completionCalculations.calculatePercentageComplete(this.model);
+  }
 
-    deferredUpdate: function() {
-      _.defer(this.updateProgressBar);
-    },
+  deferredUpdate() {
+    _.defer(this.updateProgressBar);
+  }
 
-    updateProgressBar: function() {
-      this.indicatorView.refresh();
-    },
+  updateProgressBar() {
+    this.indicatorView.refresh();
+  }
 
-    refreshProgressBar: function() {
-      this.collection.repopulate();
-      this.updateProgressBar();
-    },
+  refreshProgressBar() {
+    this.collection.repopulate();
+    this.updateProgressBar();
+  }
 
-    onProgressClicked: function(event) {
-      if (event && event.preventDefault) event.preventDefault();
-      Adapt.drawer.triggerCustomView(new PageLevelProgressView({
-        collection: this.collection
-      }).$el, false);
-    },
+  onProgressClicked(event) {
+    if (event && event.preventDefault) event.preventDefault();
+    Adapt.drawer.triggerCustomView(new PageLevelProgressView({
+      collection: this.collection
+    }).$el, false);
+  }
 
-    remove: function() {
-      Backbone.View.prototype.remove.call(this);
-      this.collection.reset();
-    }
+  remove() {
+    super.remove();
+    this.collection.reset();
+  }
 
-  });
-
-  return PageLevelProgressNavigationView;
-
-});
+}
