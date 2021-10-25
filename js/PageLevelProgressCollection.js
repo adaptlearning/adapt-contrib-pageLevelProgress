@@ -1,33 +1,27 @@
-define([
-  'core/js/adapt',
-  './completionCalculations'
-], function(Adapt, completionCalculations) {
+import Adapt from 'core/js/adapt';
+import completionCalculations from './completionCalculations';
 
-  var PageLevelProgressCollection = Backbone.Collection.extend({
+export default class PageLevelProgressCollection extends Backbone.Collection {
 
-    initialize: function(models, options) {
-      this.listenTo(Adapt, 'remove', this.reset);
-      if (!options || !options.pageModel) return;
-      this._pageModel = options.pageModel;
-      this.repopulate();
-    },
+  initialize(models, options) {
+    this.listenTo(Adapt, 'remove', this.reset);
+    if (!options?.pageModel) return;
+    this._pageModel = options.pageModel;
+    this.repopulate();
+  }
 
-    repopulate: function() {
-      this.reset();
-      if (!this._pageModel) return;
+  repopulate() {
+    this.reset();
+    if (!this._pageModel) return;
 
-      var allDescendants = this._pageModel.getAllDescendantModels(true);
-      var currentPageItems = allDescendants.filter(function(item) {
-        return item.get('_isAvailable') === true;
-      });
-      var availableItems = completionCalculations.filterAvailableChildren(currentPageItems);
-      var enabledProgressItems = completionCalculations.getPageLevelProgressEnabledModels(availableItems);
+    const allDescendants = this._pageModel.getAllDescendantModels(true);
+    const currentPageItems = allDescendants.filter(item => {
+      return item.get('_isAvailable') === true;
+    });
+    const availableItems = completionCalculations.filterAvailableChildren(currentPageItems);
+    const enabledProgressItems = completionCalculations.getPageLevelProgressEnabledModels(availableItems);
 
-      this.add(enabledProgressItems);
-    }
+    this.add(enabledProgressItems);
+  }
 
-  });
-
-  return PageLevelProgressCollection;
-
-});
+}
