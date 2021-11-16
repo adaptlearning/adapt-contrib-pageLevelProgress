@@ -9,7 +9,7 @@ class PageLevelProgress extends Backbone.Controller {
   initialize() {
     this.listenTo(Adapt, {
       'app:dataReady': this.onDataReady,
-      'app:languageChanged': this.stopListening
+      'app:languageChanged': this.onLanguageChange
     });
   }
 
@@ -22,6 +22,11 @@ class PageLevelProgress extends Backbone.Controller {
     const coursePLPConfig = this.getCourseConfig();
     if (!coursePLPConfig?._isEnabled) return;
     this.setUpEventListeners();
+  }
+
+  onLanguageChange() {
+    this.stopListening();
+    this.initialize();
   }
 
   setUpEventListeners() {
