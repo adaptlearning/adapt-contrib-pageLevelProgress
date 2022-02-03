@@ -15,7 +15,7 @@ export default class PageLevelProgressNavigationView extends Backbone.View {
 
   attributes() {
     return {
-      'data-order': (Adapt.course.get('_globals')?._extensions?._pageLevelProgress?._navOrder || 90)
+      'data-order': (Adapt.course.get('_globals')?._extensions?._pageLevelProgress?._navOrder || 0)
     }
   }
 
