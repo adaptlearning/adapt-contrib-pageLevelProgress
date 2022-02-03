@@ -60,7 +60,7 @@
                   "type": "number",
                   "title": "Navigation bar order",
                   "required": true,
-                  "default": 50,
+                  "default": 0,
                   "inputType": "Text",
                   "validators": []
                 }
