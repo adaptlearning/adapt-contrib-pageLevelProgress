@@ -43,6 +43,13 @@
       "inputType": "Text",
       "validators": [],
       "translatable": true
+    },
+    "_navOrder": {
+      "type": "number",
+      "required": true,
+      "default": 50,
+      "inputType": "Text",
+      "validators": []
     }
   },
   "properties": {

@@ -55,6 +55,14 @@
                   "_adapt": {
                     "translatable": true
                   }
+                },
+                "_navOrder": {
+                  "type": "number",
+                  "title": "Navigation bar order",
+                  "required": true,
+                  "default": 50,
+                  "inputType": "Text",
+                  "validators": []
                 }
               }
             }

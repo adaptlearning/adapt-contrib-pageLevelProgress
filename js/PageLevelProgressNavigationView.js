@@ -13,6 +13,12 @@ export default class PageLevelProgressNavigationView extends Backbone.View {
     return 'btn-icon nav__btn nav__pagelevelprogress-btn pagelevelprogress__nav-btn';
   }
 
+  attributes() {
+    return {
+      'data-order': (Adapt.course.get('_globals')?._extensions?._pageLevelProgress?._navOrder || 90)
+    }
+  }
+
   events() {
     return {
       click: 'onProgressClicked'
