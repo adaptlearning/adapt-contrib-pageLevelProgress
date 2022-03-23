@@ -73,7 +73,7 @@ class PageLevelProgress extends Backbone.Controller {
     const config = model.get('_pageLevelProgress');
     if (!config?._isEnabled || !config?._isCompletionIndicatorEnabled) return;
 
-    const pageModel = model.findAncestor('contentObjects');
+    const pageModel = model.findAncestor('contentobject');
     const pageConfig = pageModel && pageModel.get('_pageLevelProgress');
     if (!pageConfig?._isEnabled) return;
 
