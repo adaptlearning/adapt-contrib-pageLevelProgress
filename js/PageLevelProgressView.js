@@ -1,4 +1,6 @@
 import Adapt from 'core/js/adapt';
+import data from 'core/js/data';
+import router from 'core/js/router';
 import PageLevelProgressItemView from './PageLevelProgressItemView';
 
 export default class PageLevelProgressView extends Backbone.View {
@@ -26,7 +28,7 @@ export default class PageLevelProgressView extends Backbone.View {
     if ($target.is('.is-disabled')) return;
 
     const id = $target.attr('data-pagelevelprogress-id');
-    const model = Adapt.findById(id);
+    const model = data.findById(id);
 
     if (!model.get('_isRendered')) {
       try {
@@ -39,7 +41,7 @@ export default class PageLevelProgressView extends Backbone.View {
     const currentComponentSelector = `.${id}`;
 
     Adapt.once('drawer:closed', () => {
-      Adapt.scrollTo(currentComponentSelector, { duration: 400 });
+      router.navigateToElement(currentComponentSelector, { duration: 400 });
     }).trigger('drawer:closeDrawer', $(currentComponentSelector));
   }
 

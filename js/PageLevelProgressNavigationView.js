@@ -1,4 +1,5 @@
 import Adapt from 'core/js/adapt';
+import drawer from 'core/js/drawer';
 import completionCalculations from './completionCalculations';
 import PageLevelProgressView from './PageLevelProgressView';
 import PageLevelProgressIndicatorView from './PageLevelProgressIndicatorView';
@@ -75,7 +76,7 @@ export default class PageLevelProgressNavigationView extends Backbone.View {
 
   onProgressClicked(event) {
     if (event && event.preventDefault) event.preventDefault();
-    Adapt.drawer.triggerCustomView(new PageLevelProgressView({
+    drawer.triggerCustomView(new PageLevelProgressView({
       collection: this.collection
     }).$el, false);
   }
