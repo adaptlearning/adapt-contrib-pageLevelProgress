@@ -15,6 +15,7 @@
             "_pageLevelProgress": {
               "type": "object",
               "default": {},
+              "required": ["_navOrder"],
               "properties": {
                 "pageLevelProgress": {
                   "type": "string",
@@ -59,7 +60,6 @@
                 "_navOrder": {
                   "type": "number",
                   "title": "Navigation bar order",
-                  "required": true,
                   "default": 0,
                   "inputType": "Text",
                   "validators": []
