@@ -1,4 +1,6 @@
 import Adapt from 'core/js/adapt';
+import data from 'core/js/data';
+import location from 'core/js/location';
 import completionCalculations from './completionCalculations';
 import PageLevelProgressNavigationView from './PageLevelProgressNavigationView';
 import PageLevelProgressIndicatorView from './PageLevelProgressIndicatorView';
@@ -54,9 +56,9 @@ class PageLevelProgress extends Backbone.Controller {
   }
 
   onCompletionChange(event) {
-    if (!Adapt.location._currentId) return;
+    if (!location._currentId) return;
 
-    const currentModel = Adapt.findById(Adapt.location._currentId);
+    const currentModel = data.findById(location._currentId);
     const completionState = {
       currentLocation: completionCalculations.calculatePercentageComplete(currentModel),
       course: completionCalculations.calculatePercentageComplete(Adapt.course)
@@ -73,7 +75,7 @@ class PageLevelProgress extends Backbone.Controller {
     const config = model.get('_pageLevelProgress');
     if (!config?._isEnabled || !config?._isCompletionIndicatorEnabled) return;
 
-    const pageModel = model.findAncestor('contentObjects');
+    const pageModel = model.findAncestor('contentobject');
     const pageConfig = pageModel && pageModel.get('_pageLevelProgress');
     if (!pageConfig?._isEnabled) return;
 
@@ -91,7 +93,7 @@ class PageLevelProgress extends Backbone.Controller {
   // This should add/update progress on menuView
   renderMenuItemIndicatorView(view) {
     // Do not render on menu, only render on menu items
-    if (view.model.get('_id') === Adapt.location._currentId) return;
+    if (view.model.get('_id') === location._currentId) return;
 
     // Progress bar should not render for course viewType
     const viewType = view.model.get('_type');

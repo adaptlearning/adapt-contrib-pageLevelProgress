@@ -21,7 +21,7 @@ class Completion extends Backbone.Controller {
     let children;
 
     switch (viewType) {
-      case 'page':
+      case 'page': {
         // If it's a page
         children = contentObjectModel.getAllDescendantModels().filter(model => {
           return model.get('_isAvailable') && !model.get('_isOptional');
@@ -55,9 +55,10 @@ class Completion extends Backbone.Controller {
         }
 
         break;
-      case 'menu': case 'course':
+      }
+      case 'menu': case 'course': {
         // If it's a sub-menu
-        children = contentObjectModel.get('_children').models;
+        children = contentObjectModel.getChildren().models;
         children.forEach(contentObject => {
           const completionObject = Adapt.completion.calculateCompletion(contentObject);
           completion.subProgressCompleted += completionObject.subProgressCompleted || 0;
@@ -68,6 +69,7 @@ class Completion extends Backbone.Controller {
           completion.assessmentCompleted += completionObject.assessmentCompleted;
         });
         break;
+      }
 
     }
 

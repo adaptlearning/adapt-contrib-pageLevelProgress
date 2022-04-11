@@ -1,7 +1,7 @@
 {
   "name": "adapt-contrib-pageLevelProgress",
   "version": "5.4.1",
-  "framework": ">=5.18.6",
+  "framework": ">=5.19.1",
   "homepage": "https://github.com/adaptlearning/adapt-contrib-pageLevelProgress",
   "bugs": "https://github.com/adaptlearning/adapt-contrib-pageLevelProgress/issues",
   "extension": "pageLevelProgress",
