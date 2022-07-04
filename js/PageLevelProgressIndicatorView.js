@@ -2,6 +2,10 @@ import Adapt from 'core/js/adapt';
 
 class PageLevelProgressIndicatorView extends Backbone.View {
 
+  tagName() {
+    return 'span';
+  }
+
   initialize(options) {
     options = options || {};
     this.parent = options.parent;

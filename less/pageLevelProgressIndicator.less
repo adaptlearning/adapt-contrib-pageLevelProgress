@@ -2,6 +2,7 @@
 // --------------------------------------------------
 .pagelevelprogress {
   &__indicator {
+    display: block;
     width: 2rem;
     font-size: 1rem;
     border: 0.0625rem solid @black;
@@ -11,10 +12,12 @@
 
   &__indicator-inner {
     position: relative;
+    display: block;
     height: @icon-size / 4;
   }
 
   &__indicator-bar {
+    display: block;
     height: inherit;
     min-width: 10%;
     background-color: @black;
