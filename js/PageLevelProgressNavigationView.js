@@ -1,8 +1,10 @@
 import Adapt from 'core/js/adapt';
+import data from 'core/js/data';
 import drawer from 'core/js/drawer';
 import completionCalculations from './completionCalculations';
 import PageLevelProgressView from './PageLevelProgressView';
 import PageLevelProgressIndicatorView from './PageLevelProgressIndicatorView';
+import getPageLevelProgressItemsJSON from './getPageLevelProgressItems';
 
 export default class PageLevelProgressNavigationView extends Backbone.View {
 
@@ -40,6 +42,7 @@ export default class PageLevelProgressNavigationView extends Backbone.View {
       'router:location': this.updateProgressBar,
       'view:childAdded pageLevelProgress:update': this.refreshProgressBar
     });
+    this.listenTo(data, 'change:_isLocked change:_isComplete', this.refreshProgressBar);
   }
 
   render() {
@@ -50,7 +53,6 @@ export default class PageLevelProgressNavigationView extends Backbone.View {
   addIndicator() {
     this.indicatorView = new PageLevelProgressIndicatorView({
       model: this.model,
-      collection: this.collection,
       calculatePercentage: this._getPageCompletionPercentage,
       ariaLabel: Adapt.course.get('_globals')._extensions._pageLevelProgress.pageLevelProgressIndicatorBar
     });
@@ -58,7 +60,7 @@ export default class PageLevelProgressNavigationView extends Backbone.View {
   }
 
   _getPageCompletionPercentage() {
-    return completionCalculations.calculatePercentageComplete(this.model);
+    return completionCalculations.calculatePercentageComplete(this.model, true);
   }
 
   deferredUpdate() {
@@ -70,7 +72,7 @@ export default class PageLevelProgressNavigationView extends Backbone.View {
   }
 
   refreshProgressBar() {
-    this.collection.repopulate();
+    this.collection = getPageLevelProgressItemsJSON(this.model);
     this.updateProgressBar();
   }
 
@@ -83,7 +85,6 @@ export default class PageLevelProgressNavigationView extends Backbone.View {
 
   remove() {
     super.remove();
-    this.collection.reset();
   }
 
 }
