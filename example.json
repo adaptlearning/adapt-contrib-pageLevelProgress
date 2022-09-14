@@ -1,4 +1,12 @@
     // To go on a course
+    "_globals": {
+      "_extensions": {
+        "_pageLevelProgress": {
+          "_navOrder": 90
+        }
+      }
+    }
+
     "_pageLevelProgress": {
         "_isEnabled": true,
         "_showPageCompletion": true,
