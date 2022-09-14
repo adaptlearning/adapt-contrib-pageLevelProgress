@@ -47,7 +47,7 @@
     "_navOrder": {
       "type": "number",
       "required": true,
-      "default": 0,
+      "default": 90,
       "inputType": "Text",
       "validators": []
     }
