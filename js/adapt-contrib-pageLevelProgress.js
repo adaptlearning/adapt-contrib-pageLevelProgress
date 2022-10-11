@@ -86,7 +86,12 @@ class PageLevelProgress extends Backbone.Controller {
         parent: view,
         model
       });
-      indicatorView.$el.insertAfter($el);
+      const isBackwardCompatible = [...$el[0].classList].every(name => !name.includes('-inner'));
+      if (isBackwardCompatible) {
+        indicatorView.$el.insertAfter($el);
+        return;
+      }
+      indicatorView.$el.insertBefore($el);
     });
   }
 
