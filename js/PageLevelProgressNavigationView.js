@@ -30,6 +30,7 @@ export default class PageLevelProgressNavigationView extends Backbone.View {
 
   initialize() {
     _.bindAll(this, 'updateProgressBar');
+    this.refreshProgressBar = _.debounce(this.refreshProgressBar.bind(this), 16);
     this.setUpEventListeners();
     this.render();
     this.addIndicator();
