@@ -4,7 +4,7 @@ import location from 'core/js/location';
 import completionCalculations from './completionCalculations';
 import PageLevelProgressNavigationView from './PageLevelProgressNavigationView';
 import PageLevelProgressIndicatorView from './PageLevelProgressIndicatorView';
-import PageLevelProgressCollection from './PageLevelProgressCollection';
+import getPageLevelProgressItems from './getPageLevelProgressItems';
 
 class PageLevelProgress extends Backbone.Controller {
 
@@ -49,7 +49,7 @@ class PageLevelProgress extends Backbone.Controller {
 
     this.listenTo(Adapt, {
       'menuItemView:postRender': this.renderMenuItemIndicatorView,
-      'router:page': this.renderNavigationView
+      'router:contentObject': this.renderNavigationView
     });
 
     this.listenTo(Adapt.course, 'bubble:change:_isComplete', this.onCompletionChange);
@@ -131,10 +131,11 @@ class PageLevelProgress extends Backbone.Controller {
     const pagePLPConfig = pageModel.get('_pageLevelProgress');
     if (!pagePLPConfig?._isEnabled) return;
 
-    const collection = new PageLevelProgressCollection(null, {
-      pageModel
-    });
+    // Progress bar should not render for course viewType
+    const viewType = pageModel.get('_type');
+    if (viewType === 'course' && coursePLPConfig._showAtCourseLevel !== true) return;
 
+    const collection = getPageLevelProgressItems(pageModel);
     if (collection.length === 0) return;
 
     $('.nav__drawer-btn').after(new PageLevelProgressNavigationView({
