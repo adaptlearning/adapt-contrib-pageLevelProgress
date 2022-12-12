@@ -34,6 +34,7 @@ export default class PageLevelProgressView extends Backbone.View {
 
     if (isNavigateToContentObject) {
       router.navigateToElement(id, { duration: 400 });
+      Adapt.trigger('drawer:closeDrawer');
       return;
     }
 
