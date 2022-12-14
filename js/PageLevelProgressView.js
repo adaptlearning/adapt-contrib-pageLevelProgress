@@ -1,7 +1,9 @@
+import React from 'react';
+import ReactDOM from 'react-dom';
 import Adapt from 'core/js/adapt';
 import data from 'core/js/data';
 import router from 'core/js/router';
-import PageLevelProgressItemView from './PageLevelProgressItemView';
+import { templates } from 'core/js/reactHelpers';
 
 export default class PageLevelProgressView extends Backbone.View {
 
@@ -18,7 +20,6 @@ export default class PageLevelProgressView extends Backbone.View {
   initialize() {
     this.listenTo(Adapt, 'remove', this.remove);
     this.render();
-    this.addChildren();
   }
 
   async scrollToPageElement(event) {
@@ -29,6 +30,13 @@ export default class PageLevelProgressView extends Backbone.View {
 
     const id = $target.attr('data-pagelevelprogress-id');
     const model = data.findById(id);
+    const isNavigateToContentObject = model.isTypeGroup('contentobject');
+
+    if (isNavigateToContentObject) {
+      router.navigateToElement(id, { duration: 400 });
+      Adapt.trigger('drawer:closeDrawer');
+      return;
+    }
 
     if (!model.get('_isRendered')) {
       try {
@@ -37,26 +45,19 @@ export default class PageLevelProgressView extends Backbone.View {
         return;
       }
     }
-
     const currentComponentSelector = `.${id}`;
-
     Adapt.once('drawer:closed', () => {
       router.navigateToElement(currentComponentSelector, { duration: 400 });
     }).trigger('drawer:closeDrawer', $(currentComponentSelector));
   }
 
   render() {
-    const template = Handlebars.templates.pageLevelProgress;
-    this.$el.html(template({}));
-  }
-
-  addChildren() {
-    const $children = this.$('.js-children');
-    this.collection.each(model => {
-      $children.append(new PageLevelProgressItemView({
-        model
-      }).$el);
-    });
+    const Component = templates.pageLevelProgress;
+    ReactDOM.render(<Component
+      _items={Array.isArray(this.collection) && this.collection}
+      _item={!Array.isArray(this.collection) && this.collection}
+      _globals={Adapt.course.get('_globals')}
+    />, this.el);
   }
 
 }
