@@ -63,9 +63,7 @@
                     "_navOrder": {
                       "type": "number",
                       "title": "Navigation bar order",
-                      "default": 90,
-                      "inputType": "Text",
-                      "validators": []
+                      "default": 90
                     }
                   }
                 }
