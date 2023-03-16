@@ -19,7 +19,6 @@
                 "_pageLevelProgress": {
                   "type": "object",
                   "default": {},
-                  "required": ["_navOrder"],
                   "properties": {
                     "pageLevelProgress": {
                       "type": "string",
