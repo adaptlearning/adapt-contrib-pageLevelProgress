@@ -18,6 +18,7 @@
               "properties": {
                 "_pageLevelProgress": {
                   "type": "object",
+                  "title": "Page Level Progress",
                   "default": {},
                   "properties": {
                     "pageLevelProgress": {
