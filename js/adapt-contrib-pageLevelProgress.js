@@ -77,7 +77,7 @@ class PageLevelProgress extends Backbone.Controller {
 
     const pageModel = model.findAncestor('contentobject');
     const pageConfig = pageModel && pageModel.get('_pageLevelProgress');
-    if (!pageConfig?._isEnabled) return;
+    if (pageModel && !pageConfig?._isEnabled) return;
 
     const $headings = view.$('.js-heading');
     $headings.each((index, el) => {
