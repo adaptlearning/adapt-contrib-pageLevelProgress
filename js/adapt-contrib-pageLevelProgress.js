@@ -136,7 +136,7 @@ class PageLevelProgress extends Backbone.Controller {
     if (viewType === 'course' && coursePLPConfig._showAtCourseLevel !== true) return;
 
     const collection = getPageLevelProgressItems(pageModel);
-    if (collection === null) return;
+    if (!collection) return;
 
     $('.nav__drawer-btn').after(new PageLevelProgressNavigationView({
       model: pageModel,
