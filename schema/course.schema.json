@@ -24,7 +24,7 @@
                     "pageLevelProgress": {
                       "type": "string",
                       "title": "Page Level Progress",
-                      "default": "Page sections",
+                      "default": "List of page sections and completion status. Select incomplete sections to jump directly to the content.",
                       "_adapt": {
                         "translatable": true
                       }
@@ -32,7 +32,7 @@
                     "pageLevelProgressIndicatorBar": {
                       "type": "string",
                       "title": "Page Level Progress indicator bar",
-                      "default": "Page progress. Use this to listen to the list of regions in this topic and whether they're completed. You can jump directly to any that are incomplete or which sound particularly interesting. {{percentageComplete}}%",
+                      "default": "Page progress. {{percentageComplete}}%. Open page sections.",
                       "_adapt": {
                         "translatable": true
                       }
@@ -41,14 +41,6 @@
                       "type": "string",
                       "title": "Page Level Progress menu bar",
                       "default": "Page completion {{percentageComplete}}%",
-                      "_adapt": {
-                        "translatable": true
-                      }
-                    },
-                    "pageLevelProgressEnd": {
-                      "type": "string",
-                      "title": "Page Level Progress end",
-                      "default": "You have reached the end of the list of page sections.",
                       "_adapt": {
                         "translatable": true
                       }

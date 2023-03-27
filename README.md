@@ -61,7 +61,7 @@ The same **\_pageLevelProgress** object may be added to the course (_course.json
 
 ### Accessibility
 
-Several elements of **Page Level Progress** have been assigned a label using the [aria-label](https://github.com/adaptlearning/adapt_framework/wiki/Aria-Labels) attribute: **pageLevelProgress**, **pageLevelProgressIndicatorBar**, and **pageLevelProgressEnd**. These labels are not visible elements. They are utilized by assistive technology such as screen readers. Should the label texts need to be customised, they can be found within the **globals** object in [_properties.schema_](https://github.com/adaptlearning/adapt-contrib-pageLevelProgress/blob/master/properties.schema).
+Several elements of **Page Level Progress** have been assigned a label using the [aria-label](https://github.com/adaptlearning/adapt_framework/wiki/Aria-Labels) attribute: **pageLevelProgress**, **pageLevelProgressIndicatorBar** and **pageLevelProgressMenuBar**. These labels are not visible elements. They are utilized by assistive technology such as screen readers. Should the label texts need to be customised, they can be found within the **globals** object in [_properties.schema_](https://github.com/adaptlearning/adapt-contrib-pageLevelProgress/blob/master/properties.schema).
 
 <div float align=right><a href="#top">Back to Top</a></div>
 
