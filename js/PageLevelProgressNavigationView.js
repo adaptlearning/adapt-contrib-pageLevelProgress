@@ -57,7 +57,8 @@ export default class PageLevelProgressNavigationView extends Backbone.View {
       calculatePercentage: this._getPageCompletionPercentage,
       ariaLabel: Adapt.course.get('_globals')._extensions._pageLevelProgress.pageLevelProgressIndicatorBar
     });
-    this.$el.prepend(this.indicatorView.$el);
+    const $wrapper = this.$el.find('.pagelevelprogress__indicator-wrapper');
+    $wrapper.prepend(this.indicatorView.$el);
   }
 
   _getPageCompletionPercentage() {
