@@ -2,7 +2,8 @@
     "_globals": {
       "_extensions": {
         "_pageLevelProgress": {
-          "_navOrder": 90
+          "_navOrder": 90,
+          "_drawerPosition": "auto"
         }
       }
     }
