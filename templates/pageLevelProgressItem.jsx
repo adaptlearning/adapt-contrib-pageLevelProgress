@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { compile, classes } from 'core/js/reactHelpers';
 import a11y from 'core/js/a11y';
 import data from 'core/js/data';
+import location from 'core/js/location';
 import completionCalculations from '../js/completionCalculations';
 import PageLevelProgressIndicatorView from '../js/PageLevelProgressIndicatorView';
 
@@ -29,11 +30,18 @@ export default function PageLevelProgressItem(props) {
     $(indicatorSeat.current).append(item.$el);
   });
 
+  const isCurrentPage = (id, type) => {
+    if ((type !== 'page') || location._currentModel.get('_id') !== id) { return false; }
+
+    return true;
+  };
+
   return (
     <div
       className={classes([
         'pagelevelprogress__item drawer__item',
-        `${_type}__indicator`
+        `${_type}__indicator`,
+        isCurrentPage(_id, _type) && 'is-current-page'
       ])}
       role='listitem'
     >
