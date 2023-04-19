@@ -8,7 +8,11 @@ import { templates } from 'core/js/reactHelpers';
 export default class PageLevelProgressView extends Backbone.View {
 
   className() {
-    return 'pagelevelprogress';
+    const config = Adapt.course.get('_pageLevelProgress');
+    return [
+      'pagelevelprogress',
+      (config._showAtCourseLevel === true) && 'is-course-level'
+    ].filter(Boolean).join(' ');
   }
 
   events() {
