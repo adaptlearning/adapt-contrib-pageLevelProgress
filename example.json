@@ -3,6 +3,7 @@
       "_extensions": {
         "_pageLevelProgress": {
           "_navOrder": 90,
+          "_comment": "Position options include 'auto', 'left', and 'right'"
           "_drawerPosition": "auto"
         }
       }
