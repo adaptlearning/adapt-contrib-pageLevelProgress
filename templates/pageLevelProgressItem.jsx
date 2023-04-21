@@ -31,9 +31,7 @@ export default function PageLevelProgressItem(props) {
   });
 
   const isCurrentPage = (id, type) => {
-    if ((type !== 'page') || location._currentModel.get('_id') !== id) { return false; }
-
-    return true;
+    return (type === 'page' && location._currentModel.get('_id') === id);
   };
 
   return (
