@@ -30,16 +30,12 @@ export default function PageLevelProgressItem(props) {
     $(indicatorSeat.current).append(item.$el);
   });
 
-  const isCurrentPage = (id, type) => {
-    return (type === 'page' && location._currentModel.get('_id') === id);
-  };
-
   return (
     <div
       className={classes([
         'pagelevelprogress__item drawer__item',
         `${_type}__indicator`,
-        isCurrentPage(_id, _type) && 'is-current-page'
+        (location._currentModel.get('_id') === _id) && 'is-current-location'
       ])}
       role='listitem'
     >
