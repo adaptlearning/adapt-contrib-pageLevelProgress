@@ -42,6 +42,22 @@
       "default": 90,
       "inputType": "Text",
       "validators": []
+    },
+    "_drawerPosition": {
+      "type": "string",
+      "required": true,
+      "default": "auto",
+      "title":"Drawer position",
+      "inputType": {
+        "type": "Select",
+        "options": [
+          "auto",
+          "left",
+          "right"
+        ]
+      },
+      "validators": [],
+      "help": "Determines the starting position of the drawer to open."
     }
   },
   "properties": {

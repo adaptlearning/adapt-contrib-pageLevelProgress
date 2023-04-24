@@ -57,6 +57,17 @@
                       "type": "number",
                       "title": "Navigation bar order",
                       "default": 90
+                    },
+                    "_drawerPosition": {
+                      "type": "string",
+                      "default": "auto",
+                      "title":"Drawer position",
+                      "enum": [
+                        "auto",
+                        "left",
+                        "right"
+                      ],
+                      "help": "Determines the starting position of the drawer to open"
                     }
                   }
                 }
