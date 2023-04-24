@@ -78,7 +78,7 @@ export default class PageLevelProgressNavigationView extends Backbone.View {
   }
 
   get globalsConfig() {
-    return Adapt.course.get('_globals')._extensions._pageLevelProgress;
+    return Adapt.course.get('_globals')?._extensions?._pageLevelProgress;
   }
 
   onProgressClicked(event) {
