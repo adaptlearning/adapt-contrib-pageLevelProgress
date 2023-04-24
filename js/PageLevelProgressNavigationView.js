@@ -18,7 +18,7 @@ export default class PageLevelProgressNavigationView extends Backbone.View {
 
   attributes() {
     return {
-      'data-order': (Adapt.course.get('_globals')?._extensions?._pageLevelProgress?._navOrder || 0)
+      'data-order': this.globalsConfig?._navOrder ?? 0
     };
   }
 
@@ -55,7 +55,7 @@ export default class PageLevelProgressNavigationView extends Backbone.View {
     this.indicatorView = new PageLevelProgressIndicatorView({
       model: this.model,
       calculatePercentage: this._getPageCompletionPercentage,
-      ariaLabel: Adapt.course.get('_globals')._extensions._pageLevelProgress.pageLevelProgressIndicatorBar
+      ariaLabel: this.globalsConfig?.pageLevelProgressIndicatorBar
     });
     this.$el.prepend(this.indicatorView.$el);
   }
@@ -77,11 +77,15 @@ export default class PageLevelProgressNavigationView extends Backbone.View {
     this.updateProgressBar();
   }
 
+  get globalsConfig() {
+    return Adapt.course.get('_globals')?._extensions?._pageLevelProgress;
+  }
+
   onProgressClicked(event) {
     if (event && event.preventDefault) event.preventDefault();
     drawer.triggerCustomView(new PageLevelProgressView({
       collection: this.collection
-    }).$el, false);
+    }).$el, false, this.globalsConfig?._drawerPosition);
   }
 
   remove() {
