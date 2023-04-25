@@ -43,6 +43,15 @@
       "inputType": "Text",
       "validators": []
     },
+    "_showLabel": {
+      "type": "boolean",
+      "required": true,
+      "default": true,
+      "title": "Is label enabled",
+      "inputType": "Checkbox",
+      "validators": [],
+      "help": "Controls whether a label is shown on the navigation bar button."
+    },
     "navLabel": {
       "type": "string",
       "required": true,

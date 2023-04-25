@@ -58,6 +58,11 @@
                       "title": "Navigation bar order",
                       "default": 90
                     },
+                    "_showLabel": {
+                      "type": "boolean",
+                      "title": "Enable navigation bar label",
+                      "default": true
+                    },
                     "navLabel": {
                       "type": "string",
                       "title": "Navigation bar label",
