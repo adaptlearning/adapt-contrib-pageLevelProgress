@@ -15,7 +15,7 @@ export default function PageLevelProgressNavigationButton(props) {
         ])}
         aria-hidden="true"
       />
-      <div className="pagelevelprogress__indicator-wrapper"></div>
+      <div className="pagelevelprogress__indicator-wrapper" />
       <span className="nav__btn-label" aria-hidden="true">{compile(text, props)}</span>
     </React.Fragment>
   );
