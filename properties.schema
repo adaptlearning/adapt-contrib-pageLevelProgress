@@ -47,7 +47,7 @@
       "type": "boolean",
       "required": true,
       "default": true,
-      "title": "Is label enabled",
+      "title": "Enable navigation bar button label",
       "inputType": "Checkbox",
       "validators": [],
       "help": "Controls whether a label is shown on the navigation bar button."
@@ -56,6 +56,7 @@
       "type": "string",
       "required": true,
       "default": "Page progress",
+      "title": "Navigation bar button label",
       "inputType": "Text",
       "validators": [],
       "translatable": true
