@@ -58,6 +58,11 @@
                       "title": "Navigation bar order",
                       "default": 90
                     },
+                    "navLabel": {
+                      "type": "string",
+                      "title": "Navigation bar label",
+                      "default": "Page Progress"
+                    },
                     "_drawerPosition": {
                       "type": "string",
                       "default": "auto",

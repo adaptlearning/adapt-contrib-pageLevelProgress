@@ -43,6 +43,14 @@
       "inputType": "Text",
       "validators": []
     },
+    "navLabel": {
+      "type": "string",
+      "required": true,
+      "default": "Page progress",
+      "inputType": "Text",
+      "validators": [],
+      "translatable": true
+    },
     "_drawerPosition": {
       "type": "string",
       "required": true,
