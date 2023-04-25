@@ -161,8 +161,6 @@ class PageLevelProgress extends Backbone.Controller {
       pageModel,
       collection
     }));
-
-    // $('.nav__drawer-btn').after);
   }
 
 }
