@@ -58,6 +58,19 @@
                       "title": "Navigation bar order",
                       "default": 90
                     },
+                    "_showLabel": {
+                      "type": "boolean",
+                      "title": "Enable navigation bar button label",
+                      "default": true
+                    },
+                    "navLabel": {
+                      "type": "string",
+                      "title": "Navigation bar button label",
+                      "default": "Page Progress",
+                      "_adapt": {
+                        "translatable": true
+                      }
+                    },
                     "_drawerPosition": {
                       "type": "string",
                       "default": "auto",
