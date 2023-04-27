@@ -144,16 +144,23 @@ class PageLevelProgress extends Backbone.Controller {
     const collection = getPageLevelProgressItems(pageModel);
     if (!collection) return;
 
+    const {
+      _navOrder = 0,
+      _showLabel = true,
+      navLabel = '',
+      _drawerPosition = 'auto'
+    } = PageLevelProgress.globalsConfig ?? {};
+
     const model = new NavigationButtonModel({
       _id: 'pagelevelprogress',
-      _order: PageLevelProgress.globalsConfig?._navOrder ?? 0,
-      _showLabel: PageLevelProgress.globalsConfig?._showLabel ?? true,
+      _order: _navOrder,
+      _showLabel,
       _classes: 'nav__pagelevelprogress-btn pagelevelprogress__nav-btn',
       _iconClasses: '',
       _role: 'button',
-      ariaLabel: PageLevelProgress.globalsConfig?.pageLevelProgressIndicatorBar,
-      text: PageLevelProgress.globalsConfig?.navLabel ?? '',
-      _drawerPosition: PageLevelProgress.globalsConfig?._drawerPosition ?? 'auto'
+      ariaLabel: pageLevelProgressIndicatorBar,
+      text: navLabel,
+      _drawerPosition
     });
 
     navigation.addButton(new PageLevelProgressNavigationView({
