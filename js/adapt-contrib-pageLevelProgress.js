@@ -148,6 +148,7 @@ class PageLevelProgress extends Backbone.Controller {
       _navOrder = 0,
       _showLabel = true,
       navLabel = '',
+      pageLevelProgressIndicatorBar = '',
       _drawerPosition = 'auto'
     } = PageLevelProgress.globalsConfig ?? {};
 
