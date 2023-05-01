@@ -39,6 +39,8 @@
     "_navOrder": {
       "type": "number",
       "required": true,
+      "title": "Navigation bar order",
+      "help": "Determines the order in which the page level progress is displayed in the navigation bar. Negative numbers (e.g. -100) are left-aligned. Positive numbers (e.g. 100) are right-aligned.",
       "default": 90,
       "inputType": "Text",
       "validators": []
@@ -47,7 +49,8 @@
       "type": "string",
       "required": true,
       "default": "auto",
-      "title":"Drawer position",
+      "title": "Drawer position",
+      "help": "Determines the starting position of the drawer to open.",
       "inputType": {
         "type": "Select",
         "options": [
@@ -56,8 +59,7 @@
           "right"
         ]
       },
-      "validators": [],
-      "help": "Determines the starting position of the drawer to open."
+      "validators": []
     }
   },
   "properties": {
