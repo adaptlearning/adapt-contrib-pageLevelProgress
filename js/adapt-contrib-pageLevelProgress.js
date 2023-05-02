@@ -5,6 +5,8 @@ import completionCalculations from './completionCalculations';
 import PageLevelProgressNavigationView from './PageLevelProgressNavigationView';
 import PageLevelProgressIndicatorView from './PageLevelProgressIndicatorView';
 import getPageLevelProgressItems from './getPageLevelProgressItems';
+import navigation from 'core/js/navigation';
+import NavigationButtonModel from 'core/js/models/NavigationButtonModel';
 
 class PageLevelProgress extends Backbone.Controller {
 
@@ -15,13 +17,17 @@ class PageLevelProgress extends Backbone.Controller {
     });
   }
 
-  getCourseConfig() {
+  static get globalsConfig() {
+    return Adapt.course.get('_globals')?._extensions?._pageLevelProgress;
+  }
+
+  static get courseConfig() {
     return Adapt.course.get('_pageLevelProgress');
   }
 
   onDataReady() {
     // Do not proceed if pageLevelProgress is not enabled in course.json
-    const coursePLPConfig = this.getCourseConfig();
+    const coursePLPConfig = PageLevelProgress.courseConfig;
     if (!coursePLPConfig?._isEnabled) return;
     this.setUpEventListeners();
   }
@@ -113,7 +119,7 @@ class PageLevelProgress extends Backbone.Controller {
       model: view.model,
       type: 'menu-item',
       calculatePercentage: this._getMenuItemCompletionPercentage.bind(view),
-      ariaLabel: Adapt.course.get('_globals')._extensions._pageLevelProgress.pageLevelProgressMenuBar
+      ariaLabel: PageLevelProgress.globalsConfig?.pageLevelProgressMenuBar
     }).$el);
   }
 
@@ -124,7 +130,7 @@ class PageLevelProgress extends Backbone.Controller {
   // This should add/update progress on page navigation bar
   renderNavigationView(pageModel) {
     // Do not render if turned off at course level
-    const coursePLPConfig = this.getCourseConfig();
+    const coursePLPConfig = PageLevelProgress.courseConfig;
     if (coursePLPConfig?._isShownInNavigationBar === false) return;
 
     // Do not proceed if pageLevelProgress is not enabled for the content object
@@ -138,10 +144,31 @@ class PageLevelProgress extends Backbone.Controller {
     const collection = getPageLevelProgressItems(pageModel);
     if (!collection) return;
 
-    $('.nav__drawer-btn').after(new PageLevelProgressNavigationView({
-      model: pageModel,
+    const {
+      _navOrder = 0,
+      _showLabel = true,
+      navLabel = '',
+      pageLevelProgressIndicatorBar = '',
+      _drawerPosition = 'auto'
+    } = PageLevelProgress.globalsConfig ?? {};
+
+    const model = new NavigationButtonModel({
+      _id: 'pagelevelprogress',
+      _order: _navOrder,
+      _showLabel,
+      _classes: 'nav__pagelevelprogress-btn pagelevelprogress__nav-btn',
+      _iconClasses: '',
+      _role: 'button',
+      ariaLabel: pageLevelProgressIndicatorBar,
+      text: navLabel,
+      _drawerPosition
+    });
+
+    navigation.addButton(new PageLevelProgressNavigationView({
+      model,
+      pageModel,
       collection
-    }).$el);
+    }));
   }
 
 }
