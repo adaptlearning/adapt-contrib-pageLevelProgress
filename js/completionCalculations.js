@@ -39,7 +39,7 @@ class Completion extends Backbone.Controller {
           completion.assessmentTotal += assessmentComponents.length;
           completion.assessmentCompleted += this.getComponentsInteractionCompleted(assessmentComponents).length;
 
-          if (contentObjectModel.get('_pageLevelProgress')._excludeAssessments !== true) {
+          if (contentObjectModel.get('_pageLevelProgress')?._excludeAssessments !== true) {
             completion.subProgressCompleted += contentObjectModel.get('_subProgressComplete') || 0;
             completion.subProgressTotal += contentObjectModel.get('_subProgressTotal') || 0;
           }
