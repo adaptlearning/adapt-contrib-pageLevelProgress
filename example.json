@@ -5,7 +5,11 @@
           "_navOrder": 90,
           "navLabel": "Page progress",
           "_comment": "Position options include 'auto', 'left', and 'right'",
-          "_drawerPosition": "auto"
+          "_drawerPosition": "auto",
+          "_navTooltip": {
+            "_isEnabled": true,
+            "text": "Page progress"
+          }
         }
       }
     }
