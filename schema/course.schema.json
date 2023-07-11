@@ -59,6 +59,25 @@
                       "description": "Determines the order in which the page level progress is displayed in the navigation bar. Negative numbers (e.g. -100) are left-aligned. Positive numbers (e.g. 100) are right-aligned.",
                       "default": 90
                     },
+                    "_navTooltip": {
+                      "type": "object",
+                      "title": "Page Level Progress navigation tooltip",
+                      "properties": {
+                        "_isEnabled": {
+                          "type": "boolean",
+                          "title": "Enable tooltip for navigation button",
+                          "default": true
+                        },
+                        "text": {
+                          "type": "string",
+                          "title": "",
+                          "default": "Page progress",
+                          "_adapt": {
+                            "translatable": true
+                          }
+                        }
+                      }
+                    },
                     "_showLabel": {
                       "type": "boolean",
                       "title": "Enable navigation bar button label",
