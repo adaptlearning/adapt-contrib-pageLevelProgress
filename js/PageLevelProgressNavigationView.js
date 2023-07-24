@@ -6,6 +6,7 @@ import PageLevelProgressView from './PageLevelProgressView';
 import PageLevelProgressIndicatorView from './PageLevelProgressIndicatorView';
 import getPageLevelProgressItemsJSON from './getPageLevelProgressItems';
 import NavigationButtonView from 'core/js/views/NavigationButtonView';
+import tooltips from 'core/js/tooltips';
 
 export default class PageLevelProgressNavigationView extends NavigationButtonView {
 
@@ -20,7 +21,8 @@ export default class PageLevelProgressNavigationView extends NavigationButtonVie
     return {
       name: attributes._id,
       role: attributes._role === 'button' ? undefined : attributes._role,
-      'data-order': attributes._order
+      'data-order': attributes._order,
+      'data-tooltip-id': 'pagelevelprogress'
     };
   }
 
@@ -37,6 +39,11 @@ export default class PageLevelProgressNavigationView extends NavigationButtonVie
     this.render();
     this.addIndicator();
     this.deferredUpdate();
+
+    tooltips.register({
+      _id: 'pagelevelprogress',
+      ...Adapt.course.get('_globals')?._extensions?._pageLevelProgress?._navTooltip || {}
+    });
   }
 
   setUpEventListeners() {

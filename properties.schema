@@ -45,6 +45,28 @@
       "inputType": "Text",
       "validators": []
     },
+    "_navTooltip": {
+      "type": "object",
+      "title": "Page Level Progress navigation tooltip",
+      "properties": {
+        "_isEnabled": {
+          "type": "boolean",
+          "default": true,
+          "title": "Enable tooltip for navigation button",
+          "inputType": "Checkbox",
+          "validators": []
+        },
+        "text": {
+          "type": "string",
+          "title": "",
+          "default": "Page progress",
+          "help": "The tooltip text to display on hover over this item",
+          "inputType": "Text",
+          "validators": [],
+          "translatable": true
+        }
+      }
+    },
     "_showLabel": {
       "type": "boolean",
       "required": true,
