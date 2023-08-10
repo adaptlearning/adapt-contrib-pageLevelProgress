@@ -129,6 +129,10 @@ class PageLevelProgress extends Backbone.Controller {
 
   // This should add/update progress on page navigation bar
   renderNavigationView(pageModel) {
+    // Do not render if _isDefaultNavigationDisabled is set to true
+    const navigationConfig = Adapt.course.get('_navigation');
+    if (navigationConfig?._isDefaultNavigationDisabled) return;
+
     // Do not render if turned off at course level
     const coursePLPConfig = PageLevelProgress.courseConfig;
     if (coursePLPConfig?._isShownInNavigationBar === false) return;
