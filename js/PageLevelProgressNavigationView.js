@@ -22,7 +22,8 @@ export default class PageLevelProgressNavigationView extends NavigationButtonVie
       name: attributes._id,
       role: attributes._role === 'button' ? undefined : attributes._role,
       'data-order': attributes._order,
-      'data-tooltip-id': 'pagelevelprogress'
+      'data-tooltip-id': 'pagelevelprogress',
+      'aria-expanded': false
     };
   }
 
@@ -50,7 +51,8 @@ export default class PageLevelProgressNavigationView extends NavigationButtonVie
     this.listenTo(Adapt, {
       remove: this.remove,
       'router:location': this.updateProgressBar,
-      'view:childAdded pageLevelProgress:update': this.refreshProgressBar
+      'view:childAdded pageLevelProgress:update': this.refreshProgressBar,
+      'drawer:closed': this.drawerClosed
     });
     this.listenTo(data, 'change:_isLocked change:_isComplete', this.refreshProgressBar);
   }
@@ -82,8 +84,13 @@ export default class PageLevelProgressNavigationView extends NavigationButtonVie
     this.updateProgressBar();
   }
 
+  drawerClosed() {
+    this.$el.attr('aria-expanded', false);
+  }
+
   onProgressClicked(event) {
     if (event && event.preventDefault) event.preventDefault();
+    this.$el.attr('aria-expanded', true);
     drawer.triggerCustomView(new PageLevelProgressView({
       collection: this.collection
     }).$el, false, this.model.get('_drawerPosition'));
