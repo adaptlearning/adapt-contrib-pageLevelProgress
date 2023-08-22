@@ -47,6 +47,24 @@ The same **\_pageLevelProgress** object may be added to the course (_course.json
 
 ### Attributes
 
+Add to _course.json_ under _\_globals.\_extensions_.
+
+**\_pageLevelProgress** (object): The Page Level Progress object
+
+> **\_navOrder** (number): Determines the order in which the page level progress is displayed in the navigation bar. Negative numbers (e.g. -100) are left-aligned. Positive numbers (e.g. 100) are right-aligned.
+
+> **navLabel** (string): The text for the button label. Used when navigation labels are enabled globally
+
+> **\_drawerPosition** (string): The position that the button appears in the drawer. Position options include 'auto', 'left', and 'right'. Defaults to 'auto'
+
+> **\_navTooltip** (object): The tooltip object. Used when tooltips are enabled globally
+
+>> **\_isEnabled** (boolean): Enables tooltips on the button
+
+>> **text** (string): The text of the tooltip
+
+Add to _components.json_, _blocks.json_ or _articles.json_.
+
 **\_pageLevelProgress** (object): The Page Level Progress object that contains a value for **\_isEnabled**.
 
 > **\_isEnabled** (boolean): Turns **Page Level Progress** on and off. Acceptable values are `true` and `false`.
@@ -69,8 +87,10 @@ Several elements of **Page Level Progress** have been assigned a label using the
 
 No known limitations.
 
+----------------------------
+
 <a href="https://community.adaptlearning.org/" target="_blank"><img src="https://github.com/adaptlearning/documentation/blob/master/04_wiki_assets/plug-ins/images/adapt-logo-mrgn-lft.jpg" alt="adapt learning logo" align="right"></a>
-**Author / maintainer:** Adapt Core Team with [contributors](https://github.com/adaptlearning/adapt-contrib-pageLevelProgress/graphs/contributors)
-**Accessibility support:** WAI AA
-**RTL support:** Yes
-**Cross-platform coverage:** Chrome, Chrome for Android, Firefox (ESR + latest version), Edge, IE11, Safari 12+13 for macOS/iOS/iPadOS, Opera
+**Author / maintainer:** Adapt Core Team with [contributors](https://github.com/adaptlearning/adapt-contrib-pageLevelProgress/graphs/contributors)<br>
+**Accessibility support:** WAI AA<br>
+**RTL support:** Yes<br>
+**Cross-platform coverage:** Chrome, Chrome for Android, Firefox (ESR + latest version), Edge, IE11, Safari 12+13 for macOS/iOS/iPadOS, Opera<br>
