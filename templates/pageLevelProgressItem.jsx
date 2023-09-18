@@ -57,7 +57,7 @@ export default function PageLevelProgressItem(props) {
       >
 
         <span className="pagelevelprogress__item-title drawer__item-title">
-          <span className="pagelevelprogress__item-title-inner drawer__item-title-inner" dangerouslySetInnerHTML={{ __html: compile(title) }}>
+          <span className="pagelevelprogress__item-title-inner drawer__item-title-inner" dangerouslySetInnerHTML={{ __html: compile(title, props) }}>
           </span>
         </span>
 
