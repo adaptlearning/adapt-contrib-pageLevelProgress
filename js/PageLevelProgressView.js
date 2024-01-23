@@ -30,7 +30,7 @@ export default class PageLevelProgressView extends Backbone.View {
     if (event && event.preventDefault) event.preventDefault();
 
     const $target = $(event.currentTarget);
-    if ($target.is('.is-disabled')) return;
+    if ($target.is('.is-locked') || $target.is('.is-disabled')) return;
 
     const id = $target.attr('data-pagelevelprogress-id');
     const model = data.findById(id);
