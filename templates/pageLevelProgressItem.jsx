@@ -44,7 +44,7 @@ export default function PageLevelProgressItem(props) {
           'pagelevelprogress__item-btn drawer__item-btn',
           'js-indicator js-pagelevelprogress-item-click',
           (_isLocked) && 'is-locked',
-          (!_isVisible) && 'is-disabled'
+          (_isLocked || !_isVisible) && 'is-disabled'
         ])}
         ref={indicatorSeat}
         data-pagelevelprogress-id={_id}
