@@ -43,6 +43,8 @@ export default function PageLevelProgressItem(props) {
         className={classes([
           'pagelevelprogress__item-btn drawer__item-btn',
           'js-indicator js-pagelevelprogress-item-click',
+          (_isComplete) && 'is-complete',
+          (_isOptional) && 'is-optional',
           (_isLocked) && 'is-locked',
           (_isLocked || !_isVisible) && 'is-disabled'
         ])}
