@@ -1,4 +1,7 @@
 import Adapt from 'core/js/adapt';
+import drawer from 'core/js/drawer';
+import PageLevelProgressView from './PageLevelProgressView';
+import getPageLevelProgressItemsJSON from './getPageLevelProgressItems';
 
 class PageLevelProgressIndicatorView extends Backbone.View {
 
@@ -17,6 +20,23 @@ class PageLevelProgressIndicatorView extends Backbone.View {
     this.setPercentageComplete();
     this.render();
     this.refresh();
+  }
+
+  events() {
+    return {
+      'click *': this.onClick
+    };
+  }
+
+  onClick(event) {
+    if (event && event.preventDefault) event.preventDefault();
+    const parentModel = this.parent.model;
+    const model = !parentModel.isTypeGroup('contentobject')
+      ? parentModel.findAncestor('contentobject')
+      : parentModel;
+    drawer.triggerCustomView(new PageLevelProgressView({
+      collection: getPageLevelProgressItemsJSON(model)
+    }).$el, false);
   }
 
   addClasses() {
