@@ -14,6 +14,7 @@ export default function PageLevelProgressItem(props) {
     _isVisible,
     _isComplete,
     title,
+    altTitle,
     _id,
     _type,
     _children
@@ -55,12 +56,12 @@ export default function PageLevelProgressItem(props) {
           _isOptional && `${_globals._extensions._pageLevelProgress.optionalContent}.`,
           !_isOptional && _isComplete && `${_globals._accessibility._ariaLabels.complete}.`,
           !_isOptional && !_isComplete && `${_globals._accessibility._ariaLabels.incomplete}.`,
-          compile(a11y.normalize(title))
+          compile(a11y.normalize(altTitle || title))
         ])}
       >
 
         <span className="pagelevelprogress__item-title drawer__item-title">
-          <span className="pagelevelprogress__item-title-inner drawer__item-title-inner" dangerouslySetInnerHTML={{ __html: compile(title, props) }}>
+          <span className="pagelevelprogress__item-title-inner drawer__item-title-inner" dangerouslySetInnerHTML={{ __html: compile(altTitle || title, props) }}>
           </span>
         </span>
 

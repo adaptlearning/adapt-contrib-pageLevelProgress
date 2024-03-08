@@ -19,6 +19,10 @@ export default function getPageLevelProgressItemsJSON(parentModel) {
     });
     const availableItems = completionCalculations.filterAvailableChildren(currentPageItems);
     const enabledProgressItems = completionCalculations.getPageLevelProgressEnabledModels(availableItems);
+    const modelPLP = model.get('_pageLevelProgress');
+    if (modelPLP?.title) {
+      model.set('altTitle', modelPLP.title);
+    }
     if (!enabledProgressItems.length) {
       return {
         ...model.toJSON(),
