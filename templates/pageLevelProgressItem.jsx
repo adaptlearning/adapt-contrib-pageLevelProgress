@@ -64,6 +64,12 @@ export default function PageLevelProgressItem(props) {
           </span>
         </span>
 
+        {_isLocked &&
+        <span className='pagelevelprogress__item-icon'>
+          <span className='icon' aria-hidden="true"></span>
+        </span>
+        }
+        
         {_isOptional &&
         <span className="pagelevelprogress__item-optional">
           <span className="pagelevelprogress__item-optional-inner">
