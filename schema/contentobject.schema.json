@@ -21,7 +21,7 @@
             "title": {
               "type": "string",
               "title": "Alternate title to display for this page",
-              "default": "{{title}}",
+              "default": "",
               "_adapt": {
                 "translatable": true
               }

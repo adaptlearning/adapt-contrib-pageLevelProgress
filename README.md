@@ -69,7 +69,7 @@ Add to _course.json_.
 
 > **\_isEnabled** (boolean): Turns **Page Level Progress** on and off. Acceptable values are `true` and `false`.
 
-> **title** (string): Alternate course title to display when using `_showAtCourseLevel: true`. Defaults to `{{title}}`.
+> **title** (string): Alternate course title to display when using `_showAtCourseLevel: true`.
 
 > **\_isCompletionIndicatorEnabled** (boolean): Adds a completion indicator next to the title of a component, block, article, page or menu. Acceptable values are `true` and `false`.
 
@@ -85,7 +85,7 @@ Add to _contentObjects.json_.
 
 > **\_isEnabled** (boolean): Turns **Page Level Progress** on and off. Acceptable values are `true` and `false`.
 
-> **title** (string): Alternate contentObject title to display. Defaults to `{{title}}`.
+> **title** (string): Alternate contentObject title to display.
 
 > **\_isCompletionIndicatorEnabled** (boolean): Adds a completion indicator next to the title of a component, block, article, page or menu. Acceptable values are `true` and `false`.
 
@@ -99,7 +99,7 @@ Add to _components.json_, _blocks.json_ or _articles.json_.
 
 > **\_isEnabled** (boolean): Turns **Page Level Progress** on and off. Acceptable values are `true` and `false`.
 
-> **title** (string): Alternate title to display. Defaults to `{{title}}`.
+> **title** (string): Alternate title to display.
 
 > **\_isCompletionIndicatorEnabled** (boolean): Adds a completion indicator next to the title of a component, block, article, page or menu. Acceptable values are `true` and `false`.
 
