@@ -85,7 +85,7 @@ Add to _contentObjects.json_.
 
 > **\_isEnabled** (boolean): Turns **Page Level Progress** on and off. Acceptable values are `true` and `false`.
 
-> **title** (string): Alternate course title to display. Defaults to `{{title}}`.
+> **title** (string): Alternate page title to display. Defaults to `{{title}}`.
 
 > **\_isCompletionIndicatorEnabled** (boolean): Adds a completion indicator next to the title of a component, block, article, page or menu. Acceptable values are `true` and `false`.
 
