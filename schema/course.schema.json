@@ -120,7 +120,8 @@
             },
             "title": {
               "type": "string",
-              "title": "Alternate title to display for the course",
+              "title": "Alternate title",
+              "description": "Alternate title to display for the course",
               "default": "",
               "_adapt": {
                 "translatable": true
