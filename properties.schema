@@ -130,7 +130,7 @@
                 "title": {
                   "type": "string",
                   "required": true,
-                  "default": "{{title}}",
+                  "default": "",
                   "title": "Alternate title to display for the course",
                   "inputType": "Text",
                   "validators": [],
@@ -196,7 +196,7 @@
                 "title": {
                   "type": "string",
                   "required": true,
-                  "default": "{{title}}",
+                  "default": "",
                   "title": "Alternate title to display for this page",
                   "inputType": "Text",
                   "validators": [],
@@ -253,7 +253,7 @@
                 "title": {
                   "type": "string",
                   "required": true,
-                  "default": "{{title}}",
+                  "default": "",
                   "title": "Alternate title to display for this article",
                   "inputType": "Text",
                   "validators": [],
@@ -292,7 +292,7 @@
                 "title": {
                   "type": "string",
                   "required": true,
-                  "default": "{{title}}",
+                  "default": "",
                   "title": "Alternate title to display for this block",
                   "inputType": "Text",
                   "validators": [],
@@ -331,7 +331,7 @@
                 "title": {
                   "type": "string",
                   "required": true,
-                  "default": "{{title}}",
+                  "default": "",
                   "title": "Alternate title to display for this component",
                   "inputType": "Text",
                   "validators": [],
