@@ -127,6 +127,15 @@
                   "validators": [],
                   "help": "Controls whether the Page Level Progress extension is enabled or disabled."
                 },
+                "title": {
+                  "type": "string",
+                  "required": true,
+                  "default": "{{title}}",
+                  "title": "Alternate title to display for the course",
+                  "inputType": "Text",
+                  "validators": [],
+                  "translatable": true
+                },
                 "_showPageCompletion": {
                   "type": "boolean",
                   "required": true,
@@ -184,6 +193,15 @@
                   "validators": [],
                   "help": "Controls whether the Page Level Progress extension is enabled or disabled for this page."
                 },
+                "title": {
+                  "type": "string",
+                  "required": true,
+                  "default": "{{title}}",
+                  "title": "Alternate title to display for this page",
+                  "inputType": "Text",
+                  "validators": [],
+                  "translatable": true
+                },
                 "_showPageCompletion": {
                   "type": "boolean",
                   "required": true,
@@ -232,6 +250,15 @@
                   "validators": [],
                   "help": "Controls whether the Page Level Progress extension is used on this article."
                 },
+                "title": {
+                  "type": "string",
+                  "required": true,
+                  "default": "{{title}}",
+                  "title": "Alternate title to display for this article",
+                  "inputType": "Text",
+                  "validators": [],
+                  "translatable": true
+                },
                 "_isCompletionIndicatorEnabled": {
                   "type": "boolean",
                   "required": true,
@@ -262,6 +289,15 @@
                   "validators": [],
                   "help": "Controls whether the Page Level Progress extension is used on this block."
                 },
+                "title": {
+                  "type": "string",
+                  "required": true,
+                  "default": "{{title}}",
+                  "title": "Alternate title to display for this block",
+                  "inputType": "Text",
+                  "validators": [],
+                  "translatable": true
+                },
                 "_isCompletionIndicatorEnabled": {
                   "type": "boolean",
                   "required": true,
@@ -291,6 +327,15 @@
                   "inputType": "Checkbox",
                   "validators": [],
                   "help": "Controls whether this component should be displayed in the Page Level Progress extension or not."
+                },
+                "title": {
+                  "type": "string",
+                  "required": true,
+                  "default": "{{title}}",
+                  "title": "Alternate title to display for this component",
+                  "inputType": "Text",
+                  "validators": [],
+                  "translatable": true
                 },
                 "_isCompletionIndicatorEnabled": {
                   "type": "boolean",

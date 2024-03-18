@@ -63,19 +63,45 @@ Add to _course.json_ under _\_globals.\_extensions_.
 
 >> **text** (string): The text of the tooltip
 
+Add to _course.json_.
+
+**\_pageLevelProgress** (object): The Page Level Progress object that contains a value for **\_isEnabled**.
+
+> **\_isEnabled** (boolean): Turns **Page Level Progress** on and off. Acceptable values are `true` and `false`.
+
+> **title** (string): Alternate course title to display. Defaults to `{{title}}`.
+
+> **\_isCompletionIndicatorEnabled** (boolean): Adds a completion indicator next to the title of a component, block, article, page or menu. Acceptable values are `true` and `false`.
+
+> **\_isShownInNavigationBar** (boolean): Allows **Page Level Progress** to appear in the navigation bar. Acceptable values are `true` and `false`.
+
+> **\_showPageCompletion** (boolean): Set to `false` to have the overall progress calculated only from components that have been set to display in **Page Level Progress** (ignoring the completion of those that haven't).
+
+> **\_showAtCourseLevel** (boolean): Allows **Page Level Progress** to display all content objects and the current page components together, or just the current page components as before. Acceptable values are `true` and `false`.
+
+Add to _contentObjects.json_.
+
+**\_pageLevelProgress** (object): The Page Level Progress object that contains a value for **\_isEnabled**.
+
+> **\_isEnabled** (boolean): Turns **Page Level Progress** on and off. Acceptable values are `true` and `false`.
+
+> **title** (string): Alternate course title to display. Defaults to `{{title}}`.
+
+> **\_isCompletionIndicatorEnabled** (boolean): Adds a completion indicator next to the title of a component, block, article, page or menu. Acceptable values are `true` and `false`.
+
+> **\_showPageCompletion** (boolean): Set to `false` to have the overall progress calculated only from components that have been set to display in **Page Level Progress** (ignoring the completion of those that have not).
+
+> **\_excludeAssessments** (boolean): If true, prevents assessments from being included in calculations for page level progress.
+
 Add to _components.json_, _blocks.json_ or _articles.json_.
 
 **\_pageLevelProgress** (object): The Page Level Progress object that contains a value for **\_isEnabled**.
 
 > **\_isEnabled** (boolean): Turns **Page Level Progress** on and off. Acceptable values are `true` and `false`.
 
+> **title** (string): Alternate title to display. Defaults to `{{title}}`.
+
 > **\_isCompletionIndicatorEnabled** (boolean): Adds a completion indicator next to the title of a component, block, article, page or menu. Acceptable values are `true` and `false`.
-
-> **\_isShownInNavigationBar** (boolean): Allows **Page Level Progress** to appear in the navigation bar. Acceptable values are `true` and `false`.
-
-> **\_showPageCompletion** (boolean): Set to `false` to have the overall progress calculated only from components that have been set to display in **Page Level Progress** (ignoring the completion of those that haven't). This property should be applied only to _course.json_ and _contentObjects.json_; adding it to _components.json_ will have no effect.
-
-> **\_showAtCourseLevel** (boolean): Allows **Page Level Progress** to display all content objects and the current page components together, or just the current page components as before. Acceptable values are `true` and `false`.
 
 ### Accessibility
 

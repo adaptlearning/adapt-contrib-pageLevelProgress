@@ -18,6 +18,14 @@
               "title": "Enable Page Level Progress",
               "default": false
             },
+            "title": {
+              "type": "string",
+              "title": "Alternate title to display for this article",
+              "default": "{{title}}",
+              "_adapt": {
+                "translatable": true
+              }
+            },
             "_isCompletionIndicatorEnabled": {
               "type": "boolean",
               "title": "Show inline completion indicator",
