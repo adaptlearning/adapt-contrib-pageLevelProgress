@@ -14,7 +14,7 @@
   &__item-btn {
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: space-between;
   }
 
   &__item-title {
@@ -22,7 +22,7 @@
   }
 
   &__indicator {
-    margin: 0 calc(~'12.5% - 1rem');
+    margin-inline-start: calc(~'25% - 1rem');
   }
 
   &__item-btn:not(.is-locked) .pagelevelprogress__item-icon {
@@ -31,6 +31,10 @@
 
   &__item-btn.is-locked .pagelevelprogress__item-icon .icon {
     .icon-padlock-locked;
+  }
+
+  &__item-btn.is-locked .pagelevelprogress__indicator {
+    display: none;
   }
 
   &__item-optional {
