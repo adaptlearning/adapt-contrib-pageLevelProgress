@@ -85,8 +85,6 @@ Add to _contentObjects.json_.
 
 > **\_isEnabled** (boolean): Turns **Page Level Progress** on and off. Acceptable values are `true` and `false`.
 
-> **title** (string): Alternate contentObject title to display.
-
 > **\_isCompletionIndicatorEnabled** (boolean): Adds a completion indicator next to the title of a component, block, article, page or menu. Acceptable values are `true` and `false`.
 
 > **\_showPageCompletion** (boolean): Set to `false` to have the overall progress calculated only from components that have been set to display in **Page Level Progress** (ignoring the completion of those that have not).
@@ -98,8 +96,6 @@ Add to _components.json_, _blocks.json_ or _articles.json_.
 **\_pageLevelProgress** (object): The Page Level Progress object that contains a value for **\_isEnabled**.
 
 > **\_isEnabled** (boolean): Turns **Page Level Progress** on and off. Acceptable values are `true` and `false`.
-
-> **title** (string): Alternate title to display.
 
 > **\_isCompletionIndicatorEnabled** (boolean): Adds a completion indicator next to the title of a component, block, article, page or menu. Acceptable values are `true` and `false`.
 
