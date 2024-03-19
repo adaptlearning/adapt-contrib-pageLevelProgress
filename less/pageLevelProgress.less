@@ -25,7 +25,11 @@
     margin: 0 calc(~'12.5% - 1rem');
   }
 
-  &__item-icon .icon {
+  &__item-btn:not(.is-locked) .pagelevelprogress__item-icon {
+    display: none;
+  }
+
+  &__item-btn.is-locked .pagelevelprogress__item-icon .icon {
     .icon-padlock-locked;
   }
 
