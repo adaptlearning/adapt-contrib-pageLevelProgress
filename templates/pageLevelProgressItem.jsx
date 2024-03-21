@@ -72,6 +72,10 @@ export default function PageLevelProgressItem(props) {
         </span>
         }
 
+        <span className='pagelevelprogress__item-icon'>
+          <span className='icon' aria-hidden="true"></span>
+        </span>
+
       </button>
       <div className='pagelevelprogress__item-children'>
         <div role="list" className="js-children">
