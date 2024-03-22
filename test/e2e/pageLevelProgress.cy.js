@@ -6,12 +6,12 @@ describe('Page Level Progress', function () {
   
   it('should display the page level progress bars correctly on the menu items', function () {
     const isPageLevelProgressEnabled = this.data.course._pageLevelProgress._isEnabled
-    // Check if PLP is enabled. Check it's visible on menu tiles, check its visible on page view
+    // Check if PLP is enabled. Check it's visible on menu tiles
     if (isPageLevelProgressEnabled) {
       const pagesCount = this.data.contentObjects.filter((page) => page._pageLevelProgress._isEnabled === true).length
       cy.get('.pagelevelprogress__indicator').should('have.length', pagesCount)
     } else {
-      cy.get('.pagelevelprogress__indicator').should('have.length', 0)
+      cy.get('.pagelevelprogress__indicator').should('not.exist')
     }
   });
   
