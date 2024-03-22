@@ -26,7 +26,7 @@ describe('Page Level Progress', function () {
         const articlesOnPage = this.data.articles.filter((article) => article._parentId === page._id).map(article => article._id)
         const blocksOnPage = this.data.blocks.filter((block) => articlesOnPage.includes(block._parentId)).map(blocks => blocks._id)
         const componentsOnPage = this.data.components.filter((component) => blocksOnPage.includes(component._parentId))
-        const plpComponents = componentsOnPage.filter((component) => component._pageLevelProgress?._isEnabled === true)
+        const plpComponents = componentsOnPage.filter((component) => component._pageLevelProgress?._isEnabled)
         cy.get('.pagelevelprogress__indicator').should('exist')
         cy.get('button.nav__pagelevelprogress-btn').click()
         // TODO: If its a random assessment more checks are necessary
