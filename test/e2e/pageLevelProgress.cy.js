@@ -22,7 +22,7 @@ describe('Page Level Progress', function () {
     pages.forEach((page) => {
       cy.visit(`/#/${page._id}`);
       // Only check it appears correctly if it shows in the nav bar and its enabled on the page
-      if (page._pageLevelProgress._isEnabled === true && pageLevelProgress._isShownInNavigationBar) {
+      if (page._pageLevelProgress._isEnabled && pageLevelProgress._isShownInNavigationBar) {
         const articlesOnPage = this.data.articles.filter((article) => article._parentId === page._id).map(article => article._id)
         const blocksOnPage = this.data.blocks.filter((block) => articlesOnPage.includes(block._parentId)).map(blocks => blocks._id)
         const componentsOnPage = this.data.components.filter((component) => blocksOnPage.includes(component._parentId))
