@@ -17,7 +17,7 @@ describe('Page Level Progress', function () {
   
   it('should display the page level progress bars correctly on the pages', function () {
     const pageLevelProgress = this.data.course._pageLevelProgress
-    if (!pageLevelProgress._isEnabled) return
+    if (!pageLevelProgress?._isEnabled) return
     const pages = this.data.contentObjects
     pages.forEach((page) => {
       cy.visit(`/#/${page._id}`);
