@@ -5,7 +5,7 @@ describe('Page Level Progress', function () {
   });
   
   it('should display the page level progress bars correctly on the menu items', function () {
-    const isPageLevelProgressEnabled = this.data.course._pageLevelProgress._isEnabled
+    const isPageLevelProgressEnabled = this.data.course._pageLevelProgress?._isEnabled
     // Check if PLP is enabled. Check it's visible on menu tiles
     if (isPageLevelProgressEnabled) {
       const pagesCount = this.data.contentObjects.filter((page) => page._pageLevelProgress._isEnabled === true).length
