@@ -118,6 +118,15 @@
               "title": "Enable Page Level Progress",
               "default": true
             },
+            "title": {
+              "type": "string",
+              "title": "Alternate title",
+              "description": "Alternate title to display for the course",
+              "default": "",
+              "_adapt": {
+                "translatable": true
+              }
+            },
             "_showPageCompletion": {
               "type": "boolean",
               "title": "Include overall page completion",

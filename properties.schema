@@ -127,6 +127,16 @@
                   "validators": [],
                   "help": "Controls whether the Page Level Progress extension is enabled or disabled."
                 },
+                "title": {
+                  "type": "string",
+                  "required": true,
+                  "default": "",
+                  "title": "Alternate title",
+                  "help": "Alternate title to display for the course",
+                  "inputType": "Text",
+                  "validators": [],
+                  "translatable": true
+                },
                 "_showPageCompletion": {
                   "type": "boolean",
                   "required": true,

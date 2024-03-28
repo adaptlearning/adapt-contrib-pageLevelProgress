@@ -16,6 +16,7 @@
 
     "_pageLevelProgress": {
         "_isEnabled": true,
+        "title": "",
         "_showPageCompletion": true,
         "_isCompletionIndicatorEnabled": true,
         "_isShownInNavigationBar": true,
@@ -30,19 +31,7 @@
         "_excludeAssessments": false
     }
 
-    // To go on an article
-    "_pageLevelProgress": {
-        "_isEnabled": true,
-        "_isCompletionIndicatorEnabled": true
-    }
-
-    // To go on a block
-    "_pageLevelProgress": {
-        "_isEnabled": true,
-        "_isCompletionIndicatorEnabled": true
-    }
-
-    // To go on a component
+    // To go on an article, block or component
     "_pageLevelProgress": {
         "_isEnabled": true,
         "_isCompletionIndicatorEnabled": true
