@@ -144,7 +144,7 @@
                   "title": "Show page completion",
                   "inputType": "Checkbox",
                   "validators": [],
-                  "help": "Controls whether the progress calculations are based on all components - or only those that are set to be displayed in Page Level Progress."
+                  "help": "When enabled, the overall course progress will be calculated for all components. When disabled, only components that are set to be displayed in Page Level Progress will be included in the calculations. Defaults to enabled."
                 },
                 "_isCompletionIndicatorEnabled": {
                   "type": "boolean",
@@ -201,7 +201,7 @@
                   "title": "Show page completion",
                   "inputType": "Checkbox",
                   "validators": [],
-                  "help": "Controls whether the progress calculations for this page are based on all components and the overall page - or only the components that are set to be displayed in Page Level Progress."
+                  "help": "When enabled, the overall progress for this page will be calculated for all components. When disabled, only components that are set to be displayed in Page Level Progress will be included in the calculations. Defaults to enabled."
                 },
                 "_isCompletionIndicatorEnabled": {
                   "type": "boolean",

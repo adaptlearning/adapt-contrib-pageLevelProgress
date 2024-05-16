@@ -130,7 +130,7 @@
             "_showPageCompletion": {
               "type": "boolean",
               "title": "Include overall page completion",
-              "description": "Controls whether the progress calculations are based on all components - or only those that are set to be displayed in Page Level Progress",
+              "description": "When enabled, the overall course progress will be calculated for all components. When disabled, only components that are set to be displayed in Page Level Progress will be included in the calculations. Defaults to enabled.",
               "default": true
             },
             "_isCompletionIndicatorEnabled": {
