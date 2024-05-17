@@ -91,7 +91,7 @@ export default class PageLevelProgressNavigationView extends NavigationButtonVie
   onProgressClicked(event) {
     if (event && event.preventDefault) event.preventDefault();
     this.$el.attr('aria-expanded', true);
-    drawer.triggerCustomView(new PageLevelProgressView({
+    drawer.openCustomView(new PageLevelProgressView({
       collection: this.collection
     }).$el, false, this.model.get('_drawerPosition'));
   }
