@@ -81,8 +81,8 @@ class PageLevelProgressIndicatorView extends Backbone.View {
     this.$el
       .toggleClass('is-complete', isComplete)
       .toggleClass('is-incomplete', !isComplete)
-      .toggleClass('is-correct', isComplete && isCorrect)
-      .toggleClass('is-incorrect', isComplete && !isCorrect);
+      .toggleClass('is-correct', isComplete && isCorrect === true)
+      .toggleClass('is-incorrect', isComplete && isCorrect === false);
   }
 
 }
