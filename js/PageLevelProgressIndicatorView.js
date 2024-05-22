@@ -76,10 +76,14 @@ class PageLevelProgressIndicatorView extends Backbone.View {
   }
 
   checkCompletion() {
-    const percentage = this.setPercentageComplete();
+    this.setPercentageComplete();
+    const isComplete = this.model.get('_isComplete');
+    const isCorrect = this.model.get('_isCorrect');
     this.$el
-      .toggleClass('is-complete', percentage === 100)
-      .toggleClass('is-incomplete', percentage !== 100);
+      .toggleClass('is-complete', isComplete)
+      .toggleClass('is-incomplete', !isComplete)
+      .toggleClass('is-correct', isComplete && isCorrect)
+      .toggleClass('is-incorrect', isComplete && !isCorrect);
   }
 
 }
