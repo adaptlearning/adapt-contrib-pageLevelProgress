@@ -53,7 +53,7 @@ class PageLevelProgressIndicatorView extends Backbone.View {
 
   calculatePercentage() {
     const isPresentationComponentWithItems = (!this.model.isTypeGroup('question') && this.model instanceof ItemsComponentModel);
-    if (isPrensentationComponentWithItems) {
+    if (isPresentationComponentWithItems) {
       const children = this.model.getChildren();
       const visited = children.filter(child => child.get('_isVisited'));
       return Math.round(visited.length / children.length * 100);
