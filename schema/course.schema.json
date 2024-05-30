@@ -148,6 +148,12 @@
               "title": "Display all content objects and the current page components",
               "description": "Controls whether to display all content objects and the current page components together, or just the current page components",
               "default": false
+            },
+            "_showAtCourseLevelInNavigationBar": {
+              "type": "boolean",
+              "title": "Use course-level progress on navigation button",
+              "description": "When enabled, the navigation button will show course-level progress rather than page-level progress. Defaults to disabled.",
+              "default": false
             }
           }
         }
