@@ -75,7 +75,7 @@ Add to _course.json_.
 
 > **\_isShownInNavigationBar** (boolean): Allows **Page Level Progress** to appear in the navigation bar. Acceptable values are `true` and `false`.
 
-> **\_showPageCompletion** (boolean): Set to `false` to have the overall progress calculated only from components that have been set to display in **Page Level Progress** (ignoring the completion of those that haven't).
+> **\_showPageCompletion** (boolean): Set to `false` to have the overall progress calculated only from components that have been set to display in **Page Level Progress** (ignoring the completion of those that haven't). Defaults to `true`.
 
 > **\_showAtCourseLevel** (boolean): Allows **Page Level Progress** to display all content objects and the current page components together, or just the current page components as before. Acceptable values are `true` and `false`.
 
