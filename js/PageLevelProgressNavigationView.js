@@ -68,6 +68,13 @@ export default class PageLevelProgressNavigationView extends NavigationButtonVie
   }
 
   _getPageCompletionPercentage() {
+    const courseConfig = Adapt.course.get('_pageLevelProgress');
+    const useCourseLevel = courseConfig._showAtCourseLevel && courseConfig._showAtCourseLevelInNavigationBar;
+
+    if (useCourseLevel) {
+      return completionCalculations.calculatePercentageComplete(Adapt.course);
+    }
+
     return completionCalculations.calculatePercentageComplete(this.pageModel, true);
   }
 
