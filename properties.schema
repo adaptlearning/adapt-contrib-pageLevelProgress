@@ -173,7 +173,7 @@
                   "validators": [],
                   "help": "Controls whether to display all content objects and the current page components together, or just the current page components."
                 },
-                "_showAtCourseLevelInNavigationBar": {
+                "_useCourseProgressInNavigationButton": {
                   "type": "boolean",
                   "required": true,
                   "default": false,

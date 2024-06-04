@@ -79,7 +79,7 @@ Add to _course.json_.
 
 > **\_showAtCourseLevel** (boolean): Allows **Page Level Progress** to display all content objects and the current page components together, or just the current page components as before. Acceptable values are `true` and `false`. Defaults to `false`.
 
-> **\_showAtCourseLevelInNavigationBar** (boolean): Allows **Page Level Progress** to use course-level completion for the navigation button instead of page-level completion. Defaults to `false`.
+> **\_useCourseProgressInNavigationButton** (boolean): Allows **Page Level Progress** to use course-level completion for the navigation button instead of page-level completion. Defaults to `false`.
 
 Add to _contentObjects.json_.
 

@@ -21,7 +21,7 @@
         "_isCompletionIndicatorEnabled": true,
         "_isShownInNavigationBar": true,
         "_showAtCourseLevel": false,
-        "_showAtCourseLevelInNavigationBar": false
+        "_useCourseProgressInNavigationButton": false
     }
 
     // To go on a contentObject
