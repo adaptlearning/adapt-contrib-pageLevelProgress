@@ -56,7 +56,6 @@ class PageLevelProgressIndicatorView extends Backbone.View {
     const isComplete = this.model.get('_isComplete');
     if (isComplete) return 100;
     if (isPresentationComponentWithItems) {
-      if (isComplete) return 100;
       const children = this.model.getChildren();
       const visited = children.filter(child => child.get('_isVisited'));
       return Math.round(visited.length / children.length * 100);
