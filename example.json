@@ -20,7 +20,8 @@
         "_showPageCompletion": true,
         "_isCompletionIndicatorEnabled": true,
         "_isShownInNavigationBar": true,
-        "_showAtCourseLevel": false
+        "_showAtCourseLevel": false,
+        "_useCourseProgressInNavigationButton": false
     }
 
     // To go on a contentObject
