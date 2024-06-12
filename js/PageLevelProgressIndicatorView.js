@@ -2,6 +2,7 @@ import Adapt from 'core/js/adapt';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { templates } from 'core/js/reactHelpers';
+import ItemsComponentModel from 'core/js/models/itemsComponentModel';
 
 class PageLevelProgressIndicatorView extends Backbone.View {
 
@@ -34,7 +35,7 @@ class PageLevelProgressIndicatorView extends Backbone.View {
     } else {
       this.listenTo(Adapt, 'remove', this.remove);
     }
-    this.listenTo(Adapt.course, 'bubble:change:_isComplete', this.refresh);
+    this.listenTo(Adapt.course, 'bubble:change:_isComplete bubble:change:_isVisited', this.refresh);
   }
 
   setPercentageComplete() {
@@ -47,7 +48,15 @@ class PageLevelProgressIndicatorView extends Backbone.View {
   }
 
   calculatePercentage() {
-    return this.model.get('_isComplete') ? 100 : 0;
+    const isPresentationComponentWithItems = (!this.model.isTypeGroup('question') && this.model instanceof ItemsComponentModel);
+    const isComplete = this.model.get('_isComplete');
+    if (isComplete) return 100;
+    if (isPresentationComponentWithItems) {
+      const children = this.model.getChildren();
+      const visited = children.filter(child => child.get('_isVisited'));
+      return Math.round(visited.length / children.length * 100);
+    }
+    return 0;
   }
 
   render() {

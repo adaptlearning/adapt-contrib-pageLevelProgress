@@ -144,7 +144,7 @@
                   "title": "Show page completion",
                   "inputType": "Checkbox",
                   "validators": [],
-                  "help": "Controls whether the progress calculations are based on all components - or only those that are set to be displayed in Page Level Progress."
+                  "help": "When enabled, the overall course progress will be calculated for all components. When disabled, only components that are set to be displayed in Page Level Progress will be included in the calculations. Defaults to enabled."
                 },
                 "_isCompletionIndicatorEnabled": {
                   "type": "boolean",
@@ -172,6 +172,15 @@
                   "inputType": "Checkbox",
                   "validators": [],
                   "help": "Controls whether to display all content objects and the current page components together, or just the current page components."
+                },
+                "_useCourseProgressInNavigationButton": {
+                  "type": "boolean",
+                  "required": true,
+                  "default": false,
+                  "title": "Use course-level progress on navigation button",
+                  "inputType": "Checkbox",
+                  "validators": [],
+                  "help": "When enabled, the navigation button will show course-level progress rather than page-level progress. Defaults to disabled."
                 }
               }
             }
@@ -201,7 +210,7 @@
                   "title": "Show page completion",
                   "inputType": "Checkbox",
                   "validators": [],
-                  "help": "Controls whether the progress calculations for this page are based on all components and the overall page - or only the components that are set to be displayed in Page Level Progress."
+                  "help": "When enabled, the overall progress for this page will be calculated for all components. When disabled, only components that are set to be displayed in Page Level Progress will be included in the calculations. Defaults to enabled."
                 },
                 "_isCompletionIndicatorEnabled": {
                   "type": "boolean",

@@ -58,7 +58,7 @@ class PageLevelProgress extends Backbone.Controller {
       'router:contentObject': this.renderNavigationView
     });
 
-    this.listenTo(Adapt.course, 'bubble:change:_isComplete', this.onCompletionChange);
+    this.listenTo(Adapt.course, 'bubble:change:_isComplete bubble:change:_isVisited', this.onCompletionChange);
   }
 
   onCompletionChange(event) {

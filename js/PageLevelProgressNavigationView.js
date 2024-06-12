@@ -68,6 +68,12 @@ export default class PageLevelProgressNavigationView extends NavigationButtonVie
   }
 
   _getPageCompletionPercentage() {
+    const courseConfig = Adapt.course.get('_pageLevelProgress');
+
+    if (courseConfig._useCourseProgressInNavigationButton) {
+      return completionCalculations.calculatePercentageComplete(Adapt.course);
+    }
+
     return completionCalculations.calculatePercentageComplete(this.pageModel, true);
   }
 
@@ -91,7 +97,7 @@ export default class PageLevelProgressNavigationView extends NavigationButtonVie
   onProgressClicked(event) {
     if (event && event.preventDefault) event.preventDefault();
     this.$el.attr('aria-expanded', true);
-    drawer.triggerCustomView(new PageLevelProgressView({
+    drawer.openCustomView(new PageLevelProgressView({
       collection: this.collection
     }).$el, false, this.model.get('_drawerPosition'));
   }
