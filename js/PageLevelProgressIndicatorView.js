@@ -1,4 +1,7 @@
 import Adapt from 'core/js/adapt';
+import React from 'react';
+import ReactDOM from 'react-dom';
+import { templates } from 'core/js/reactHelpers';
 
 class PageLevelProgressIndicatorView extends Backbone.View {
 
@@ -16,23 +19,13 @@ class PageLevelProgressIndicatorView extends Backbone.View {
     this.setUpEventListeners();
     this.setPercentageComplete();
     this.render();
-    this.refresh();
   }
 
   addClasses() {
     this.$el.addClass([
-      'pagelevelprogress__indicator',
+      'pagelevelprogress__indicator-outer',
       'is-' + this.type
     ].join(' '));
-  }
-
-  checkAria() {
-    if (!this.ariaLabel) {
-      this.$el.attr('aria-hidden', true);
-      return;
-    }
-    const data = this.getRenderData();
-    this.$('.js-indicator-aria-label').html(Handlebars.compile(this.ariaLabel)(data));
   }
 
   setUpEventListeners() {
@@ -47,6 +40,9 @@ class PageLevelProgressIndicatorView extends Backbone.View {
   setPercentageComplete() {
     const percentage = this.calculatePercentage();
     this.model.set('percentageComplete', percentage);
+    this.$el.css({
+      '--adapt-pagelevelprogress-percentage': percentage + '%'
+    });
     return percentage;
   }
 
@@ -55,24 +51,15 @@ class PageLevelProgressIndicatorView extends Backbone.View {
   }
 
   render() {
+    this.checkCompletion();
+    this.checkAriaHidden();
     const data = this.getRenderData();
-    const template = Handlebars.templates[this.constructor.template];
-    this.$el.html(template(data));
-  }
-
-  getRenderData() {
-    const data = this.model.toJSON();
-    data.ariaLabel = this.ariaLabel;
-    data.type = this.type;
-    return data;
+    const Component = templates.pageLevelProgressIndicator;
+    ReactDOM.render(<Component {...data} />, this.el);
   }
 
   refresh() {
-    this.checkCompletion();
-    this.checkAria();
-    this.$('.js-indicator-bar').css({
-      width: this.calculatePercentage() + '%'
-    });
+    this.render();
   }
 
   checkCompletion() {
@@ -90,8 +77,20 @@ class PageLevelProgressIndicatorView extends Backbone.View {
       .toggleClass('is-incorrect', isIncorrect);
   }
 
+  checkAriaHidden() {
+    if (this.ariaLabel) return;
+    this.$el.attr('aria-hidden', true);
+  }
+
+  getRenderData() {
+    const data = this.model.toJSON();
+    data.ariaLabel = this.ariaLabel;
+    data.type = this.type;
+    return data;
+  }
+
 }
 
-PageLevelProgressIndicatorView.template = 'pageLevelProgressIndicator';
+PageLevelProgressIndicatorView.template = 'pageLevelProgressIndicator.jsx';
 
 export default PageLevelProgressIndicatorView;
