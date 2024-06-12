@@ -13,12 +13,19 @@ export default function PageLevelProgressItem(props) {
     _isLocked,
     _isVisible,
     _isComplete,
+    _isCorrect,
+    _isAtLeastOneCorrectSelection,
+    _canShowMarking,
     title,
     altTitle,
     _id,
     _type,
     _children
   } = props;
+
+  const isCorrect = (_canShowMarking && _isComplete && _isCorrect === true);
+  const isPartlyCorrect = (_canShowMarking && _isComplete && _isCorrect === false && _isAtLeastOneCorrectSelection);
+  const isIncorrect = (_canShowMarking && _isComplete && _isCorrect === false && !_isAtLeastOneCorrectSelection);
 
   const indicatorSeat = React.createRef();
   useEffect(() => {
@@ -57,6 +64,9 @@ export default function PageLevelProgressItem(props) {
           _isOptional && `${_globals._extensions._pageLevelProgress.optionalContent}.`,
           !_isOptional && _isComplete && `${_globals._accessibility._ariaLabels.complete}.`,
           !_isOptional && !_isComplete && `${_globals._accessibility._ariaLabels.incomplete}.`,
+          isCorrect && `${_globals._accessibility._ariaLabels.answeredCorrectly}.`,
+          isPartlyCorrect && `${_globals._accessibility._ariaLabels.answeredPartlyCorrect ?? _globals._accessibility._ariaLabels.answeredIncorrectly}.`,
+          isIncorrect && `${_globals._accessibility._ariaLabels.answeredIncorrectly}.`,
           compile(a11y.normalize(altTitle || title))
         ])}
       >
