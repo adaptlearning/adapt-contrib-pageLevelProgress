@@ -14,7 +14,7 @@ export default function PageLevelProgressIndicator (props) {
 
         {ariaLabel &&
         <span className="aria-label">
-          {compile(ariaLabel)}
+          {compile(ariaLabel, props)}
         </span>
         }
 
