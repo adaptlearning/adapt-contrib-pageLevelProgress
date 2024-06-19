@@ -46,6 +46,7 @@ export default class PageLevelProgressNavigationView extends NavigationButtonVie
       _id: 'pagelevelprogress',
       ...Adapt.course.get('_globals')?._extensions?._pageLevelProgress?._navTooltip || {}
     });
+    this.tooltip = tooltips.getTooltip('pagelevelprogress');
   }
 
   setUpEventListeners() {
@@ -92,6 +93,7 @@ export default class PageLevelProgressNavigationView extends NavigationButtonVie
 
   refreshProgressBar() {
     this.model.set('percentageComplete', this._getPageCompletionPercentage());
+    this.tooltip.set('percentageComplete', this._getPageCompletionPercentage());
     this.collection = getPageLevelProgressItemsJSON(this.pageModel);
     this.updateProgressBar();
   }
