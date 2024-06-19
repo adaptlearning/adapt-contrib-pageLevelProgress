@@ -39,6 +39,7 @@ export default class PageLevelProgressNavigationView extends NavigationButtonVie
     this.setUpEventListeners();
     this.render();
     this.addIndicator();
+    this.refreshProgressBar();
     this.deferredUpdate();
 
     tooltips.register({
@@ -58,8 +59,13 @@ export default class PageLevelProgressNavigationView extends NavigationButtonVie
   }
 
   addIndicator() {
+    const {
+      _useCourseProgressInNavigationButton = false
+    } = Adapt.course.get('_pageLevelProgress') ?? {};
     this.indicatorView = new PageLevelProgressIndicatorView({
-      model: this.pageModel,
+      model: _useCourseProgressInNavigationButton
+        ? Adapt.course
+        : this.pageModel,
       calculatePercentage: this._getPageCompletionPercentage.bind(this),
       ariaLabel: this.model.get('ariaLabel')
     });
@@ -68,13 +74,12 @@ export default class PageLevelProgressNavigationView extends NavigationButtonVie
   }
 
   _getPageCompletionPercentage() {
-    const courseConfig = Adapt.course.get('_pageLevelProgress');
-
-    if (courseConfig._useCourseProgressInNavigationButton) {
-      return completionCalculations.calculatePercentageComplete(Adapt.course);
-    }
-
-    return completionCalculations.calculatePercentageComplete(this.pageModel, true);
+    const {
+      _useCourseProgressInNavigationButton = false
+    } = Adapt.course.get('_pageLevelProgress') ?? {};
+    return _useCourseProgressInNavigationButton
+      ? completionCalculations.calculatePercentageComplete(Adapt.course)
+      : completionCalculations.calculatePercentageComplete(this.pageModel, true);
   }
 
   deferredUpdate() {
@@ -86,6 +91,7 @@ export default class PageLevelProgressNavigationView extends NavigationButtonVie
   }
 
   refreshProgressBar() {
+    this.model.set('percentageComplete', this._getPageCompletionPercentage());
     this.collection = getPageLevelProgressItemsJSON(this.pageModel);
     this.updateProgressBar();
   }

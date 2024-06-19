@@ -35,7 +35,7 @@ class PageLevelProgressIndicatorView extends Backbone.View {
     } else {
       this.listenTo(Adapt, 'remove', this.remove);
     }
-    this.listenTo(Adapt.course, 'bubble:change:_isComplete bubble:change:_isVisited', this.refresh);
+    this.listenTo(Adapt.course, 'bubble:change:_isComplete bubble:change:_isVisited', this.render);
   }
 
   setPercentageComplete() {
