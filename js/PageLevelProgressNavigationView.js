@@ -92,8 +92,9 @@ export default class PageLevelProgressNavigationView extends NavigationButtonVie
   }
 
   refreshProgressBar() {
-    this.model.set('percentageComplete', this._getPageCompletionPercentage());
-    this.tooltip.set('percentageComplete', this._getPageCompletionPercentage());
+    const percentageComplete = this._getPageCompletionPercentage();
+    this.model.set('percentageComplete', percentageComplete);
+    this.tooltip.set('percentageComplete', percentageComplete);
     this.collection = getPageLevelProgressItemsJSON(this.pageModel);
     this.updateProgressBar();
   }
