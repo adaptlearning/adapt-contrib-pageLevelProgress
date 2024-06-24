@@ -118,13 +118,8 @@ class PageLevelProgress extends Backbone.Controller {
       parent: view,
       model: view.model,
       type: 'menu-item',
-      calculatePercentage: this._getMenuItemCompletionPercentage.bind(view),
       ariaLabel: PageLevelProgress.globalsConfig?.pageLevelProgressMenuBar
     }).$el);
-  }
-
-  _getMenuItemCompletionPercentage() {
-    return completionCalculations.calculatePercentageComplete(this.model);
   }
 
   // This should add/update progress on page navigation bar

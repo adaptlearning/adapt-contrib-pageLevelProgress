@@ -3,6 +3,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { templates } from 'core/js/reactHelpers';
 import ItemsComponentModel from 'core/js/models/itemsComponentModel';
+import completionCalculations from './completionCalculations';
 
 class PageLevelProgressIndicatorView extends Backbone.View {
 
@@ -48,9 +49,13 @@ class PageLevelProgressIndicatorView extends Backbone.View {
   }
 
   calculatePercentage() {
-    const isPresentationComponentWithItems = (!this.model.isTypeGroup('question') && this.model instanceof ItemsComponentModel);
     const isComplete = this.model.get('_isComplete');
     if (isComplete) return 100;
+    const isContentObject = this.model.isTypeGroup('contentobject');
+    if (isContentObject) {
+      return completionCalculations.calculatePercentageComplete(this.model);
+    }
+    const isPresentationComponentWithItems = (!this.model.isTypeGroup('question') && this.model instanceof ItemsComponentModel);
     if (isPresentationComponentWithItems) {
       const children = this.model.getChildren();
       const visited = children.filter(child => child.get('_isVisited'));
