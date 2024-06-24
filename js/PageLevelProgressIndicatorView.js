@@ -49,12 +49,10 @@ class PageLevelProgressIndicatorView extends Backbone.View {
   }
 
   calculatePercentage() {
+    const isContentObject = this.model.isTypeGroup('contentobject');
+    if (isContentObject) return completionCalculations.calculatePercentageComplete(this.model);
     const isComplete = this.model.get('_isComplete');
     if (isComplete) return 100;
-    const isContentObject = this.model.isTypeGroup('contentobject');
-    if (isContentObject) {
-      return completionCalculations.calculatePercentageComplete(this.model);
-    }
     const isPresentationComponentWithItems = (!this.model.isTypeGroup('question') && this.model instanceof ItemsComponentModel);
     if (isPresentationComponentWithItems) {
       const children = this.model.getChildren();
