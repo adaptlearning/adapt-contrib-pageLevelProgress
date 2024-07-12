@@ -65,6 +65,9 @@ class PageLevelProgress extends Backbone.Controller {
     if (!location._currentId) return;
 
     const currentModel = data.findById(location._currentId);
+
+    if (!currentModel) return;
+    
     const completionState = {
       currentLocation: completionCalculations.calculatePercentageComplete(currentModel),
       course: completionCalculations.calculatePercentageComplete(Adapt.course)
