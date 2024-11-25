@@ -56,7 +56,7 @@ export default class PageLevelProgressNavigationView extends NavigationButtonVie
       'view:childAdded pageLevelProgress:update': this.refreshProgressBar,
       'drawer:closed': this.drawerClosed
     });
-    this.listenTo(data, 'change:_isLocked change:_isComplete', this.refreshProgressBar);
+    this.listenTo(data, 'change:_isLocked change:_isVisible change:_isComplete', this.refreshProgressBar);
   }
 
   addIndicator() {
