@@ -1,14 +1,5 @@
-import { describe, whereContent, whereFromPlugin, mutateContent, checkContent, updatePlugin } from 'adapt-migrations';
+import { describe, getCourse, whereContent, whereFromPlugin, mutateContent, checkContent, updatePlugin } from 'adapt-migrations';
 import _ from 'lodash';
-
-const getCourse = content => {
-  const course = content.find(({ _type }) => _type === 'course');
-  return course;
-};
-
-const getGlobals = content => {
-  return getCourse(content)?._globals?._extensions?._pageLevelProgress;
-};
 
 describe('Page level progress - v6.2.2 to v6.2.3', async () => {
   // https://github.com/adaptlearning/adapt-contrib-pageLevelProgress/compare/v6.2.2..v6.2.3
@@ -18,7 +9,7 @@ describe('Page level progress - v6.2.2 to v6.2.3', async () => {
   whereFromPlugin('Page level progress - from v6.2.2', { name: 'adapt-contrib-pageLevelProgress', version: '<6.2.3' });
 
   whereContent('Page level progress is configured', content => {
-    course = getCourse(content);
+    course = getCourse();
     return course._pageLevelProgress;
   });
 
@@ -35,7 +26,7 @@ describe('Page level progress - v6.2.2 to v6.2.3', async () => {
   });
 
   checkContent('Page level progress - check global attribute _navOrder', async (content) => {
-    const isValid = getGlobals(content)._navOrder !== 0;
+    const isValid = coursePlpGlobals._navOrder !== 0;
     if (!isValid) throw new Error('Page level progress - global attribute _navOrder');
     return true;
   });
@@ -51,7 +42,7 @@ describe('Page level progress - v6.2.3 to v6.2.4', async () => {
   whereFromPlugin('Page level progress - from v6.2.3', { name: 'adapt-contrib-pageLevelProgress', version: '<6.2.4' });
 
   whereContent('Page level progress is configured', content => {
-    course = getCourse(content);
+    course = getCourse();
     return course._pageLevelProgress;
   });
 
@@ -83,7 +74,7 @@ describe('Page level progress - v6.2.7 to v6.3.0', async () => {
   whereFromPlugin('Page level progress - from v6.2.7', { name: 'adapt-contrib-pageLevelProgress', version: '<6.3.0' });
 
   whereContent('Page level progress is configured', content => {
-    course = getCourse(content);
+    course = getCourse();
     return course._pageLevelProgress;
   });
 
@@ -111,19 +102,19 @@ describe('Page level progress - v6.2.7 to v6.3.0', async () => {
   });
 
   checkContent('Page level progress - check global attribute pageLevelProgress', async (content) => {
-    const isValid = getGlobals(content).pageLevelProgress !== plpOld;
+    const isValid = coursePlpGlobals.pageLevelProgress !== plpOld;
     if (!isValid) throw new Error('Page level progress - global attribute pageLevelProgress');
     return true;
   });
 
   checkContent('Page level progress - check global attribute pageLevelProgressIndicatorBar', async (content) => {
-    const isValid = getGlobals(content).pageLevelProgressIndicatorBar !== plpIndicatorBarOld;
+    const isValid = coursePlpGlobals.pageLevelProgressIndicatorBar !== plpIndicatorBarOld;
     if (!isValid) throw new Error('Page level progress - global attribute pageLevelProgressIndicatorBar');
     return true;
   });
 
   checkContent('Page level progress - check global attribute pageLevelProgressEnd', async (content) => {
-    const isValid = !_.has(getGlobals(content), 'pageLevelProgressEnd');
+    const isValid = !_.has(coursePlpGlobals, 'pageLevelProgressEnd');
     if (!isValid) throw new Error('Page level progress - global attribute pageLevelProgressEnd');
     return true;
   });
@@ -139,7 +130,7 @@ describe('Page level progress - v6.3.1 to v6.4.0', async () => {
   whereFromPlugin('Page level progress - from v6.3.1', { name: 'adapt-contrib-pageLevelProgress', version: '<6.4.0' });
 
   whereContent('Page level progress is configured', content => {
-    course = getCourse(content);
+    course = getCourse();
     return course._pageLevelProgress;
   });
 
@@ -155,7 +146,7 @@ describe('Page level progress - v6.3.1 to v6.4.0', async () => {
   });
 
   checkContent('Page level progress - check global attribute _drawerPosition', async (content) => {
-    const isValid = getGlobals(content)._drawerPosition === 'auto';
+    const isValid = coursePlpGlobals._drawerPosition === 'auto';
     if (!isValid) throw new Error('Page level progress - global attribute _drawerPosition');
     return true;
   });

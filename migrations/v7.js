@@ -1,14 +1,5 @@
-import { describe, whereContent, whereFromPlugin, mutateContent, checkContent, updatePlugin } from 'adapt-migrations';
+import { describe, getCourse, whereContent, whereFromPlugin, mutateContent, checkContent, updatePlugin } from 'adapt-migrations';
 import _ from 'lodash';
-
-const getCourse = content => {
-  const course = content.find(({ _type }) => _type === 'course');
-  return course;
-};
-
-const getGlobals = content => {
-  return getCourse(content)?._globals?._extensions?._pageLevelProgress;
-};
 
 describe('Page level progress - v6.4.0 to v7.0.0', async () => {
   // https://github.com/adaptlearning/adapt-contrib-pageLevelProgress/compare/v6.4.0..v7.0.0
@@ -18,7 +9,7 @@ describe('Page level progress - v6.4.0 to v7.0.0', async () => {
   whereFromPlugin('Page level progress - from v6.4.0', { name: 'adapt-contrib-pageLevelProgress', version: '<7.0.0' });
 
   whereContent('Page level progress is configured', content => {
-    course = getCourse(content);
+    course = getCourse();
     return course._pageLevelProgress;
   });
 
@@ -39,13 +30,13 @@ describe('Page level progress - v6.4.0 to v7.0.0', async () => {
   });
 
   checkContent('Page level progress - check global attribute _showLabel', async (content) => {
-    const isValid = getGlobals(content)._showLabel === true;
+    const isValid = coursePlpGlobals._showLabel === true;
     if (!isValid) throw new Error('Page level progress - global attribute _showLabel');
     return true;
   });
 
   checkContent('Page level progress - check global attribute navLabel', async (content) => {
-    const isValid = getGlobals(content).navLabel === 'Page progress';
+    const isValid = coursePlpGlobals.navLabel === 'Page progress';
     if (!isValid) throw new Error('Page level progress - global attribute navLabel');
     return true;
   });
@@ -66,7 +57,7 @@ describe('Page level progress - v7.0.2 to v7.1.1', async () => {
   whereFromPlugin('Page level progress - from v7.0.2', { name: 'adapt-contrib-pageLevelProgress', version: '<7.1.1' });
 
   whereContent('Page level progress is configured', content => {
-    course = getCourse(content);
+    course = getCourse();
     return course._pageLevelProgress;
   });
 
@@ -82,7 +73,7 @@ describe('Page level progress - v7.0.2 to v7.1.1', async () => {
   });
 
   checkContent('Page level progress - check global attribute _navTooltip', async (content) => {
-    const isValid = _.isEqual(getGlobals(content)._navTooltip, navToolip);
+    const isValid = _.isEqual(coursePlpGlobals._navTooltip, navToolip);
     if (!isValid) throw new Error('Page level progress - global attribute _navTooltip');
     return true;
   });
@@ -98,7 +89,7 @@ describe('Page level progress - v7.4.0 to v7.5.0', async () => {
   whereFromPlugin('Page level progress - from v7.4.0', { name: 'adapt-contrib-pageLevelProgress', version: '<7.5.0' });
 
   whereContent('Page level progress is configured', content => {
-    course = getCourse(content);
+    course = getCourse();
     return course._pageLevelProgress;
   });
 
@@ -127,7 +118,7 @@ describe('Page level progress - v7.7.0 to v7.8.0', async () => {
   whereFromPlugin('Page level progress - from v7.7.0', { name: 'adapt-contrib-pageLevelProgress', version: '<7.8.0' });
 
   whereContent('Page level progress is configured', content => {
-    course = getCourse(content);
+    course = getCourse();
     return course._pageLevelProgress;
   });
 
