@@ -1,4 +1,4 @@
-import { describe, whereContent, whereFromPlugin, mutateContent, checkContent, updatePlugin } from 'adapt-migrations';
+import { describe, whereContent, whereFromPlugin, mutateContent, checkContent, updatePlugin, testStopWhere, testSuccessWhere } from 'adapt-migrations';
 
 describe('Page level progress - v3.0.0 to v3.1.0', async () => {
   // https://github.com/adaptlearning/adapt-contrib-pageLevelProgress/compare/v3.0.0..v3.1.0
@@ -30,4 +30,39 @@ describe('Page level progress - v3.0.0 to v3.1.0', async () => {
   });
 
   updatePlugin('Page level progress - update to v3.1.0', { name: 'adapt-contrib-pageLevelProgress', version: '3.1.0', framework: '">=2.2.0' });
+
+  testSuccessWhere('contentObject with/without pageLevelProgress', {
+    fromPlugins: [{ name: 'adapt-contrib-pageLevelProgress', version: '3.0.0' }],
+    content: [
+      { _type: 'page', _pageLevelProgress: {} },
+      { _type: 'page' }
+    ]
+  });
+
+  testSuccessWhere('no course pageLevelProgress with content objects', {
+    fromPlugins: [{ name: 'adapt-contrib-pageLevelProgress', version: '3.0.0' }],
+    content: [
+      { _type: 'course' },
+      { _type: 'page', _pageLevelProgress: {} }
+    ]
+  });
+
+  testStopWhere('pageLevelProgress with no contentObjects', {
+    fromPlugins: [{ name: 'adapt-contrib-pageLevelProgress', version: '3.0.0' }],
+    content: [
+      { _type: 'course', _pageLevelProgress: {} }
+    ]
+  });
+
+  testStopWhere('contentObject without pageLevelProgress', {
+    fromPlugins: [{ name: 'adapt-contrib-pageLevelProgress', version: '3.0.0' }],
+    content: [
+      { _type: 'page' },
+      { _type: 'page' }
+    ]
+  });
+
+  testStopWhere('incorrect version', {
+    fromPlugins: [{ name: 'adapt-contrib-pageLevelProgress', version: '3.1.0' }]
+  });
 });

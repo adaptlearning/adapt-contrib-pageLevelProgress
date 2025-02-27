@@ -1,4 +1,4 @@
-import { describe, getCourse, whereContent, whereFromPlugin, mutateContent, checkContent, updatePlugin } from 'adapt-migrations';
+import { describe, getCourse, whereContent, whereFromPlugin, mutateContent, checkContent, updatePlugin, testStopWhere, testSuccessWhere } from 'adapt-migrations';
 import _ from 'lodash';
 
 describe('Page level progress - v6.2.2 to v6.2.3', async () => {
@@ -32,6 +32,38 @@ describe('Page level progress - v6.2.2 to v6.2.3', async () => {
   });
 
   updatePlugin('Page level progress - update to v6.2.3', { name: 'adapt-contrib-pageLevelProgress', version: '6.2.3', framework: '">=5.24.4' });
+
+  testSuccessWhere('course pageLevelProgress, no globals', {
+    fromPlugins: [{ name: 'adapt-contrib-pageLevelProgress', version: '6.2.2' }],
+    content: [
+      { _type: 'course', _pageLevelProgress: {} }
+    ]
+  });
+
+  testSuccessWhere('course pageLevelProgress, empty globals', {
+    fromPlugins: [{ name: 'adapt-contrib-pageLevelProgress', version: '6.2.2' }],
+    content: [
+      { _type: 'course', _pageLevelProgress: {}, _globals: { _extensions: { _pageLevelProgress: {} } } }
+    ]
+  });
+
+  testSuccessWhere('course pageLevelProgress, globals with _navOrder', {
+    fromPlugins: [{ name: 'adapt-contrib-pageLevelProgress', version: '6.2.2' }],
+    content: [
+      { _type: 'course', _pageLevelProgress: {}, _globals: { _extensions: { _pageLevelProgress: { _navOrder: 0 } } } }
+    ]
+  });
+
+  testStopWhere('no pageLevelProgress', {
+    fromPlugins: [{ name: 'adapt-contrib-pageLevelProgress', version: '6.2.2' }],
+    content: [
+      { _type: 'course' }
+    ]
+  });
+
+  testStopWhere('incorrect version', {
+    fromPlugins: [{ name: 'adapt-contrib-pageLevelProgress', version: '6.2.3' }]
+  });
 });
 
 describe('Page level progress - v6.2.3 to v6.2.4', async () => {
@@ -58,6 +90,24 @@ describe('Page level progress - v6.2.3 to v6.2.4', async () => {
   });
 
   updatePlugin('Page level progress - update to v6.2.4', { name: 'adapt-contrib-pageLevelProgress', version: '6.2.4', framework: '">=5.24.4' });
+
+  testSuccessWhere('course pageLevelProgress', {
+    fromPlugins: [{ name: 'adapt-contrib-pageLevelProgress', version: '6.2.3' }],
+    content: [
+      { _type: 'course', _pageLevelProgress: {} }
+    ]
+  });
+
+  testStopWhere('no pageLevelProgress', {
+    fromPlugins: [{ name: 'adapt-contrib-pageLevelProgress', version: '6.2.3' }],
+    content: [
+      { _type: 'course' }
+    ]
+  });
+
+  testStopWhere('incorrect version', {
+    fromPlugins: [{ name: 'adapt-contrib-pageLevelProgress', version: '6.2.4' }]
+  });
 });
 
 describe('Page level progress - v6.2.7 to v6.3.0', async () => {
@@ -120,6 +170,69 @@ describe('Page level progress - v6.2.7 to v6.3.0', async () => {
   });
 
   updatePlugin('Page level progress - update to v6.3.0', { name: 'adapt-contrib-pageLevelProgress', version: '6.3.0', framework: '">=5.24.4' });
+
+  testSuccessWhere('course pageLevelProgress, no globals', {
+    fromPlugins: [{ name: 'adapt-contrib-pageLevelProgress', version: '6.2.7' }],
+    content: [
+      { _type: 'course', _pageLevelProgress: {} }
+    ]
+  });
+
+  testSuccessWhere('course pageLevelProgress, empty globals', {
+    fromPlugins: [{ name: 'adapt-contrib-pageLevelProgress', version: '6.2.7' }],
+    content: [
+      { _type: 'course', _pageLevelProgress: {}, _globals: { _extensions: { _pageLevelProgress: {} } } }
+    ]
+  });
+
+  testSuccessWhere('course pageLevelProgress, default globals', {
+    fromPlugins: [{ name: 'adapt-contrib-pageLevelProgress', version: '6.2.7' }],
+    content: [
+      {
+        _type: 'course',
+        _pageLevelProgress: {},
+        _globals: {
+          _extensions: {
+            _pageLevelProgress: {
+              pageLevelProgress: plpOld,
+              pageLevelProgressIndicatorBar: plpIndicatorBarOld,
+              pageLevelProgressEnd: 'End of page sections'
+            }
+          }
+        }
+      }
+    ]
+  });
+
+  testSuccessWhere('course pageLevelProgress, custom globals', {
+    fromPlugins: [{ name: 'adapt-contrib-pageLevelProgress', version: '6.2.7' }],
+    content: [
+      {
+        _type: 'course',
+        _pageLevelProgress: {},
+        _globals: {
+          _extensions: {
+            _pageLevelProgress: {
+              pageLevelProgress: 'Custom pageLevelProgress',
+              pageLevelProgressIndicatorBar: 'Custom pageLevelProgressIndicatorBar',
+              pageLevelProgressEnd: 'End of page sections'
+            }
+          }
+        }
+      }
+    ]
+  });
+
+  testStopWhere('no pageLevelProgress', {
+    fromPlugins: [{ name: 'adapt-contrib-pageLevelProgress', version: '6.2.7' }],
+    content: [
+      { _type: 'course' }
+    ]
+  });
+
+  testStopWhere('incorrect version', {
+    fromPlugins: [{ name: 'adapt-contrib-pageLevelProgress', version: '6.3.0' }]
+  });
 });
 
 describe('Page level progress - v6.3.1 to v6.4.0', async () => {
@@ -152,4 +265,29 @@ describe('Page level progress - v6.3.1 to v6.4.0', async () => {
   });
 
   updatePlugin('Page level progress - update to v6.4.0', { name: 'adapt-contrib-pageLevelProgress', version: '6.4.0', framework: '">=5.24.4' });
+
+  testSuccessWhere('course pageLevelProgress, no globals', {
+    fromPlugins: [{ name: 'adapt-contrib-pageLevelProgress', version: '6.3.1' }],
+    content: [
+      { _type: 'course', _pageLevelProgress: {} }
+    ]
+  });
+
+  testSuccessWhere('course pageLevelProgress, empty globals', {
+    fromPlugins: [{ name: 'adapt-contrib-pageLevelProgress', version: '6.3.1' }],
+    content: [
+      { _type: 'course', _pageLevelProgress: {}, _globals: { _extensions: { _pageLevelProgress: {} } } }
+    ]
+  });
+
+  testStopWhere('no pageLevelProgress', {
+    fromPlugins: [{ name: 'adapt-contrib-pageLevelProgress', version: '6.3.1' }],
+    content: [
+      { _type: 'course' }
+    ]
+  });
+
+  testStopWhere('incorrect version', {
+    fromPlugins: [{ name: 'adapt-contrib-pageLevelProgress', version: '6.4.0' }]
+  });
 });

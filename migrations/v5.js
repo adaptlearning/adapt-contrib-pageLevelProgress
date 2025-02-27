@@ -1,4 +1,4 @@
-import { describe, getCourse, whereContent, whereFromPlugin, mutateContent, checkContent, updatePlugin } from 'adapt-migrations';
+import { describe, getCourse, whereContent, whereFromPlugin, mutateContent, checkContent, updatePlugin, testStopWhere, testSuccessWhere } from 'adapt-migrations';
 import _ from 'lodash';
 
 describe('Page level progress - v5.3.1 to v5.4.0', async () => {
@@ -31,4 +31,29 @@ describe('Page level progress - v5.3.1 to v5.4.0', async () => {
   });
 
   updatePlugin('Page level progress - update to v5.4.0', { name: 'adapt-contrib-pageLevelProgress', version: '5.4.0', framework: '">=5.18.6' });
+
+  testSuccessWhere('course pageLevelProgress, no globals', {
+    fromPlugins: [{ name: 'adapt-contrib-pageLevelProgress', version: '5.3.1' }],
+    content: [
+      { _type: 'course', _pageLevelProgress: {} }
+    ]
+  });
+
+  testSuccessWhere('course pageLevelProgress, empty globals', {
+    fromPlugins: [{ name: 'adapt-contrib-pageLevelProgress', version: '5.3.1' }],
+    content: [
+      { _type: 'course', _pageLevelProgress: {}, _globals: { _extensions: { _pageLevelProgress: {} } } }
+    ]
+  });
+
+  testStopWhere('no pageLevelProgress', {
+    fromPlugins: [{ name: 'adapt-contrib-pageLevelProgress', version: '5.3.1' }],
+    content: [
+      { _type: 'course' }
+    ]
+  });
+
+  testStopWhere('incorrect version', {
+    fromPlugins: [{ name: 'adapt-contrib-pageLevelProgress', version: '5.4.0' }]
+  });
 });
