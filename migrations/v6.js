@@ -14,7 +14,7 @@ describe('Page level progress - v6.2.2 to v6.2.3', async () => {
   });
 
   mutateContent('Page level progress - add globals if missing', async (content) => {
-    if (!_.has(course, '_globals._extensions._pageLevelProgress')) _.set(course, '_globals._extensions._pageLevelProgress', {});
+    if (!_.has(course, '_globals._extensions._pageLevelProgress')) _.set(course, '_globals._extensions._pageLevelProgress', { _navOrder: 90 });
     coursePlpGlobals = course._globals._extensions._pageLevelProgress;
     return true;
   });
@@ -129,7 +129,7 @@ describe('Page level progress - v6.2.7 to v6.3.0', async () => {
   });
 
   mutateContent('Page level progress - add globals if missing', async (content) => {
-    if (!_.has(course, '_globals._extensions._pageLevelProgress')) _.set(course, '_globals._extensions._pageLevelProgress', {});
+    if (!_.has(course, '_globals._extensions._pageLevelProgress')) _.set(course, '_globals._extensions._pageLevelProgress', { pageLevelProgress: plpNew, pageLevelProgressIndicatorBar: plpIndicatorBarNew });
     coursePlpGlobals = course._globals._extensions._pageLevelProgress;
     return true;
   });
