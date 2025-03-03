@@ -17,15 +17,12 @@ describe('Page level progress - v3.0.0 to v3.1.0', async () => {
 
   mutateContent('Page level progress - add content object attribute _excludeAssessments', async (content) => {
     configuredContentObjects.forEach(co => (co._pageLevelProgress._excludeAssessments = false));
-
     return true;
   });
 
   checkContent('Page level progress - check content object attribute _excludeAssessments', async (content) => {
     const isValid = configuredContentObjects.every(co => co._pageLevelProgress._excludeAssessments === false);
-
     if (!isValid) throw new Error('Page level progress - content object attribute _excludeAssessments');
-
     return true;
   });
 
