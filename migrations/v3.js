@@ -29,7 +29,7 @@ describe('Page level progress - v3.0.0 to v3.1.0', async () => {
     return true;
   });
 
-  updatePlugin('Page level progress - update to v3.1.0', { name: 'adapt-contrib-pageLevelProgress', version: '3.1.0', framework: '">=2.2.0' });
+  updatePlugin('Page level progress - update to v3.1.0', { name: 'adapt-contrib-pageLevelProgress', version: '3.1.0', framework: '=>2.2.0' });
 
   testSuccessWhere('contentObject with/without pageLevelProgress', {
     fromPlugins: [{ name: 'adapt-contrib-pageLevelProgress', version: '3.0.0' }],

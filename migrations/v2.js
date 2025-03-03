@@ -55,7 +55,7 @@ describe('Page level progress - v2.0.1 to v2.0.2', async () => {
     return true;
   });
 
-  updatePlugin('Page level progress - update to v2.0.2', { name: 'adapt-contrib-pageLevelProgress', version: '2.0.2', framework: '">=2.0.0' });
+  updatePlugin('Page level progress - update to v2.0.2', { name: 'adapt-contrib-pageLevelProgress', version: '2.0.2', framework: '=>2.0.0' });
 
   testSuccessWhere('pageLevelProgress with empty course', {
     fromPlugins: [{ name: 'adapt-contrib-pageLevelProgress', version: '2.0.1' }],
@@ -141,7 +141,7 @@ describe('Page level progress - v2.0.3 to v2.0.4', async () => {
     return true;
   });
 
-  updatePlugin('Page level progress - update to v2.0.4', { name: 'adapt-contrib-pageLevelProgress', version: '2.0.4', framework: '">=2.0.0' });
+  updatePlugin('Page level progress - update to v2.0.4', { name: 'adapt-contrib-pageLevelProgress', version: '2.0.4', framework: '=>2.0.0' });
 
   testSuccessWhere('course pageLevelProgress and contentObject with/without pageLevelProgress', {
     fromPlugins: [{ name: 'adapt-contrib-pageLevelProgress', version: '2.0.3' }],

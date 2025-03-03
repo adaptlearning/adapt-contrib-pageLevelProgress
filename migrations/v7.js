@@ -41,7 +41,7 @@ describe('Page level progress - v6.4.0 to v7.0.0', async () => {
     return true;
   });
 
-  updatePlugin('Page level progress - update to v7.0.0', { name: 'adapt-contrib-pageLevelProgress', version: '7.0.0', framework: '">=5.24.4' });
+  updatePlugin('Page level progress - update to v7.0.0', { name: 'adapt-contrib-pageLevelProgress', version: '7.0.0', framework: '=>5.24.4' });
 
   testSuccessWhere('course pageLevelProgress, no globals', {
     fromPlugins: [{ name: 'adapt-contrib-pageLevelProgress', version: '6.4.0' }],
@@ -103,7 +103,7 @@ describe('Page level progress - v7.0.2 to v7.1.1', async () => {
     return true;
   });
 
-  updatePlugin('Page level progress - update to v7.1.1', { name: 'adapt-contrib-pageLevelProgress', version: '7.1.1', framework: '">=5.24.4' });
+  updatePlugin('Page level progress - update to v7.1.1', { name: 'adapt-contrib-pageLevelProgress', version: '7.1.1', framework: '=>5.24.4' });
 
   testSuccessWhere('course pageLevelProgress, no globals', {
     fromPlugins: [{ name: 'adapt-contrib-pageLevelProgress', version: '7.0.2' }],
@@ -157,7 +157,7 @@ describe('Page level progress - v7.4.0 to v7.5.0', async () => {
     return true;
   });
 
-  updatePlugin('Page level progress - update to v7.5.0', { name: 'adapt-contrib-pageLevelProgress', version: '7.5.0', framework: '">=5.31.0' });
+  updatePlugin('Page level progress - update to v7.5.0', { name: 'adapt-contrib-pageLevelProgress', version: '7.5.0', framework: '=>5.31.0' });
 
   testSuccessWhere('correct version course pageLevelProgress', {
     fromPlugins: [{ name: 'adapt-contrib-pageLevelProgress', version: '7.4.0' }],
@@ -204,7 +204,7 @@ describe('Page level progress - v7.7.0 to v7.8.0', async () => {
     return true;
   });
 
-  updatePlugin('Page level progress - update to v7.8.0', { name: 'adapt-contrib-pageLevelProgress', version: '7.8.0', framework: '">=5.31.0' });
+  updatePlugin('Page level progress - update to v7.8.0', { name: 'adapt-contrib-pageLevelProgress', version: '7.8.0', framework: '=>5.31.0' });
 
   testSuccessWhere('correct version course pageLevelProgress', {
     fromPlugins: [{ name: 'adapt-contrib-pageLevelProgress', version: '7.7.0' }],

@@ -31,7 +31,7 @@ describe('Page level progress - v6.2.2 to v6.2.3', async () => {
     return true;
   });
 
-  updatePlugin('Page level progress - update to v6.2.3', { name: 'adapt-contrib-pageLevelProgress', version: '6.2.3', framework: '">=5.24.4' });
+  updatePlugin('Page level progress - update to v6.2.3', { name: 'adapt-contrib-pageLevelProgress', version: '6.2.3', framework: '=>5.24.4' });
 
   testSuccessWhere('course pageLevelProgress, no globals', {
     fromPlugins: [{ name: 'adapt-contrib-pageLevelProgress', version: '6.2.2' }],
@@ -89,7 +89,7 @@ describe('Page level progress - v6.2.3 to v6.2.4', async () => {
     return true;
   });
 
-  updatePlugin('Page level progress - update to v6.2.4', { name: 'adapt-contrib-pageLevelProgress', version: '6.2.4', framework: '">=5.24.4' });
+  updatePlugin('Page level progress - update to v6.2.4', { name: 'adapt-contrib-pageLevelProgress', version: '6.2.4', framework: '=>5.24.4' });
 
   testSuccessWhere('course pageLevelProgress', {
     fromPlugins: [{ name: 'adapt-contrib-pageLevelProgress', version: '6.2.3' }],
@@ -169,7 +169,7 @@ describe('Page level progress - v6.2.7 to v6.3.0', async () => {
     return true;
   });
 
-  updatePlugin('Page level progress - update to v6.3.0', { name: 'adapt-contrib-pageLevelProgress', version: '6.3.0', framework: '">=5.24.4' });
+  updatePlugin('Page level progress - update to v6.3.0', { name: 'adapt-contrib-pageLevelProgress', version: '6.3.0', framework: '=>5.24.4' });
 
   testSuccessWhere('course pageLevelProgress, no globals', {
     fromPlugins: [{ name: 'adapt-contrib-pageLevelProgress', version: '6.2.7' }],
@@ -264,7 +264,7 @@ describe('Page level progress - v6.3.1 to v6.4.0', async () => {
     return true;
   });
 
-  updatePlugin('Page level progress - update to v6.4.0', { name: 'adapt-contrib-pageLevelProgress', version: '6.4.0', framework: '">=5.24.4' });
+  updatePlugin('Page level progress - update to v6.4.0', { name: 'adapt-contrib-pageLevelProgress', version: '6.4.0', framework: '=>5.24.4' });
 
   testSuccessWhere('course pageLevelProgress, no globals', {
     fromPlugins: [{ name: 'adapt-contrib-pageLevelProgress', version: '6.3.1' }],

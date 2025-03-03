@@ -128,7 +128,7 @@ describe('Page level progress - v3.1.0 to v4.0.0', async () => {
     return true;
   });
 
-  updatePlugin('Page level progress - update to v4.0.0', { name: 'adapt-contrib-pageLevelProgress', version: '4.0.0', framework: '">=4' });
+  updatePlugin('Page level progress - update to v4.0.0', { name: 'adapt-contrib-pageLevelProgress', version: '4.0.0', framework: '=>4' });
 
   testSuccessWhere('course _pageLevelProgress, pages with/without _pageLevelProgress, components with/without _pageLevelProgress', {
     fromPlugins: [{ name: 'adapt-contrib-pageLevelProgress', version: '3.1.0' }],
