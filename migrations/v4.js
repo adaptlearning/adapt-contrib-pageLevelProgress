@@ -56,25 +56,21 @@ describe('Page level progress - v3.1.0 to v4.0.0', async () => {
 
   mutateContent('Page level progress - add course attribute _isShownInNavigationBar', async (content) => {
     if (course._pageLevelProgress) course._pageLevelProgress._isShownInNavigationBar = true;
-
     return true;
   });
 
   mutateContent('Page level progress - add course attribute _isCompletionIndicatorEnabled', async (content) => {
     if (course._pageLevelProgress) course._pageLevelProgress._isCompletionIndicatorEnabled = false;
-
     return true;
   });
 
   mutateContent('Page level progress - add content object attribute _isCompletionIndicatorEnabled', async (content) => {
     configuredContentObjects.forEach(co => (co._pageLevelProgress._isCompletionIndicatorEnabled = false));
-
     return true;
   });
 
   mutateContent('Page level progress - add content object attribute _isCompletionIndicatorEnabled', async (content) => {
     configuredComponents.forEach(co => (co._pageLevelProgress._isCompletionIndicatorEnabled = false));
-
     return true;
   });
 
@@ -98,33 +94,25 @@ describe('Page level progress - v3.1.0 to v4.0.0', async () => {
 
   checkContent('Page level progress - check course attribute _isShownInNavigationBar', async (content) => {
     const isValid = !course._pageLevelProgress || course._pageLevelProgress._isShownInNavigationBar === true;
-
     if (!isValid) throw new Error('Page level progress - course attribute _isShownInNavigationBar');
-
     return true;
   });
 
   checkContent('Page level progress - check course attribute _isCompletionIndicatorEnabled', async (content) => {
     const isValid = !course._pageLevelProgress || course._pageLevelProgress._isCompletionIndicatorEnabled === false;
-
     if (!isValid) throw new Error('Page level progress - course attribute _isCompletionIndicatorEnabled');
-
     return true;
   });
 
   checkContent('Page level progress - check content object attribute _isCompletionIndicatorEnabled', async (content) => {
     const isValid = configuredContentObjects.every(co => co._pageLevelProgress._isCompletionIndicatorEnabled === false);
-
     if (!isValid) throw new Error('Page level progress - content object attribute _isCompletionIndicatorEnabled');
-
     return true;
   });
 
   checkContent('Page level progress - check component attribute _isCompletionIndicatorEnabled', async (content) => {
     const isValid = configuredComponents.every(co => co._pageLevelProgress._isCompletionIndicatorEnabled === false);
-
     if (!isValid) throw new Error('Page level progress - component attribute _isCompletionIndicatorEnabled');
-
     return true;
   });
 

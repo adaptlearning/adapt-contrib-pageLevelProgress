@@ -145,15 +145,12 @@ describe('Page level progress - v7.4.0 to v7.5.0', async () => {
 
   mutateContent('Page level progress - add course attribute title', async (content) => {
     course._pageLevelProgress.title = 'Alternate title';
-
     return true;
   });
 
   checkContent('Page level progress - check course attribute title', async (content) => {
     const isValid = course._pageLevelProgress.title === 'Alternate title';
-
     if (!isValid) throw new Error('Page level progress - course attribute title');
-
     return true;
   });
 
@@ -192,15 +189,12 @@ describe('Page level progress - v7.7.0 to v7.8.0', async () => {
 
   mutateContent('Page level progress - add course attribute _useCourseProgressInNavigationButton', async (content) => {
     course._pageLevelProgress._useCourseProgressInNavigationButton = false;
-
     return true;
   });
 
   checkContent('Page level progress - check course attribute _useCourseProgressInNavigationButton', async (content) => {
     const isValid = course._pageLevelProgress._useCourseProgressInNavigationButton === false;
-
     if (!isValid) throw new Error('Page level progress - course attribute _useCourseProgressInNavigationButton');
-
     return true;
   });
 
