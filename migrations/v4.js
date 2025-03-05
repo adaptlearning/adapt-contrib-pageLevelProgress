@@ -31,8 +31,19 @@ describe('Page level progress - v3.1.0 to v4.0.0', async () => {
   });
 
   mutateContent('Page level progress - add globals if missing', async (content) => {
-    if (!_.has(course, '_globals._extensions._pageLevelProgress')) _.set(course, '_globals._extensions._pageLevelProgress', { pageLevelProgressIndicatorBar: plpIndicatorBarDefaultNew, pageLevelProgressMenuBar: plpMenuBarNew, optionalContent: plpOptionalContentNew });
+    if (!_.has(course, '_globals._extensions._pageLevelProgress')) {
+      _.set(course, '_globals._extensions._pageLevelProgress', {});
+    }
     coursePlpGlobals = course._globals._extensions._pageLevelProgress;
+    const defaultValues = {
+      pageLevelProgressIndicatorBar: plpIndicatorBarDefaultNew,
+      pageLevelProgressMenuBar: plpMenuBarNew,
+      optionalContent: plpOptionalContentNew
+    };
+    Object.entries(defaultValues).forEach(([propertyName, defaultValue]) => {
+      if (_.has(coursePlpGlobals, propertyName)) return;
+      _.set(coursePlpGlobals, propertyName, defaultValue);
+    });
     return true;
   });
 
