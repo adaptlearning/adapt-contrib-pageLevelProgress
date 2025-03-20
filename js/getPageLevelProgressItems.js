@@ -15,10 +15,7 @@ export default function getPageLevelProgressItemsJSON(parentModel) {
       const isDescendantCurrentPage = (model === parentModel);
       if (!isInAPage && !isDescendantContentObject) return false;
       if (isInAPage && !isDescendantCurrentPage && !isDescendantContentObject) return false;
-      const descendantParentModel = descendant.getParent();
-      const isChildOfModel = (descendantParentModel === model);
-      if (isDescendantContentObject && !isChildOfModel) return false;
-      return (descendant.get('_isAvailable') === true);
+      return descendant.get('_isAvailable');
     });
     const availableItems = completionCalculations.filterAvailableChildren(currentPageItems);
     const enabledProgressItems = completionCalculations.getPageLevelProgressEnabledModels(availableItems);
