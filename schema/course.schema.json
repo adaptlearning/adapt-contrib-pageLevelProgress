@@ -121,7 +121,7 @@
             "title": {
               "type": "string",
               "title": "Alternate title",
-              "description": "Alternate title to display for the course",
+              "description": "Alternate title to display for the course. Also used to label the Page Level Progress dialog element for screen readers should the display title not be used.",
               "default": "",
               "_adapt": {
                 "translatable": true

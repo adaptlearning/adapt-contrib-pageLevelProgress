@@ -132,7 +132,7 @@
                   "required": true,
                   "default": "",
                   "title": "Alternate title",
-                  "help": "Alternate title to display for the course",
+                  "help": "Alternate title to display for the course. Also used to label the Page Level Progress dialog element for screen readers should the display title not be used.",
                   "inputType": "Text",
                   "validators": [],
                   "translatable": true
