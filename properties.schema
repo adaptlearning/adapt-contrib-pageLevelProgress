@@ -137,6 +137,26 @@
                   "validators": [],
                   "translatable": true
                 },
+                "displayTitle": {
+                  "type": "string",
+                  "required": false,
+                  "default": "",
+                  "title": "Page Level Progress display title",
+                  "help": "The display title text which will appear in the Page Level Progress header section within the Drawer. Used to label the Page Level Progress dialog element for screen readers.",
+                  "inputType": "Text",
+                  "validators": [],
+                  "translatable": true
+                },
+                "body": {
+                  "type": "string",
+                  "required": false,
+                  "default": "",
+                  "title": "Page Level Progress body text",
+                  "help": "The body text which will appear alongside the display title in the Page Level Progress header section within the Drawer.",
+                  "inputType": "Text",
+                  "validators": [],
+                  "translatable": true
+                },
                 "_showPageCompletion": {
                   "type": "boolean",
                   "required": true,

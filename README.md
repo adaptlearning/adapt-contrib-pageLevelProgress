@@ -71,6 +71,10 @@ Add to _course.json_.
 
 > **title** (string): Alternate course title to display when using `_showAtCourseLevel: true`.
 
+> **displayTitle** (string): The display title text which will appear in the Page Level Progress header section within the Drawer. Used to label the Page Level Progress dialog element for screen readers.
+
+> **body** (string): The body text which will appear alongside the display title in the Page Level Progress header section within the Drawer.
+
 > **\_isCompletionIndicatorEnabled** (boolean): Adds a completion indicator next to the title of a component, block, article, page or menu. Acceptable values are `true` and `false`.
 
 > **\_isShownInNavigationBar** (boolean): Allows **Page Level Progress** to appear in the navigation bar. Acceptable values are `true` and `false`.
