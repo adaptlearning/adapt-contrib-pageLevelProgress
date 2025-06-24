@@ -11,27 +11,31 @@ export default function PageLevelProgress(props) {
   } = props;
 
   const _pageLevelProgress = Adapt.course.get('_pageLevelProgress');
+  const _drawer = _pageLevelProgress._drawer;
 
   return (
     <div className="pagelevelprogress__inner">
 
-      <div className='pagelevelprogress__header'>
-        <div className='pagelevelprogress__header-inner'>
+      <div
+        className={classes([
+          'drawer__header',
+          'pagelevelprogress__header',
+          !_drawer.displayTitle && 'aria-label'
+        ])}
+      >
+        <div className='drawer__header-inner pagelevelprogress__header-inner'>
 
           <div
             id='drawer-heading'
-            className={classes([
-              'pagelevelprogress__title',
-              !_pageLevelProgress.displayTitle && 'aria-label'
-            ])}
+            className='drawer__title pagelevelprogress__title'
             role='heading'
             aria-level={a11y.ariaLevel({ level: 'drawer' })}
           >
             <div
-              className='pagelevelprogress__title-inner'
+              className='drawer__title-inner pagelevelprogress__title-inner'
               dangerouslySetInnerHTML={{
-                __html: compile(_pageLevelProgress.displayTitle
-                  ? _pageLevelProgress.displayTitle
+                __html: compile(_drawer.displayTitle
+                  ? _drawer.displayTitle
                   : _pageLevelProgress.title)
               }}
             />
@@ -39,11 +43,11 @@ export default function PageLevelProgress(props) {
 
           <div className="aria-label">{_globals._extensions._pageLevelProgress.pageLevelProgress}</div>
 
-          {_pageLevelProgress.body &&
-          <div className='pagelevelprogress__body'>
+          {(_drawer.displayTitle && _drawer.body) &&
+          <div className='drawer__body pagelevelprogress__body'>
             <div
-              className='pagelevelprogress__body-inner'
-              dangerouslySetInnerHTML={{ __html: compile(_pageLevelProgress.body) }}
+              className='drawer__body-inner pagelevelprogress__body-inner'
+              dangerouslySetInnerHTML={{ __html: compile(_drawer.body) }}
             />
           </div>
           }

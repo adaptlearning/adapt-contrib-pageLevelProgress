@@ -127,22 +127,28 @@
                 "translatable": true
               }
             },
-            "displayTitle": {
-              "type": "string",
-              "title": "Page Level Progress display title",
-              "description": "The display title text which will appear in the Page Level Progress header section within the Drawer. Used to label the Page Level Progress dialog element for screen readers.",
-              "default": "",
-              "_adapt": {
-                "translatable": true
-              }
-            },
-            "body": {
-              "type": "string",
-              "title": "Page Level Progress body text",
-              "description": "The body text which will appear alongside the display title in the Page Level Progress header section within the Drawer.",
-              "default": "",
-              "_adapt": {
-                "translatable": true
+            "_drawer": {
+              "type": "object",
+              "title": "Page Level Progress Drawer header",
+              "properties": {
+                "displayTitle": {
+                  "type": "string",
+                  "title": "Display title",
+                  "default": "",
+                  "description": "The display title text which will appear in the Page Level Progress header section within the Drawer. Used to label the Page Level Progress dialog element for screen readers.",
+                  "_adapt": {
+                    "translatable": true
+                  }
+                },
+                "body": {
+                  "type": "string",
+                  "title": "Body text",
+                  "default": "",
+                  "description": "The body text which will appear alongside the display title in the Page Level Progress header section within the Drawer.",
+                  "_adapt": {
+                    "translatable": true
+                  }
+                }
               }
             },
             "_showPageCompletion": {

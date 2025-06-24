@@ -17,8 +17,10 @@
     "_pageLevelProgress": {
         "_isEnabled": true,
         "title": "Page progress",
-        "displayTitle": "Page progress",
-        "body": "",
+        "_drawer": {
+          "displayTitle": "",
+          "body": ""
+        },
         "_showPageCompletion": true,
         "_isCompletionIndicatorEnabled": true,
         "_isShownInNavigationBar": true,
