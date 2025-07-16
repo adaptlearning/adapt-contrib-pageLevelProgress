@@ -69,6 +69,7 @@ export default function PageLevelProgressItem(props) {
           isIncorrect && `${_globals._accessibility._ariaLabels.answeredIncorrectly}.`,
           compile(a11y.normalize(altTitle || title))
         ])}
+        aria-disabled={(_isLocked || !_isVisible) ? true : null}
       >
 
         <span className="pagelevelprogress__item-title drawer__item-title">
