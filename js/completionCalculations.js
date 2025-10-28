@@ -132,8 +132,7 @@ class Completion extends Backbone.Controller {
     // this allows the user to see if assessments have been passed, if assessment components can be retaken, and all other component's completion
     const completed = completionObject.nonAssessmentCompleted + completionObject.assessmentCompleted + completionObject.subProgressCompleted;
     const total = completionObject.nonAssessmentTotal + completionObject.assessmentTotal + completionObject.subProgressTotal;
-    // Handle division by zero when page contains only optional content
-    const percentageComplete = total === 0 ? 0 : Math.floor((completed / total) * 100);
+    const percentageComplete = Math.floor((completed / total) * 100);
     return percentageComplete;
   }
 
