@@ -1,6 +1,53 @@
 // Global indicator
 // --------------------------------------------------
 .pagelevelprogress {
+  &__indicator-outer {
+    display: flex;
+    flex-direction: column;
+    /* left-align the group within the outer container */
+    align-items: flex-start;
+  }
+
+  &__indicator-group {
+    display: flex;
+    flex-direction: column;
+    /* center the indicator and label horizontally as a group */
+    align-items: center;
+  }
+
+  // Override core .aria-label (which is visually-hidden) for our
+  // indicator group so the message can be presented visually and
+  // styled similar to a header/title. Keep it lightweight.
+  &__indicator-group .aria-label {
+    position: static;
+    display: block;
+    width: auto;
+    height: auto;
+    margin: 0;
+    padding: 0;
+    overflow: visible;
+    clip: auto;
+    white-space: normal;
+    pointer-events: none;
+    font-size: 0.875rem;
+    font-weight: 600;
+    line-height: 1.1;
+    color: @black;
+  }
+
+  /* Screen-reader-only text (accessible but not visible) */
+  .sr-only {
+    position: absolute !important;
+    width: 1px !important;
+    height: 1px !important;
+    padding: 0 !important;
+    margin: -1px !important;
+    overflow: hidden !important;
+    clip: rect(0, 0, 0, 0) !important;
+    white-space: nowrap !important;
+    border: 0 !important;
+  }
+
   &__indicator {
     display: flex;
     width: 2rem;
@@ -26,6 +73,15 @@
     min-width: 15%;
     background-color: @black;
     width: var(--adapt-pagelevelprogress-percentage);
+  }
+
+  &__indicator-label {
+    font-size: 0.5rem;
+    font-weight: normal;
+    text-align: center;
+    margin-top: 0.125rem;
+    line-height: 1;
+    white-space: nowrap;
   }
 
   &__indicator .js-indicator-aria-label {
