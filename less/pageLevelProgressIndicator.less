@@ -1,6 +1,18 @@
 // Global indicator
 // --------------------------------------------------
 .pagelevelprogress {
+  &__indicator-outer {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  &__indicator-group {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
   &__indicator {
     display: flex;
     width: 2rem;
@@ -28,7 +40,12 @@
     width: var(--adapt-pagelevelprogress-percentage);
   }
 
-  &__indicator .js-indicator-aria-label {
-    top: 0;
+  &__indicator-label {
+    font-size: 0.5rem;
+    font-weight: normal;
+    text-align: center;
+    margin-top: 0.125rem;
+    line-height: 1;
+    white-space: nowrap;
   }
 }
