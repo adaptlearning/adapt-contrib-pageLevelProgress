@@ -57,7 +57,8 @@ class PageLevelProgressIndicatorView extends Backbone.View {
     if (isPresentationComponentWithItems) {
       const children = this.model.getChildren();
       const visited = children.filter(child => child.get('_isVisited'));
-      return Math.round(visited.length / children.length * 100);
+      // Handle division by zero when component has no children
+      return children.length === 0 ? 0 : Math.round(visited.length / children.length * 100);
     }
     return 0;
   }
@@ -98,6 +99,14 @@ class PageLevelProgressIndicatorView extends Backbone.View {
     const data = this.model.toJSON();
     data.ariaLabel = this.ariaLabel;
     data.type = this.type;
+
+    // Check if content is optional (set by diagnostic extension)
+    data._isOptional = this.model.get('_isOptional') || false;
+
+    // Note: do not generate a combined screen-reader string here. Visible labels
+    // will remain present and any aria labeling should be handled by the template
+    // or higher-level components to avoid duplicating responsibilities.
+
     return data;
   }
 
