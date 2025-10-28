@@ -99,14 +99,7 @@ class PageLevelProgressIndicatorView extends Backbone.View {
     const data = this.model.toJSON();
     data.ariaLabel = this.ariaLabel;
     data.type = this.type;
-
-    // Check if content is optional (set by diagnostic extension)
     data._isOptional = this.model.get('_isOptional') || false;
-
-    // Note: do not generate a combined screen-reader string here. Visible labels
-    // will remain present and any aria labeling should be handled by the template
-    // or higher-level components to avoid duplicating responsibilities.
-
     return data;
   }
 
