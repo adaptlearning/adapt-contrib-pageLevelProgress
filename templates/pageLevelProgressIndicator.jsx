@@ -3,22 +3,35 @@ import { compile } from 'core/js/reactHelpers';
 
 export default function PageLevelProgressIndicator (props) {
   const {
-    ariaLabel
+    ariaLabel,
+    _isOptional
   } = props;
 
+  // Build aria-label with optional prefix if needed
+  const compiledAriaLabel = ariaLabel ? compile(ariaLabel, props) : '';
+  const fullAriaLabel = _isOptional ? `Optional. ${compiledAriaLabel}` : compiledAriaLabel;
+
   return (
-    <span className='pagelevelprogress__indicator'>
-      <span className="pagelevelprogress__indicator-inner">
+    <React.Fragment>
+      <span className='pagelevelprogress__indicator'>
+        <span className="pagelevelprogress__indicator-inner">
 
-        <span className="pagelevelprogress__indicator-bar"></span>
+          <span className="pagelevelprogress__indicator-bar"></span>
 
-        {ariaLabel &&
-        <span className="aria-label">
-          {compile(ariaLabel, props)}
+          {ariaLabel &&
+          <span className="aria-label">
+            {fullAriaLabel}
+          </span>
+          }
+
         </span>
-        }
-
       </span>
-    </span>
+
+      {_isOptional &&
+      <span className="pagelevelprogress__indicator-label" aria-hidden="true">
+        Optional
+      </span>
+      }
+    </React.Fragment>
   );
 };
