@@ -99,6 +99,7 @@ class PageLevelProgressIndicatorView extends Backbone.View {
     const data = this.model.toJSON();
     data.ariaLabel = this.ariaLabel;
     data.type = this.type;
+    data._globals = Adapt.course.get('_globals');
     data._isOptional = this.model.get('_isOptional') || false;
     return data;
   }

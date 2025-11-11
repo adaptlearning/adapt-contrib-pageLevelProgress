@@ -9,29 +9,47 @@ export default function PageLevelProgressIndicator (props) {
 
   // Build aria-label with optional prefix if needed
   const compiledAriaLabel = ariaLabel ? compile(ariaLabel, props) : '';
-  const fullAriaLabel = _isOptional ? `Optional. ${compiledAriaLabel}` : compiledAriaLabel;
+  const optionalLabel = props._globals?._accessibility?._ariaLabels?.optional || 'Optional';
+  const fullAriaLabel = _isOptional ? `${optionalLabel}. ${compiledAriaLabel}` : compiledAriaLabel;
 
-  return (
-    <React.Fragment>
-      <span className='pagelevelprogress__indicator'>
-        <span className="pagelevelprogress__indicator-inner">
+  // Only render wrapper group when optional label exists
+  if (_isOptional) {
+    return (
+      <span className='pagelevelprogress__indicator-group'>
+        <span className='pagelevelprogress__indicator'>
+          <span className="pagelevelprogress__indicator-inner">
 
-          <span className="pagelevelprogress__indicator-bar"></span>
+            <span className="pagelevelprogress__indicator-bar"></span>
 
-          {ariaLabel &&
-          <span className="aria-label">
-            {fullAriaLabel}
+            {ariaLabel &&
+            <span className="aria-label">
+              {fullAriaLabel}
+            </span>
+            }
+
           </span>
-          }
+        </span>
 
+        <span className="pagelevelprogress__indicator-label" aria-hidden="true">
+          {optionalLabel}
         </span>
       </span>
+    );
+  }
 
-      {_isOptional &&
-      <span className="pagelevelprogress__indicator-label" aria-hidden="true">
-        Optional
+  return (
+    <span className='pagelevelprogress__indicator'>
+      <span className="pagelevelprogress__indicator-inner">
+
+        <span className="pagelevelprogress__indicator-bar"></span>
+
+        {ariaLabel &&
+        <span className="aria-label">
+          {fullAriaLabel}
+        </span>
+        }
+
       </span>
-      }
-    </React.Fragment>
+    </span>
   );
 };
