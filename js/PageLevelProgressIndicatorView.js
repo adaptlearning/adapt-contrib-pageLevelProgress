@@ -57,7 +57,8 @@ class PageLevelProgressIndicatorView extends Backbone.View {
     if (isPresentationComponentWithItems) {
       const children = this.model.getChildren();
       const visited = children.filter(child => child.get('_isVisited'));
-      return Math.round(visited.length / children.length * 100);
+      // Handle division by zero when component has no children
+      return children.length === 0 ? 0 : Math.round(visited.length / children.length * 100);
     }
     return 0;
   }
