@@ -100,6 +100,15 @@
         ]
       },
       "validators": []
+    },
+    "_isTitleVisible": {
+      "type": "boolean",
+      "required": false,
+      "default": false,
+      "title": "Display drawer title",
+      "inputType": "Checkbox",
+      "validators": [],
+      "help": "If enabled, the button label is displayed as a heading at the top of the drawer. Otherwise it is only read by screen readers."
     }
   },
   "properties": {
