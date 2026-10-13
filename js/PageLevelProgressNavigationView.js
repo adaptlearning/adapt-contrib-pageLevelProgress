@@ -102,7 +102,10 @@ export default class PageLevelProgressNavigationView extends NavigationButtonVie
     if (event && event.preventDefault) event.preventDefault();
     drawer.openCustomView(new PageLevelProgressView({
       collection: this.collection
-    }).$el, false, this.model.get('_drawerPosition'));
+    }).$el, false, this.model.get('_drawerPosition'), {
+      title: this.model.get('text'),
+      isTitleVisible: this.model.get('_isTitleVisible')
+    });
     Adapt.trigger('pageLevelProgress:toggleDrawer');
   }
 

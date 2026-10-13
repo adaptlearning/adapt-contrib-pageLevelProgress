@@ -57,6 +57,8 @@ Add to _course.json_ under _\_globals.\_extensions_.
 
 > **\_drawerPosition** (string): The position that the button appears in the drawer. Position options include 'auto', 'left', and 'right'. Defaults to 'auto'
 
+> **\_isTitleVisible** (boolean): If set to `true`, the **navLabel** is displayed as a heading at the top of the drawer. Otherwise the heading is only read by screen readers. In both cases it is used as the accessible name of the drawer. Defaults to `false`
+
 > **\_navTooltip** (object): The tooltip object. Used when tooltips are enabled globally
 
 >> **\_isEnabled** (boolean): Enables tooltips on the button

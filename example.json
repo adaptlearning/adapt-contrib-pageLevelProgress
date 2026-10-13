@@ -6,6 +6,7 @@
           "navLabel": "Page progress",
           "_comment": "Position options include 'auto', 'left', and 'right'",
           "_drawerPosition": "auto",
+          "_isTitleVisible": false,
           "_navTooltip": {
             "_isEnabled": true,
             "text": "Page progress"

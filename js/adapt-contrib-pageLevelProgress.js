@@ -148,7 +148,8 @@ class PageLevelProgress extends Backbone.Controller {
       _showLabel = true,
       navLabel = '',
       pageLevelProgressIndicatorBar = '',
-      _drawerPosition = 'auto'
+      _drawerPosition = 'auto',
+      _isTitleVisible = false
     } = PageLevelProgress.globalsConfig ?? {};
 
     const model = new NavigationButtonModel({
@@ -160,7 +161,8 @@ class PageLevelProgress extends Backbone.Controller {
       _role: 'button',
       ariaLabel: pageLevelProgressIndicatorBar,
       text: navLabel,
-      _drawerPosition
+      _drawerPosition,
+      _isTitleVisible
     });
 
     navigation.addButton(new PageLevelProgressNavigationView({
